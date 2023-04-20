@@ -1,0 +1,1 @@
+# h-shimane-navi
