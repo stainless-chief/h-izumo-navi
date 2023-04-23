@@ -8,7 +8,7 @@ const AppRouter = () => (
 
       <Route index element={<Pages.GreetingsPage />} />
 
-      <Route path="map" element={<Pages.HeatmapPage />} />
+      <Route path="heatmap" element={<Pages.HeatmapPage />} />
 
     </Route>
   </Routes>
