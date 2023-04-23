@@ -1,0 +1,20 @@
+@import "/public/assets/scss/variables";
+
+header {
+  font-family: $font-header;
+  text-transform: uppercase;
+  max-height: 60px;
+  text-align: center;
+
+  a {
+    font-size: 45px;
+    text-decoration: none;
+    color: $header-color;
+  }
+
+  @media (max-width: 650px) {
+    .full-size {
+      display: none;
+    }
+  }
+}
