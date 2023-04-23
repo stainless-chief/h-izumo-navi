@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Header } from "./features";
 import { BrowserRouter } from "react-router-dom";
 import './index.scss';
+import { AppRouter } from "./AppRouter";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -12,7 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <Header/>
-    <App/>
+    <AppRouter />
   </BrowserRouter>
 );
 
