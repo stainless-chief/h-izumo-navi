@@ -1,5 +1,8 @@
 {
   "Header": {
     "Full": "Izumo heatmap"
+  },
+  "Navigation" : {
+    "Heatmap": "Heatmap"
   }
 }
