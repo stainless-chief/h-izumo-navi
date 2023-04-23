@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { HeatFilterComponent } from "./features/";
+import { HeatFilterComponent, MapComponent } from "./features/";
 import "./heatmap-page.scss";
 
 function HeatmapPage() {
 
   return (
-    <div>
-      <div>map</div>
+    <div className="heatmap-container">
+      <MapComponent />
       <HeatFilterComponent />
     </div>
   );

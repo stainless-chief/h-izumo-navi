@@ -2,8 +2,9 @@ import "./heat-filter-component.scss";
 
 function HeatFilterComponent() {
   return (
-  <div>
-    filter    
+  <div className="heat-filter-container">
+    <div>One</div>
+    <div>Two</div>
   </div>
   );
 };
