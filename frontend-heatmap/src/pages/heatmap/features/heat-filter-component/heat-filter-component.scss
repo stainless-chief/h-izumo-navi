@@ -1,9 +1,9 @@
+@import "/public/assets/scss/variables";
+
 .heat-filter-container {
-      flex: 1 0 20%;
-        flex-direction: column;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      
-        background-color: aqua;
+  flex: 1 0 20%;
+  flex-direction: column;
+  display: flex;
+  background-color: $color-panel;
+  height: 600px;
 }
