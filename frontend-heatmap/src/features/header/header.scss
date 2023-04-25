@@ -10,6 +10,7 @@ header {
     font-size: 45px;
     text-decoration: none;
     color: $color-header;
+    text-shadow: 1px 1px 2px #558abb;
   }
 
   @media (max-width: 650px) {
