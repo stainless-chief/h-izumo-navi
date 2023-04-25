@@ -4,5 +4,9 @@
   },
   "Navigation" : {
     "Heatmap": "Heatmap"
+  },
+  "HeatMap" : {
+    "FilterHeader": "Data sources",
+    "LoadHeatData": "Load"
   }
 }
