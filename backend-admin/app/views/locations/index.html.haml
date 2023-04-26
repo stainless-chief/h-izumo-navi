@@ -1,0 +1,37 @@
+%h1 Listing locations
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Short discription
+      %th Discription
+      %th Address
+      %th City
+      %th State
+      %th Country
+      %th Image
+      %th
+      %th
+      %th
+
+  %tbody
+    - @locations.each do |location|
+      %tr
+        %td= location.title
+        %td= location.short_discription
+        %td= location.discription
+        %td= location.address
+        %td= location.city
+        %td= location.state
+        %td= location.country
+        %td= image_tag location.image.url(:large) if location.image?
+        - if current_user.admin?
+          %td= link_to 'Show', location
+          %td= link_to 'Edit', edit_location_path(location)
+          %td= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+- if current_user.admin?
+  = link_to 'New Location', new_location_path
+= link_to 'Back', root_path

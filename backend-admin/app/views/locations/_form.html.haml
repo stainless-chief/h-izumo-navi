@@ -1,0 +1,34 @@
+= form_for @location, html: { multipart: true } do |f|
+  - if @location.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@location.errors.count, "error")} prohibited this location from being saved:"
+      %ul
+        - @location.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :short_discription
+    = f.text_field :short_discription
+  .field
+    = f.label :discription
+    = f.text_field :discription
+  .field
+    = f.label :address
+    = f.text_field :address
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :state
+    = f.text_field :state
+  .field
+    = f.label :country
+    = f.text_field :country
+  .field
+    = f.label :image
+    = f.file_field :image
+  .actions
+    = f.submit 'Save'

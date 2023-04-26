@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @location.title
+%p
+  %b Short discription:
+  = @location.short_discription
+%p
+  %b Discription:
+  = @location.discription
+%p
+  %b Address:
+  = @location.address
+%p
+  %b City:
+  = @location.city
+%p
+  %b State:
+  = @location.state
+%p
+  %b Country:
+  = @location.country
+%p
+  %b Image:
+  = @location.image
+
+= link_to 'Edit', edit_location_path(@location)
+\|
+= link_to 'Back', locations_path

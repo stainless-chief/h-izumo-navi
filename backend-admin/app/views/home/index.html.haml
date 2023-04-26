@@ -1,9 +1,11 @@
 - if current_user
-  %h5 You are now logged in
+  %h5 You are now logged in as
+  %h5= current_user.email 
   %a= button_to "Log out", destroy_user_session_path, method: :delete
-  %p= link_to 'Create new tour'
+  %p= link_to 'Create your tour'
+  %p= link_to 'Idzumo locations', locations_path
   - if current_user.admin?
-    = link_to 'Add new location'
+    = link_to 'Add new location', new_location_path
 - else
   %h5 Please log in
   %a= link_to "log in", new_user_session_path
