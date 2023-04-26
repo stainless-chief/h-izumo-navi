@@ -1,0 +1,21 @@
+%h1 Listing tours
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th
+      %th
+      %th
+
+  %tbody
+    - @tours.each do |tour|
+      %tr
+        %td= tour.title
+        %td= link_to 'Show', tour
+        %td= link_to 'Edit', edit_tour_path(tour)
+        %td= link_to 'Destroy', tour, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Tour', new_tour_path

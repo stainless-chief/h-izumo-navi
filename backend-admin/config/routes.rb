@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :tours
   resources :locations
   devise_for :users
   root 'home#index'

@@ -1,0 +1,17 @@
+= form_for @tour do |f|
+  - if @tour.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@tour.errors.count, "error")} prohibited this tour from being saved:"
+      %ul
+        - @tour.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.fields_for :locations do |builder|
+      = render 'locations_fields', f: builder
+    = link_to_add_fields "Add Location", f, :locations
+  .actions
+    = f.submit 'Save'
