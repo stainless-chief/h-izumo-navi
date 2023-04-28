@@ -1,12 +1,14 @@
 FactoryBot.define do
   factory :location do
     title { "MyString" }
-    short_discription { "MyString" }
-    discription { "MyString" }
+    description { "MyText" }
     address { "MyString" }
+    country { "MyString" }
     city { "MyString" }
     state { "MyString" }
-    country { "MyString" }
     image { "MyString" }
+    short_discription { "MyText" }
+    latitude { 1.5 }
+    longitude { 1.5 }
   end
 end

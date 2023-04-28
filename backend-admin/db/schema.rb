@@ -10,27 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_26_143814) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_28_151000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "locations", force: :cascade do |t|
     t.string "title"
-    t.string "short_discription"
-    t.string "discription"
+    t.text "description"
     t.string "address"
+    t.string "country"
     t.string "city"
     t.string "state"
-    t.string "country"
     t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "short_discription"
     t.float "latitude"
     t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tour_id"
+    t.index ["tour_id"], name: "index_locations_on_tour_id"
   end
 
   create_table "tours", force: :cascade do |t|
-    t.string "title"
+    t.string "name"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
@@ -49,4 +52,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_143814) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "locations", "tours"
 end

@@ -1,0 +1,7 @@
+.nested-form-wrapper(data-new-record="#{f.object.new_record?}")
+  = f.label :title
+  = f.text_field :title
+  = f.label :address
+  = f.text_field :address
+  %button(data-action="nested-form#remove" type="button") Remove location
+  = f.hidden_field :_destroy

@@ -4,14 +4,14 @@
   %b Title:
   = @location.title
 %p
-  %b Short discription:
-  = @location.short_discription
-%p
-  %b Discription:
-  = @location.discription
+  %b Description:
+  = @location.description
 %p
   %b Address:
   = @location.address
+%p
+  %b Country:
+  = @location.country
 %p
   %b City:
   = @location.city
@@ -19,11 +19,17 @@
   %b State:
   = @location.state
 %p
-  %b Country:
-  = @location.country
-%p
   %b Image:
   = @location.image
+%p
+  %b Short discription:
+  = @location.short_discription
+%p
+  %b Latitude:
+  = @location.latitude
+%p
+  %b Longitude:
+  = @location.longitude
 
 = link_to 'Edit', edit_location_path(@location)
 \|

@@ -3,7 +3,9 @@
 %table
   %thead
     %tr
-      %th Title
+      %th Name
+      %th Description
+      %th Locations
       %th
       %th
       %th
@@ -11,7 +13,12 @@
   %tbody
     - @tours.each do |tour|
       %tr
-        %td= tour.title
+        %td= tour.name
+        %td= tour.description
+        - tour.locations.each do |location|
+          %td= location.title
+          %td= location.address
+          %td= link_to 'See more', location
         %td= link_to 'Show', tour
         %td= link_to 'Edit', edit_tour_path(tour)
         %td= link_to 'Destroy', tour, method: :delete, data: { confirm: 'Are you sure?' }

@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "tours/new", type: :view do
   before(:each) do
     assign(:tour, Tour.new(
-      title: "MyString"
+      name: "MyString",
+      description: "MyText"
     ))
   end
 
@@ -12,7 +13,9 @@ RSpec.describe "tours/new", type: :view do
 
     assert_select "form[action=?][method=?]", tours_path, "post" do
 
-      assert_select "input[name=?]", "tour[title]"
+      assert_select "input[name=?]", "tour[name]"
+
+      assert_select "textarea[name=?]", "tour[description]"
     end
   end
 end

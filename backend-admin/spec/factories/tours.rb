@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :tour do
-    title { "MyString" }
+    name { "MyString" }
+    description { "MyText" }
   end
 end

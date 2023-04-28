@@ -1,8 +1,11 @@
 %p#notice= notice
 
 %p
-  %b Title:
-  = @tour.title
+  %b Name:
+  = @tour.name
+%p
+  %b Description:
+  = @tour.description
 
 = link_to 'Edit', edit_tour_path(@tour)
 \|

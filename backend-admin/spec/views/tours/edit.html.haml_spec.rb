@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "tours/edit", type: :view do
   let(:tour) {
     Tour.create!(
-      title: "MyString"
+      name: "MyString",
+      description: "MyText"
     )
   }
 
@@ -16,7 +17,9 @@ RSpec.describe "tours/edit", type: :view do
 
     assert_select "form[action=?][method=?]", tour_path(tour), "post" do
 
-      assert_select "input[name=?]", "tour[title]"
+      assert_select "input[name=?]", "tour[name]"
+
+      assert_select "textarea[name=?]", "tour[description]"
     end
   end
 end

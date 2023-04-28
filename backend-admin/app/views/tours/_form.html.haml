@@ -1,4 +1,4 @@
-= form_for @tour do |f|
+= form_for @tour, data: {controller: "nested-form", nested_form_wrapper_selector_value: '.nested-form-wrapper'} do |f|
   - if @tour.errors.any?
     #error_explanation
       %h2= "#{pluralize(@tour.errors.count, "error")} prohibited this tour from being saved:"
@@ -7,11 +7,18 @@
           %li= message
 
   .field
-    = f.label :title
-    = f.text_field :title
+    = f.label :name
+    = f.text_field :name
   .field
-    = f.fields_for :locations do |builder|
-      = render 'locations_fields', f: builder
-    = link_to_add_fields "Add Location", f, :locations
+    = f.label :description
+    = f.text_area :description
+  %template(data-nested-form-target="template")
+    = f.fields_for :locations, Location.new, child_index: "NEW_RECORD" do |location_fields|
+      = render "tours/tour_location_form", f: location_fields
+  = f.fields_for :locations do |location_fields|
+    = render "tours/tour_location_form", f: location_fields
+  / Inserted elements will be injected before that target.
+  %div(data-nested-form-target="target")
+  %button(data-action="nested-form#add" type="button") Add location
   .actions
     = f.submit 'Save'

@@ -4,13 +4,15 @@ RSpec.describe "locations/new", type: :view do
   before(:each) do
     assign(:location, Location.new(
       title: "MyString",
-      short_discription: "MyString",
-      discription: "MyString",
+      description: "MyText",
       address: "MyString",
+      country: "MyString",
       city: "MyString",
       state: "MyString",
-      country: "MyString",
-      image: "MyString"
+      image: "MyString",
+      short_discription: "MyText",
+      latitude: 1.5,
+      longitude: 1.5
     ))
   end
 
@@ -21,19 +23,23 @@ RSpec.describe "locations/new", type: :view do
 
       assert_select "input[name=?]", "location[title]"
 
-      assert_select "input[name=?]", "location[short_discription]"
-
-      assert_select "input[name=?]", "location[discription]"
+      assert_select "textarea[name=?]", "location[description]"
 
       assert_select "input[name=?]", "location[address]"
+
+      assert_select "input[name=?]", "location[country]"
 
       assert_select "input[name=?]", "location[city]"
 
       assert_select "input[name=?]", "location[state]"
 
-      assert_select "input[name=?]", "location[country]"
-
       assert_select "input[name=?]", "location[image]"
+
+      assert_select "textarea[name=?]", "location[short_discription]"
+
+      assert_select "input[name=?]", "location[latitude]"
+
+      assert_select "input[name=?]", "location[longitude]"
     end
   end
 end
