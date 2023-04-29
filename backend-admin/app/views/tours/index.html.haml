@@ -18,11 +18,12 @@
         - tour.locations.each do |location|
           %td= location.title
           %td= location.address
-          %td= link_to 'See more', location
+          %td= link_to 'See', location
         %td= link_to 'Show', tour
         %td= link_to 'Edit', edit_tour_path(tour)
-        %td= link_to 'Destroy', tour, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Destroy', tour_path(tour), data: { turbo_method: :delete, 'turbo-confirm': 'Are you shure?'}
 
 %br
 
-= link_to 'New Tour', new_tour_path
+%p= link_to 'New Tour', new_tour_path
+%p= link_to 'Back', root_path
