@@ -1,0 +1,40 @@
+%h1 Listing locations
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Short discription
+      %th Description
+      %th Address
+      %th Country
+      %th City
+      %th State
+      %th Image
+      %th Latitude
+      %th Longitude
+      %th
+      %th
+      %th
+
+  %tbody
+    - @locations.each do |location|
+      %tr
+        %td= location.title
+        %td= location.short_discription
+        %td= location.description
+        %td= location.address
+        %td= location.country
+        %td= location.city
+        %td= location.state
+        %td= image_tag location.image.url(:large), style: "width: 50%" if location.image?
+        %td= location.latitude
+        %td= location.longitude
+        %td= link_to 'Show', location
+        %td= link_to 'Edit', edit_location_path(location)
+        %td= link_to 'Destroy', location, data: { turbo_method: :delete, 'turbo-confirm': 'Are you shure?'}
+
+%br
+
+%p= link_to 'New Location', new_location_path
+%p= link_to 'Back', root_path
