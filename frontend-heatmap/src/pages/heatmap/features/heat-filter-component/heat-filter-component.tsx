@@ -4,9 +4,11 @@ import { Checkbox, Button, FormControl, FormControlLabel, FormGroup, FormLabel }
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-function HeatFilterComponent(props: {analyticsSources: AnalyticsSource[]}) {
+function HeatFilterComponent(
+  props: {analyticsSources: AnalyticsSource[], reloadHeatZone:(sourceCodes: string[]) => void}) {
   const { t } = useTranslation();
   const analyticsSources = props.analyticsSources;
+  const reloadHeatZone = props.reloadHeatZone;
   const [checkedList, setCheckedList] = useState<string[]>([]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +37,10 @@ function HeatFilterComponent(props: {analyticsSources: AnalyticsSource[]}) {
     }
   </FormControl>
   <Button disabled={checkedList?.length < 1} 
-          onClick={() => { alert(checkedList?.join(';')); }}
+          onClick={() => { reloadHeatZone(checkedList); }}
           variant="contained">{t("HeatMap.LoadHeatData")}</Button>
+  <Button onClick={() => { reloadHeatZone([]); }}
+          variant="contained">{t("HeatMap.ClearHeatData")}</Button>
   </div>
   );
 };

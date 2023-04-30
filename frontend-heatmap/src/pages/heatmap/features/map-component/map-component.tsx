@@ -2,7 +2,7 @@ import "./map-component.scss";
 import React, { useRef, useEffect, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Map from 'react-map-gl';
-
+import { AnalyticsHeatZone } from "../../../../services";
 
 function MapComponent() {
   return (

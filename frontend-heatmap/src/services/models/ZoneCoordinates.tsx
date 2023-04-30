@@ -1,6 +1,6 @@
 class ZoneCoordinates {
   x: number;
-  y: string;
+  y: number;
 }
 
 export { ZoneCoordinates };

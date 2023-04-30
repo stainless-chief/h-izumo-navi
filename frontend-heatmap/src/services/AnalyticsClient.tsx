@@ -1,6 +1,8 @@
 import * as axios from "axios";
-import { ExecutionResult, AnalyticsSource  } from "./";
+import { ExecutionResult, AnalyticsSource, AnalyticsHeatZone, AnalyticsHeatZoneCollection  } from "./";
 import { Utils } from "./Utils";
+import { Feature, FeatureCollection, GeoJsonProperties, Geometry, Position } from "geojson";
+import { number } from "yargs";
 
 
 class AnalyticsClient {
@@ -22,6 +24,35 @@ class AnalyticsClient {
       .catch((error: axios.AxiosError) => {
         return Utils.create<AnalyticsSource[]>(error);
       });
+  };
+
+  public static async getHeatMap(codes: string[]) {
+    return await this.init()
+    .post<ExecutionResult<AnalyticsHeatZone[]>>("/heatzone", codes)
+    .then(response => {
+        let tmp: AnalyticsHeatZoneCollection;
+        tmp = new AnalyticsHeatZoneCollection();
+        tmp.type = 'FeatureCollection';
+
+        tmp.features = response.data.data.map(function (value)
+        {
+          return {
+            type: 'Feature',
+            properties: {name: "", temperature: value.temperature },
+            geometry:
+            { 
+              type: "Polygon",
+              coordinates:[
+                value.zoneCoordinates.map(zone => [zone.x, zone.y])
+              ],
+            }
+          }
+        });
+        return tmp;
+    })
+    // .catch((error: axios.AxiosError) => {
+    //     return Utils.create<AnalyticsHeatZone[]>(error);
+    // });
   };
 }
 
