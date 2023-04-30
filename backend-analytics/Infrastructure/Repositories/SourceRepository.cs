@@ -1,19 +1,53 @@
 ﻿using Abstractions.Models;
 using Abstractions.IRepositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
     public class SourceRepository : ISourceRepository
     {
+        private readonly DataContext _context;
+
+        public SourceRepository(DataContext context)
+        {
+            _context = context;
+        }
+
         public async Task<IEnumerable<Source>> GetAsync()
         {
-            var ss = new List<Source>()
-            {
-                new Source { Code = "source-dummy", Description = "dummy", Name = "dummy", TotalEvents = 1000 },
-                new Source { Code = "source-twitter", Description = "We are", Name = "Twitter", TotalEvents = 9 },
-            };
+            var items = await _context.Sources
+                                    .AsNoTracking()
+                                    .Select
+                                    (x => new Source
+                                    {
+                                         Code = x.Code,
+                                         Description = x.Description,
+                                         Name = x.DisplayName,
+                                         TotalEvents = -1,
+                                    })
+                                    .ToListAsync();
 
-            return ss;
+            foreach (var item in items)
+            {
+                item.TotalEvents = CoutHits(item.Code);
+            }
+            items.Add(new Source
+            {
+                 Code = "dummy",
+                 TotalEvents = 9000
+            });
+
+            return items;
+        }
+
+        public int CoutHits(string sourceCode)
+        {
+            switch (sourceCode.ToLower())
+            {
+                case "example": return _context.ExampleHits.Count();
+            }
+
+            throw new ArgumentException("");
         }
     }
 }

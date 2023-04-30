@@ -1,11 +1,15 @@
 using Abstractions.IRepositories;
+using Infrastructure;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 
 namespace IzumoAnalytics
 {
     public class Program
     {
+        const string KeyDatabase = "PostgreSQL";
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +23,11 @@ namespace IzumoAnalytics
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<DataContext>(options =>
+            {
+                options.UseNpgsql(builder.Configuration.GetConnectionString(KeyDatabase));
+            });
+
             builder.Services.AddTransient<IHeatZoneRepository, HeatZoneRepository>();
             builder.Services.AddTransient<ISourceRepository, SourceRepository>();
 
@@ -26,10 +35,18 @@ namespace IzumoAnalytics
             app.UseCors(builder => builder.AllowAnyOrigin()
                               .AllowAnyMethod()
                               .AllowAnyHeader());
+
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                var context = services.GetRequiredService<DataContext>();
+                context.Migrator.MigrateUp();
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

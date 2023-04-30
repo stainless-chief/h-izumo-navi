@@ -50,7 +50,7 @@ namespace IzumoAnalytics.Controllers
 
         [AllowAnonymous]
         [ApiVersion("1.0")]
-        [HttpGet("heatzone")]
+        [HttpPost("heatzone")]
         public async Task<ActionResult<ExecutionResult<IEnumerable<HeatZone>>>> GetHeatZones([FromBody]IEnumerable<string> sourceCode)
         {
             var result = await _supervisor.SafeExecuteAsync
