@@ -1,0 +1,50 @@
+version: "3.9"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PW}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./backend-analytics-init-db.sql:/docker-entrypoint-initdb.d/0_init.sql
+    restart: always
+
+  pgadmin:
+    depends_on:
+      - postgres
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_MAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PW}
+    ports:
+      - "5050:80"
+    restart: always
+
+  backend_analytics:
+    depends_on:
+      - postgres
+    build:
+      context: ./backend-analytics
+      dockerfile: Dockerfile
+    ports:
+      - 5223:5223
+    restart: always
+
+  frontend_analytics:
+    depends_on:
+      - backend_analytics
+    build:
+      context: ./frontend-analytics
+      dockerfile: Dockerfile
+    environment:
+      - "REACT_APP_API_ANALYTICS=${ANALYTICS_API}"
+      - "REACT_APP_MAPBOX_API_KEY=${MAPBOX_API_KEY}"
+    ports:
+      - 8080:80
+    restart: always
