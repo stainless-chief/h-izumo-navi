@@ -18,6 +18,7 @@ namespace Analytics
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddCors();
             builder.Services.AddApiVersioning();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,6 +34,9 @@ namespace Analytics
             builder.Services.AddTransient<ISourceRepository, SourceRepository>();
 
             var app = builder.Build();
+            app.UseCors(builder => builder.AllowAnyOrigin()
+                              .AllowAnyMethod()
+                              .AllowAnyHeader());
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
