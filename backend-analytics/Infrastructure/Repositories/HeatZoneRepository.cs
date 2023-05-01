@@ -45,27 +45,12 @@ namespace Infrastructure.Repositories
 
         public async Task<IEnumerable<HeatZone>> GetAsync(IEnumerable<string> sourceCode)
         {
-            if(sourceCode == null || !sourceCode.Any())
+            if (sourceCode == null || !sourceCode.Any())
             {
                 return Enumerable.Empty<HeatZone>();
             }
-
-                return Generate();
-
-            return new List<HeatZone>
-            {
-                new HeatZone
-                {
-                    Temperature = 80,
-                    ZoneCoordinates = new List<ZoneCoordinates>
-                    {
-                        new ZoneCoordinates { X = 132.883406, Y = 35.415208},
-                        new ZoneCoordinates { X = 132.883406, Y = 35.410543},
-                        new ZoneCoordinates { X = 132.889171, Y = 35.410543},
-                        new ZoneCoordinates { X = 132.889171, Y = 35.415208},
-                    }
-                },
-            };
+            
+            return Generate();
         }
     }
 }
