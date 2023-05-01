@@ -5,6 +5,13 @@ import { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import { HeatFilterComponent, MapComponent } from "./features/";
 import { useEffect, useState } from "react";
 import Map, { Layer, Source, FillLayer } from 'react-map-gl';
+import mapboxgl from 'mapbox-gl';
+
+// The following is required to stop "npm build" from transpiling mapbox code.
+// notice the exclamation point in the import.
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 // For more information on data-driven styles, see https://www.mapbox.com/help/gl-dds-ref/
 export const dataLayer: FillLayer = {
