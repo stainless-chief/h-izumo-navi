@@ -1,5 +1,6 @@
 ﻿using Abstractions.Models;
 using Abstractions.IRepositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
@@ -13,14 +14,13 @@ namespace Infrastructure.Repositories
 
         private static double size = 0.005765;
 
-        private int[] heat = { 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+        private readonly int[] heat = { 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
         private IEnumerable<HeatZone> Generate()
         {
             var lst = new List<HeatZone>();
             
-            Random rnd = new Random();
-
+            Random rnd = new ();
 
             for (var x = Xmin; x < Xmax; x+= size)
             {
@@ -43,14 +43,57 @@ namespace Infrastructure.Repositories
             return lst;
         }
 
+        private IEnumerable<HeatZone> GenerateMap()
+        {
+            var lst = new List<HeatZone>();
+
+            for (var x = Xmin; x < Xmax; x += size)
+            {
+                for (var y = Ymin; y < Ymax; y += size)
+                {
+                    lst.Add(new HeatZone
+                    {
+                        Temperature = 0,
+                        ZoneCoordinates = new()
+                        {
+                            new ZoneCoordinates { X = x, Y =  y},
+                            new ZoneCoordinates { X = x, Y =  y + size},
+                            new ZoneCoordinates { X = x + size, Y =  y + size},
+                            new ZoneCoordinates { X = x + size, Y =  y },
+                        }
+                    });
+                }
+            }
+
+            return lst;
+        }
+
+
+        private readonly DataContext _context;
+        public HeatZoneRepository(DataContext context)
+        {
+            _context = context;
+        }
+
         public async Task<IEnumerable<HeatZone>> GetAsync(IEnumerable<string> sourceCode)
         {
             if (sourceCode == null || !sourceCode.Any())
             {
                 return Enumerable.Empty<HeatZone>();
             }
+
+            var result = GenerateMap();
             
-            return Generate();
+            foreach (var item in  _context.ExampleHits) 
+            {
+                var ss = result.FirstOrDefault(x => x.IsIn(item.Longitude, item.Latitude));
+                if(ss != null)
+                {
+                    ss.Temperature++;
+                }
+            }
+
+            return result;
         }
     }
 }

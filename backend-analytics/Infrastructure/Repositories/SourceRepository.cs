@@ -31,11 +31,6 @@ namespace Infrastructure.Repositories
             {
                 item.TotalEvents = CoutHits(item.Code);
             }
-            items.Add(new Source
-            {
-                 Code = "dummy",
-                 TotalEvents = 9000
-            });
 
             return items;
         }
@@ -47,7 +42,7 @@ namespace Infrastructure.Repositories
                 case "example": return _context.ExampleHits.Count();
             }
 
-            throw new ArgumentException("");
+            throw new ArgumentException($"{nameof(sourceCode)} not found");
         }
     }
 }

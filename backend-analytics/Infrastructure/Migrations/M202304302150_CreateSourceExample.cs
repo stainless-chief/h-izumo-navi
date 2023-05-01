@@ -3,7 +3,7 @@
 namespace Infrastructure.Migrations
 {
     [Migration(202304302150, "Create example source")]
-    public class M202304302150CreateSourceExample : BaseSourceHitDataMigration
+    public class M202304302150_CreateSourceExample : BaseSourceHitDataMigration
     {
         protected override string SourceCode => "Example";
 
