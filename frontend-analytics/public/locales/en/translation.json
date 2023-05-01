@@ -1,0 +1,13 @@
+{
+  "Header": {
+    "Full": "Izumo heatmap"
+  },
+  "Navigation" : {
+    "Heatmap": "Heatmap"
+  },
+  "HeatMap" : {
+    "FilterHeader": "Data sources",
+    "LoadHeatData": "Load",
+    "ClearHeatData": "Clear"
+  }
+}

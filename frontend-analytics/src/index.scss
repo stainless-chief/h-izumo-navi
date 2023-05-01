@@ -1,0 +1,14 @@
+@import "/public/assets/scss/variables";
+
+body {
+  background: $color-core;
+  color: $color-text;
+  font-family: $font-core !important;
+  font-size: 20px;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+
+}

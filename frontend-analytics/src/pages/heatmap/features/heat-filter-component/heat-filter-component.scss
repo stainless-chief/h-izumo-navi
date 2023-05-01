@@ -1,0 +1,10 @@
+@import "/public/assets/scss/variables";
+
+.heat-filter-container {
+  flex: 1 0 20%;
+  gap: 10px;
+  flex-direction: column;
+  display: flex;
+  background-color: $color-panel;
+  height: 600px;
+}
