@@ -12,7 +12,7 @@ namespace Infrastructure
         internal DbSet<Source> Sources => Set<Source>();
 
         internal DbSet<ExampleHit> ExampleHits => Set<ExampleHit>();
-        internal DbSet<TwitterHit> TwitterHit => Set<TwitterHit>();
+        internal DbSet<FakeTwitterHit> FakeTwitterHit => Set<FakeTwitterHit>();
 
         public DataContext(DbContextOptions options) : base(options)
         {

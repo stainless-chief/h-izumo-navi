@@ -74,21 +74,21 @@ namespace Infrastructure.Repositories
                     }
                 }
             }
-            if (sourceCode.Contains(SourcesNames.Twitter))
+            if (sourceCode.Contains(SourcesNames.FakeTwitter))
             {
-                foreach (var item in _context.TwitterHit)
+                foreach (var item in _context.FakeTwitterHit)
                 {
                     var tmp = result.FirstOrDefault(x => x.IsIn(item.Longitude, item.Latitude));
                     if (tmp != null)
                     {
                         tmp.Temperature++;
-                        if (tmp.HitStatistics.ContainsKey(SourcesNames.Twitter))
+                        if (tmp.HitStatistics.ContainsKey(SourcesNames.FakeTwitter))
                         {
-                            tmp.HitStatistics[SourcesNames.Twitter]++;
+                            tmp.HitStatistics[SourcesNames.FakeTwitter]++;
                         }
                         else
                         {
-                            tmp.HitStatistics.Add(SourcesNames.Twitter, 1);
+                            tmp.HitStatistics.Add(SourcesNames.FakeTwitter, 1);
                         }
                     }
                 }

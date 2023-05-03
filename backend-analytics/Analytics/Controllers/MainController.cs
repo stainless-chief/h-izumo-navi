@@ -66,11 +66,11 @@ namespace Analytics.Controllers
         [AllowAnonymous]
         [ApiVersion("1.0")]
         [HttpPost("save")]
-        public async Task<ActionResult<ExecutionResult<bool>>> Save([FromBody] Hit hit)
+        public async Task<ActionResult<ExecutionResult<bool>>> Save([FromBody] Hit[] hits)
         {
             var result = await _supervisor.SafeExecuteAsync
             (
-                () => _hitRepository.SaveAsync(hit)
+                () => _hitRepository.SaveAsync(hits)
             );
 
             return result;

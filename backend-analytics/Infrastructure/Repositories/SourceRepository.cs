@@ -37,10 +37,14 @@ namespace Infrastructure.Repositories
 
         public int CoutHits(string sourceCode)
         {
-            switch (sourceCode.ToLower())
+            if (sourceCode == SourcesNames.FakeTwitter)
             {
-                case "example": return _context.ExampleHits.Count();
-                case "twitter": return _context.TwitterHit.Count();
+                return _context.FakeTwitterHit.Count();
+            }
+
+            if (sourceCode == SourcesNames.Example)
+            {
+                return _context.ExampleHits.Count();
             }
 
             throw new ArgumentException($"{nameof(sourceCode)} {sourceCode} not found");
