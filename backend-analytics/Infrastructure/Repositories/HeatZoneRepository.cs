@@ -63,6 +63,14 @@ namespace Infrastructure.Repositories
                     if (tmp != null)
                     {
                         tmp.Temperature++;
+                        if (tmp.HitStatistics.ContainsKey(SourcesNames.Example))
+                        {
+                            tmp.HitStatistics[SourcesNames.Example]++;
+                        }
+                        else
+                        {
+                            tmp.HitStatistics.Add(SourcesNames.Example, 1);
+                        }
                     }
                 }
             }
@@ -74,6 +82,14 @@ namespace Infrastructure.Repositories
                     if (tmp != null)
                     {
                         tmp.Temperature++;
+                        if (tmp.HitStatistics.ContainsKey(SourcesNames.Twitter))
+                        {
+                            tmp.HitStatistics[SourcesNames.Twitter]++;
+                        }
+                        else
+                        {
+                            tmp.HitStatistics.Add(SourcesNames.Twitter, 1);
+                        }
                     }
                 }
             }

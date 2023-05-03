@@ -3,8 +3,10 @@
     public class HeatZone
     {
         public int Temperature { get; set; }
-
+        
         public List<ZoneCoordinates> ZoneCoordinates { get; set; } = new();
+
+        public Dictionary<string, int> HitStatistics { get; set; } = new();
 
         public bool IsIn(double x, double y)
         {
