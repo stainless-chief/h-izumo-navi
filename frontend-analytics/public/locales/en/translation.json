@@ -9,5 +9,8 @@
     "FilterHeader": "Data sources",
     "LoadHeatData": "Load",
     "ClearHeatData": "Clear"
+  },
+  "HeatMapTooltip" : {
+    "Temperature": "Temperature"
   }
 }

@@ -34,11 +34,15 @@ class AnalyticsClient {
         tmp = new AnalyticsHeatZoneCollection();
         tmp.type = 'FeatureCollection';
 
-        tmp.features = response.data.data.map(function (value)
+        tmp.features = response.data.data.map(function (value: AnalyticsHeatZone)
         {
           return {
             type: 'Feature',
-            properties: {name: "", temperature: value.temperature },
+            properties:
+            {
+              temperature: value.temperature,
+              hitStatistics: value.hitStatistics,
+            },
             geometry:
             { 
               type: "Polygon",
@@ -54,6 +58,7 @@ class AnalyticsClient {
     //     return Utils.create<AnalyticsHeatZone[]>(error);
     // });
   };
+
 }
 
 export { AnalyticsClient };

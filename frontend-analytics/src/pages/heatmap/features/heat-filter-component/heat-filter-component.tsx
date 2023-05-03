@@ -30,7 +30,7 @@ function HeatFilterComponent(
     <FormLabel component="legend">{t("HeatMap.FilterHeader")}</FormLabel>
     {analyticsSources.map(x => { 
       return (<FormGroup>
-        <FormControlLabel 
+        <FormControlLabel key={"key" + x.code}
                   control={ <Checkbox value={x.code} onChange={handleChange} /> }
                   label={x.name + " [" +x.totalEvents +"]"}/>
         </FormGroup>) })

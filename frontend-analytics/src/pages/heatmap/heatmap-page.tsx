@@ -3,9 +3,10 @@ import "./heatmap-page.scss";
 import { AnalyticsClient, AnalyticsSource, Incident } from "../../services";
 import { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import { HeatFilterComponent } from "./features/";
-import { useEffect, useState } from "react";
-import Map, { Layer, Source, FillLayer } from 'react-map-gl';
+import { useCallback, useEffect, useState } from "react";
+import Map, { Layer, Source, FillLayer, Popup } from 'react-map-gl';
 import mapboxgl from 'mapbox-gl';
+import { useTranslation } from 'react-i18next';
 
 // The following is required to stop "npm build" from transpiling mapbox code.
 // notice the exclamation point in the import.
@@ -39,9 +40,12 @@ export const dataLayer: FillLayer = {
 };
 
 function HeatmapPage() {
+  const { t } = useTranslation();
   const [analyticsSources, setAnalyticsSources] = useState<AnalyticsSource[] | null>(null);
   const [incident, setIncident] = useState<Incident | null>(null);
   const [heatZones, setHeatZones] = useState<FeatureCollection<Geometry, GeoJsonProperties>>();
+
+  const [hoverInfo, setHoverInfo] = useState(null);
 
   async function reloadHeatZone(sourceCodes: string[]) 
   {
@@ -63,6 +67,20 @@ function HeatmapPage() {
     fetchData();
   }, []);
 
+  const onHover = useCallback(event => {
+    const {
+      features,
+      lngLat,
+    } = event;
+    const hoveredFeature = features[0];
+
+    if (hoveredFeature) {
+      // prettier-ignore
+      setHoverInfo({hoveredFeature, lngLat});
+    }
+  }, []);
+
+
   if (incident) {
     return <div>{incident.message}</div>;
   }
@@ -79,11 +97,30 @@ function HeatmapPage() {
           zoom: 12 }}
           style={{height: 600}}
           mapStyle="mapbox://styles/mapbox/streets-v12"
-          interactiveLayerIds={['heatZones']}
-          mapboxAccessToken={window._env_.REACT_APP_MAPBOX_API_KEY}>
+          interactiveLayerIds={['data']}
+          mapboxAccessToken={window._env_.REACT_APP_MAPBOX_API_KEY}
+          onMouseMove={onHover}>
             <Source type="geojson" data={heatZones}>
               <Layer {...dataLayer} />
             </Source>
+            {hoverInfo
+            && hoverInfo.hoveredFeature.properties.temperature > 0
+            && (
+          <Popup
+              latitude={hoverInfo.lngLat.lat}
+              longitude={hoverInfo.lngLat.lng}
+              closeButton={false}>
+              {
+                (
+                  <div>
+                    <b>{t("HeatMapTooltip.Temperature")}</b> {hoverInfo.hoveredFeature.properties.temperature} <br/>
+                    {/* TODO: make tooltip pretty  */}
+                    {hoverInfo.hoveredFeature.properties.hitStatistics}
+                  </div>
+                )
+              }
+        </Popup>
+        )}
         </Map>
       <HeatFilterComponent analyticsSources={analyticsSources!} reloadHeatZone={reloadHeatZone}/>
     </div>

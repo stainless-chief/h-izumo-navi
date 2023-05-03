@@ -3,7 +3,7 @@ import { ZoneCoordinates } from "./ZoneCoordinates";
 
 class AnalyticsHeatZone {
   temperature: number;
-  hitStatistics: Record<string, number> = {};
+  hitStatistics: Record<string, number>;
   zoneCoordinates: ZoneCoordinates[];
 }
 
