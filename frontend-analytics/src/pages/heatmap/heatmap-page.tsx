@@ -3,8 +3,8 @@ import "./heatmap-page.scss";
 import { AnalyticsClient, AnalyticsSource, Incident } from "../../services";
 import { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import { HeatFilterComponent } from "./features/";
-import { useCallback, useEffect, useState } from "react";
-import Map, { Layer, Source, FillLayer, Popup, MapLayerMouseEvent, MapLayerMouseEvent } from 'react-map-gl';
+import { useEffect, useState } from "react";
+import Map, { Layer, Source, FillLayer } from 'react-map-gl';
 import mapboxgl from 'mapbox-gl';
 
 // The following is required to stop "npm build" from transpiling mapbox code.
@@ -42,8 +42,7 @@ function HeatmapPage() {
   const [analyticsSources, setAnalyticsSources] = useState<AnalyticsSource[] | null>(null);
   const [incident, setIncident] = useState<Incident | null>(null);
   const [heatZones, setHeatZones] = useState<FeatureCollection<Geometry, GeoJsonProperties>>();
-  const [hoverInfo, setHoverInfo] = useState<MapLayerMouseEvent>();
-  
+
   async function reloadHeatZone(sourceCodes: string[]) 
   {
     const result = await AnalyticsClient.getHeatMap(sourceCodes);
