@@ -52,6 +52,7 @@ services:
       - Generator__LongitudeMin=132685292
       - Generator__LongitudeMax=132911341
       - Generator__MaxBatchSize=30
+      - Generator__MinBatchSize=10
     restart: always
 
   backend_admin:

@@ -1,12 +1,13 @@
 ﻿using CollectorFake.Models;
 using System.Text.Json;
 using System.Text;
+using System.Xml.Linq;
 
 namespace CollectorFake.Jobs
 {
     public sealed class FakeCollector : BackgroundService
     {
-        private const string _name = "FakeTwitter";
+        private readonly string _name;
         private readonly TimeSpan _delay;        
         private readonly HttpClient _client;
         private readonly int _latitudeMin;
@@ -14,6 +15,7 @@ namespace CollectorFake.Jobs
         private readonly int _longitudeMin;
         private readonly int _longitudeMax;
         private readonly int _maxBatchSize;
+        private readonly int _minBatchSize;
         private DateTime _lastJob = DateTime.MinValue;
 
         public FakeCollector(IConfiguration configuration)
@@ -28,11 +30,15 @@ namespace CollectorFake.Jobs
                 configuration.GetSection("Generator:DelaySeconds").Get<int>()
             );
 
+            _name = configuration.GetSection("SourceName").Get<string>()!;
+
             _latitudeMin = configuration.GetSection("Generator:LatitudeMin").Get<int>();
             _latitudeMax = configuration.GetSection("Generator:LatitudeMax").Get<int>();
             _longitudeMin = configuration.GetSection("Generator:LongitudeMin").Get<int>();
             _longitudeMax = configuration.GetSection("Generator:LongitudeMax").Get<int>();
+
             _maxBatchSize = configuration.GetSection("Generator:MaxBatchSize").Get<int>();
+            _minBatchSize = configuration.GetSection("Generator:MinBatchSize").Get<int>();
 
             Console.WriteLine($"BaseAddress: {_client.BaseAddress}");
         }
@@ -62,7 +68,7 @@ namespace CollectorFake.Jobs
             var hits = new List<Hit>();
             var rnd = new Random();
 
-            for (int i = 0; i < rnd.Next(10, _maxBatchSize); i++)
+            for (int i = 0; i < rnd.Next(_minBatchSize, _maxBatchSize); i++)
             {
                 hits.Add(new Hit
                 {
