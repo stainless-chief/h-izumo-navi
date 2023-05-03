@@ -2,8 +2,8 @@
 
 namespace Infrastructure.Models
 {
-    [Table("hit_twitter")]
-    internal class TwitterHit : BaseHit
+    [Table("hit_faketwitter")]
+    internal class FakeTwitterHit : BaseHit
     {
     }
 }
