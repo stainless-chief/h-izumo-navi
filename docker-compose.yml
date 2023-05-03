@@ -34,6 +34,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5223:5223
+    environment:
+      - ConnectionStrings__PostgreSQL=Server=host.docker.internal;Port=15432;Database=izumo_analytics;UserId=sa;Password=sa;
     restart: always
 
   collector_fake:

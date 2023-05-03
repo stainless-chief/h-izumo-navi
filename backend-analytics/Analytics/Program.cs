@@ -20,6 +20,7 @@ namespace Analytics
             builder.Services.AddControllers();
             builder.Services.AddCors();
             builder.Services.AddApiVersioning();
+            builder.Configuration.AddEnvironmentVariables();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
