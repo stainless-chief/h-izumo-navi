@@ -36,6 +36,24 @@ services:
       - 5223:5223
     restart: always
 
+  collector_fake:
+    depends_on:
+      - backend_analytics
+    build:
+      context: ./collector-fake
+      dockerfile: Dockerfile
+    ports:
+      - 5221:5221
+    environment:
+      - AnalyticsApi=http://host.docker.internal:5223/analytics/v1.0/
+      - Generator__DelaySeconds=10
+      - Generator__LatitudeMin=35344326
+      - Generator__LatitudeMax=35401324
+      - Generator__LongitudeMin=132685292
+      - Generator__LongitudeMax=132911341
+      - Generator__MaxBatchSize=30
+    restart: always
+
   backend_admin:
     depends_on:
       - postgres
