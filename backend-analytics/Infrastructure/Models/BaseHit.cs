@@ -13,7 +13,7 @@ namespace Infrastructure.Models
         public DateTime DateTime { get; set; }
 
         [Column("person")]
-        public string Person { get; set; }
+        public string Person { get; set; } = string.Empty;
 
         [Column("latitude")]
         public double Latitude { get; set; }

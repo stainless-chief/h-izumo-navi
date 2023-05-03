@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security", "Security\Security.csproj", "{9A628D86-64E8-47F5-90A1-C78C278A8F00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analytics", "Analytics\Analytics.csproj", "{29C70B9C-3C8E-4300-9C69-C6B60456490C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analytics", "Analytics\Analytics.csproj", "{29C70B9C-3C8E-4300-9C69-C6B60456490C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

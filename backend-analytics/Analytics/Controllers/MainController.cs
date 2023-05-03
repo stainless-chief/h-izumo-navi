@@ -12,14 +12,16 @@ namespace Analytics.Controllers
     [Route("analytics/v{version:apiVersion}/")]
     public class MainController : ControllerBase
     {
-        private readonly Supervisor _supervisor = new ();
+        private readonly Supervisor _supervisor = new();
         private readonly IHeatZoneRepository _heatZoneRepository;
         private readonly ISourceRepository _sourceRepository;
+        private readonly IHitRepository _hitRepository;
 
-        public MainController(IHeatZoneRepository heatZoneRepository, ISourceRepository sourceRepository)
+        public MainController(IHeatZoneRepository heatZoneRepository, ISourceRepository sourceRepository, IHitRepository hitRepository)
         {
             _heatZoneRepository = heatZoneRepository;
             _sourceRepository = sourceRepository;
+            _hitRepository = hitRepository;
         }
 
         [AllowAnonymous]
@@ -56,6 +58,19 @@ namespace Analytics.Controllers
             var result = await _supervisor.SafeExecuteAsync
             (
                 () => _heatZoneRepository.GetAsync(sourceCode)
+            );
+
+            return result;
+        }
+
+        [AllowAnonymous]
+        [ApiVersion("1.0")]
+        [HttpPost("save")]
+        public async Task<ActionResult<ExecutionResult<bool>>> Save([FromBody] Hit hit)
+        {
+            var result = await _supervisor.SafeExecuteAsync
+            (
+                () => _hitRepository.SaveAsync(hit)
             );
 
             return result;

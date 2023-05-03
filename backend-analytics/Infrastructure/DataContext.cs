@@ -7,16 +7,22 @@ namespace Infrastructure
     {
         public const string SchemaData = "analytics";
         public const string SchemaHistory = "history";
+        public Migrator Migrator { get; set; }
 
         internal DbSet<Source> Sources => Set<Source>();
 
         internal DbSet<ExampleHit> ExampleHits => Set<ExampleHit>();
-
-        public Migrator Migrator { get; set; }
+        internal DbSet<TwitterHit> TwitterHit => Set<TwitterHit>();
 
         public DataContext(DbContextOptions options) : base(options)
         {
-            Migrator = new Migrator(Database.GetConnectionString());
+            var connectionString = Database.GetConnectionString();
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new ArgumentException("Connection string is empty");
+            }
+
+            Migrator = new Migrator(connectionString);
 
             //HACK: after postgreSQL update timestamps has been broken down
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

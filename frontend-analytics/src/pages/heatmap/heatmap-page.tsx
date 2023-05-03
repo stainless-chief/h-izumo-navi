@@ -1,8 +1,8 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import "./heatmap-page.scss";
-import { AnalyticsClient, AnalyticsHeatZone, AnalyticsSource, Incident } from "../../services";
+import { AnalyticsClient, AnalyticsSource, Incident } from "../../services";
 import { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
-import { HeatFilterComponent, MapComponent } from "./features/";
+import { HeatFilterComponent } from "./features/";
 import { useEffect, useState } from "react";
 import Map, { Layer, Source, FillLayer } from 'react-map-gl';
 import mapboxgl from 'mapbox-gl';
@@ -52,9 +52,6 @@ function HeatmapPage() {
   useEffect(() => {
     const fetchData = async() => {
       const result = await AnalyticsClient.getSources();
-      //const result2 = await AnalyticsClient.getHeatMap(["",""]);
-    //setHeatZones(result2);
-
       if (result.isSucceed) {
         setAnalyticsSources(result.data);
       } else {
@@ -67,11 +64,11 @@ function HeatmapPage() {
   }, []);
 
   if (incident) {
-    return <div>error</div>;
+    return <div>{incident.message}</div>;
   }
 
   if (analyticsSources == null) {
-    return <div>load</div>;
+    return <div>Loading</div>;
   } else {
     return (
       <div className="heatmap-container">

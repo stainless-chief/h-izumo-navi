@@ -40,9 +40,10 @@ namespace Infrastructure.Repositories
             switch (sourceCode.ToLower())
             {
                 case "example": return _context.ExampleHits.Count();
+                case "twitter": return _context.TwitterHit.Count();
             }
 
-            throw new ArgumentException($"{nameof(sourceCode)} not found");
+            throw new ArgumentException($"{nameof(sourceCode)} {sourceCode} not found");
         }
     }
 }
