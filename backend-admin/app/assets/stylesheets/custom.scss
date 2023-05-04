@@ -1,0 +1,79 @@
+/*** Navbar ***/
+.navbar.fixed-top {
+  transition: .5s;
+}
+
+.navbar .navbar-nav .nav-link {
+  padding: 20px 15px;
+  color: var(--dark);
+  font-size: 18px;
+  font-weight: 600;
+  outline: none;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+  color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+  .navbar .navbar-nav .nav-link  {
+      padding: 10px 0;
+  }
+}
+
+.scase {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f2f2f2+0,dddddd+50,ffffff+51,ffffff+71,f6f8fb+100 */
+  background: #f2f2f2;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #f2f2f2 0%, #dddddd 50%, #ffffff 51%, #ffffff 71%, #f6f8fb 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #f2f2f2 0%,#dddddd 50%,#ffffff 51%,#ffffff 71%,#f6f8fb 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #f2f2f2 0%,#dddddd 50%,#ffffff 51%,#ffffff 71%,#f6f8fb 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#f6f8fb',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  color: #3f345f !important;
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 3s ease infinite;
+  -moz-animation: AnimationName 3s ease infinite;
+  animation: AnimationName 3s ease infinite;
+  -webkit-animation: AnimationName 3s ease infinite;
+  -moz-animation: AnimationName 3s ease infinite;
+  animation: AnimationName 3s ease infinite;
+  border: medium none;
+}
+@-webkit-keyframes AnimationName {
+  0%{
+  background-position:0% 31%
+  }
+  50%{
+  background-position:100% 70%
+  }
+  100%{
+  background-position:0% 31%
+  }
+ }
+@-moz-keyframes AnimationName {
+  0%{
+  background-position:0% 31%
+  }
+  50%{
+  background-position:100% 70%
+  }
+  100%{
+  background-position:0% 31%
+  }
+}
+@keyframes AnimationName {
+  0%{
+  background-position:0% 31%
+  }
+  50%{
+  background-position:100% 70%
+  }
+  100%{
+  background-position:0% 31%
+  }
+}

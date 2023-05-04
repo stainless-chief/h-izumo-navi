@@ -1,9 +1,11 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: %i[ show edit update destroy ]
 
+  attr_accessor :title
+
   # GET /locations or /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.where(user_id: 1)
   end
 
   # GET /locations/1 or /locations/1.json
@@ -65,6 +67,6 @@ class LocationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def location_params
-      params.require(:location).permit(:title, :description, :address, :comment, :country, :city, :state, :image, :short_discription, :latitude, :longitude)
+      params.require(:location).permit(:user_id, :title, :comment, :description, :address, :country, :city, :state, :image, :short_discription, :latitude, :longitude)
     end
 end

@@ -6,6 +6,10 @@
 %p
   %b Description:
   = @tour.description
+%p
+  %b Locations:
+  - @tour.locations.each do |location|
+    = location.title
 
 = link_to 'Destroy', tour_path(@tour), data: { turbo_method: :delete, 'turbo-confirm': 'Are you shure?'}
 \|

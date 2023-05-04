@@ -1,0 +1,51 @@
+
+/login modal start
+
+#exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content.p-4{:style => "color: red"}
+      .modal-header.border-0.mb-2
+        %h5#exampleModalLabel.modal-title{:style => "margin-left: 20%"} #{t('.title2')}
+      .modal-body
+        .col-md-12.wow.fadeInUp{"data-wow-delay" => "0.5s"}
+          %ul.nav.nav-pills.rounded.border.border-2.border-primary.mb-5
+            %li.nav-item.w-50
+              %button.nav-link.w-100.py-3.fs-5.active{"data-bs-toggle" => "pill", :href => "#tab-tab-1"} #{t('.signup')}
+            %li.nav-item.w-50
+              %button.nav-link.w-100.py-3.fs-5{"data-bs-toggle" => "pill", :href => "#tab-tab-2"} #{t('.login')}
+          .tab-content
+            #tab-tab-1.tab-pane.fade.show.p-0.active
+              = form_for(User.new, url: registration_path(:user), html: {id: 'sign_up_user', :'data-type' => 'json'}, remote: true) do |f|
+
+                -# = f.label :mobile_phone
+                -# %i (Print only in numerical whithout +)
+                -# = f.text_field :mobile_phone, autofocus: false, autocomplete: "off", class: 'form-control', placeholder: 'Mobile phone'
+                .form-group
+                  = f.email_field :email, autofocus: true, autocomplete: "off", id: "email", class: "form-control"
+                  %label.form-control-placeholder.p-0{:for => "email"} email
+                .form-group
+                  = f.password_field :password, autocomplete: "off", id: "password", class: "form-control"
+                  %label.form-control-placeholder.p-0{:for => "password"} password
+                .form-group
+                  = f.password_field :password_confirmation, autocomplete: "off", id: "password", class: "form-control"
+                  %label.form-control-placeholder.p-0{:for => "password_confirmation"} password confirmation
+                .actions
+                .col-6.col-md-6{:style => "margin-left: 15%"}= f.submit "Sign up", class: "btn btn-outline-primary scase", style: "width: 250px"
+            #tab-tab-2.tab-pane.fade.show.p-0
+              = form_for(User.new, url: session_path(:user), data: {turbo: false}) do |f|
+                .form-group
+                  = f.email_field :email, autofocus: true, autocomplete: "off", id: "email", class: "form-control"
+                  %label.form-control-placeholder.p-0{:for => "email"} email
+                .form-group
+                  = f.password_field :password, autocomplete: "off", id: "password", class: "form-control"
+                  %label.form-control-placeholder.p-0{:for => "password"} password
+                .form-group
+                  = f.check_box :remember_me
+                  = f.label :remember_me
+                .actions
+                .col-6.col-md-6{:style => "margin-left: 15%"}= f.submit "Log in", class: "btn btn-outline-primary scase", style: "width: 250px"
+        .modal-footer.border-0.mb-4
+          %label.tc.text-black{:style => "margin-left: 15%"}
+          
+
+          /login modal end

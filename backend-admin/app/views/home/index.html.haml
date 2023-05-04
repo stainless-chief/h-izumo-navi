@@ -1,13 +1,16 @@
-- if current_user
-  %h5 You are now logged in as
-  %h5= current_user.email 
-  %a= button_to "Log out", destroy_user_session_path, method: :delete
-  %p= link_to 'Create your tour', new_tour_path
-  %p= link_to 'Idzumo locations', locations_path
-  %p= link_to 'Idzumo tours', tours_path
-  - if current_user.admin?
-    = link_to 'Add new location', new_location_path
-- else
-  %h5 Please log in
-  %a= link_to "log in", new_user_session_path
-  
+
+/ Header Start
+.container-fluid.bg-light.my-6.mt-0{:style => "opacity: 0.7"}
+  .container
+    .row.g-5.align-items-center
+      .col-lg-6.py-6.pb-0.pt-lg-0
+        %h3.text-primary.mb-3 #{t('.title1')}
+        %h1.display-3.mb-3 #{t('.title2')}
+        .d-flex.align-items-center.pt-5
+          %button.btn-play{"data-bs-target" => "#videoModal", "data-bs-toggle" => "modal", "data-src" => "https://www.youtube.com/embed/DWRcNpR6Kdc", :type => "button"}
+            %span
+          %h5.ms-4.mb-0.d-none.d-sm-block #{t('.title3')}
+      .col-lg-6
+        %img
+          = image_tag "Izumo-taisha.jpeg", class: "img-fluid"
+/ Header End

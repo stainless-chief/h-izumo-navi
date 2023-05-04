@@ -36,5 +36,6 @@
 
 %br
 
-%p= link_to 'New Location', new_location_path
+- if current_user.admin?
+  %p= link_to 'New Location', new_location_path
 %p= link_to 'Back', root_path
