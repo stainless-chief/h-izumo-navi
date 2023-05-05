@@ -1,41 +1,121 @@
-%h1 Listing locations
+%h3.text-center Most popular locations
+/ Carousel starts
+#carouselExampleControls.carousel{"data-bs-ride" => "carousel", :style => "max-width: 100%"}
+  .carousel-inner
+    .carousel-item.active{:style => "align-items: center"}
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-300
+            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_discription
+       
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-300
+            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_discription
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-300
+            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_discription
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-300
+            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_discription
+         
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-300
+            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_discription
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-300
+            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_discription
+         
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-300
+            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_discription
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-300
+            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_discription
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-300
+            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_discription
+          -# %a.btn.btn-primary{:href => locations_path} Find more...
+  %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselExampleControls", :type => "button"}
+    %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+    %span.visually-hidden Previous
+  %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#carouselExampleControls", :type => "button"}
+    %span.carousel-control-next-icon{"aria-hidden" => "true"}
+    %span.visually-hidden Next
+/ Carousel Ends
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Short discription
-      %th Description
-      %th Address
-      %th Country
-      %th City
-      %th State
-      %th Image
-      %th Latitude
-      %th Longitude
-      %th
-      %th
-      %th
+%h3.text-center Interesting locations
+.tab-content
+  #tab-1.tab-pane.fade.show.p-0.active
+    %section.py-5
+      .container.px-4.px-lg-5.mt-5
+        #locations.row.gx-4.gx-lg-5.row-cols-2.row-cols-md-3.row-cols-xl-4.justify-content-center
+          - @locations.each do |location|
+            .col.mb-5
+              .card.h-100{"data-geolocation-target" => "product", "data-latitude" => "#{location.latitude}", "data-longitude" => "#{location.longitude}"}
 
-  %tbody
-    - @locations.each do |location|
-      %tr
-        %td= location.title
-        %td= location.short_discription
-        %td= location.description
-        %td= location.address
-        %td= location.country
-        %td= location.city
-        %td= location.state
-        %td= image_tag location.image.url(:large), style: "width: 50%" if location.image?
-        %td= location.latitude
-        %td= location.longitude
-        %td= link_to 'Show', location
-        %td= link_to 'Edit', edit_location_path(location)
-        %td= link_to 'Destroy', location, data: { turbo_method: :delete, 'turbo-confirm': 'Are you shure?'}
+                %img.card-img-top
+                  - if location.image?
+                    = image_tag location.image.url(:thumb), style: "border-radius: 10px 10px 0 0", class: "image-thumbnail"
 
-%br
-
-- if current_user.admin?
-  %p= link_to 'New Location', new_location_path
-%p= link_to 'Back', root_path
+                .card-body.p-4
+                  .text-center
+                    %h4= link_to location.title, location_path(location)
+                    %strong= location.city
+                    %p{"data-distance-away" => ""}= location.address
