@@ -159,3 +159,14 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.flex-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-1 {
+  width: 50%;
+}
+.item-2{
+  width: 45%;
+}

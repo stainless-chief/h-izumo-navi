@@ -1,11 +1,12 @@
 .nested-form-wrapper(data-new-record="#{f.object.new_record?}")
   .form-group
     = f.label :title
-    = f.select :title, ["#{Location.first.title}", "#{Location.second.title}", "#{Location.find(6).title}"], class: 'form-control'
+    = f.select :title, ["#{Location.first.title}", "#{Location.find(14).title}", "#{Location.find(15).title}"], class: 'form-control'
   .form-group
     = f.label :comment
     = f.text_field :comment, class: 'form-control'
   .form-group
     = f.hidden_field :user_id, value: current_user.id
     %button(data-action="nested-form#remove" type="button" class="btn scase") Remove location
+    %br/
     = f.hidden_field :_destroy
