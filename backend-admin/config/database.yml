@@ -82,5 +82,7 @@ test:
 production:
   <<: *default
   database: h_izumo_navi_production
-  username: h_izumo_navi
+  username: <%= ENV["H_IZUMO_NAVI_DATABASE_USERNAME"] %>
   password: <%= ENV["H_IZUMO_NAVI_DATABASE_PASSWORD"] %>
+  port: <%= ENV["H_IZUMO_NAVI_DATABASE_PORT"] %>
+  host: <%= ENV["H_IZUMO_NAVI_DATABASE_HOST"] %>

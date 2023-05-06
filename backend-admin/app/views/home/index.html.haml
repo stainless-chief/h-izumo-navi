@@ -12,5 +12,6 @@
           %h5.ms-4.mb-0.d-none.d-sm-block #{t('.title3')}
       .col-lg-6
         %img
-          = image_tag "Izumo-taisha.jpeg", class: "img-fluid"
+        -# *.jpeg files will be transformed into *.jpg files for production builds
+          = image_tag "izumo_taisha.jpg", class: "img-fluid"
 / Header End
