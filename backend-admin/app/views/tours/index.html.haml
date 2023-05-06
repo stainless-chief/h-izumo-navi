@@ -1,29 +1,25 @@
-%h1 Listing tours
+%h3.text-center Listing tours
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th Locations
-      %th
-      %th
-      %th
-
-  %tbody
-    - @tours.each do |tour|
-      %tr
-        %td= tour.name
-        %td= tour.description
-        - tour.locations.each do |location|
-          %td= location.title
-          %td= location.address
-          %td= link_to 'See', location
-        %td= link_to 'Show', tour
-        %td= link_to 'Edit', edit_tour_path(tour)
-        %td= link_to 'Destroy', tour_path(tour), data: { turbo_method: :delete, 'turbo-confirm': 'Are you shure?'}
+.tab-content
+  #tab-1.tab-pane.fade.show.p-0.active
+    %section.py-5
+      .container.px-4.px-lg-5.mt-5
+        #tours.row.gx-4.gx-lg-5.row-cols-2.row-cols-md-3.row-cols-xl-4.justify-content-center
+          - @tours.each do |tour|
+            .col.mb-5
+              .card.h-100
+                .card-body.p-4
+                  .text-center
+                    %h4= link_to tour.name, tour_path(tour)
+                    %strong Locations:
+                    %em= tour.locations.count
+                    - tour.locations.each do |location|
+                      %em(alt="")= link_to location.title.split(","), "#"
+                      -# %i.fa-solid.fa-question{"data-bs-toggle" => "tooltip", "data-bs-placement" => "right", "title" => "#"}
+                      %p= location.address
 
 %br
 
-%p= link_to 'New Tour', new_tour_path
-%p= link_to 'Back', root_path
+= link_to 'New Tour', new_tour_path 
+\|
+= link_to 'Back', root_path

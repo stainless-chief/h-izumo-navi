@@ -1,36 +1,11 @@
-%p#notice= notice
+= render @location
 
-%p
-  %b Title:
-  = @location.title
-%p
-  %b Description:
-  = @location.description
-%p
-  %b Address:
-  = @location.address
-%p
-  %b Country:
-  = @location.country
-%p
-  %b City:
-  = @location.city
-%p
-  %b State:
-  = @location.state
-%p
-  %b Image:
-  = @location.image
-%p
-  %b Short discription:
-  = @location.short_discription
-%p
-  %b Latitude:
-  = @location.latitude
-%p
-  %b Longitude:
-  = @location.longitude
+%br/
+%div{:style => "display: flex"}
+  = link_to "Back", locations_path, class: "btn scase pr-btn", style: "width: 25%"
+  - if current_user.admin?
+    = link_to "Edit", edit_location_path(@location), class: "btn scase pr-btn", style: "width: 25%"
+    \#{link_to "Destroy", @location, class: "btn scase pr-btn", style: "width: 25%", data: { turbo_method: :delete, 'turbo-confirm': 'Are you shure?'}}
+%br/
 
-= link_to 'Edit', edit_location_path(@location)
-\|
-= link_to 'Back', locations_path
+

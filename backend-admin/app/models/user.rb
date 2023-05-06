@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   enum role: %i[user admin]
   has_many :tours
+  has_many :locations
 end

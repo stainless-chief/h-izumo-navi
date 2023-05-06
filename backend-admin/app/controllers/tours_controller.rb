@@ -13,7 +13,6 @@ class ToursController < ApplicationController
   # GET /tours/new
   def new
     @tour = Tour.new
-    @tour.locations.build
   end
 
   # GET /tours/1/edit
@@ -66,6 +65,6 @@ class ToursController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tour_params
-      params.require(:tour).permit(:name, :description, :user_id, :location, locations_attributes: %i[title address _destroy])
+      params.require(:tour).permit(:name, :comment, :description, :user_id, :location, locations_attributes: %i[user_id title address _destroy comment])
     end
 end

@@ -1,0 +1,172 @@
+/*** Navbar ***/
+.navbar.fixed-top {
+  transition: .5s;
+}
+
+.navbar .navbar-nav .nav-link {
+  padding: 20px 15px;
+  color: var(--dark);
+  font-size: 18px;
+  font-weight: 600;
+  outline: none;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+  color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+  .navbar .navbar-nav .nav-link  {
+      padding: 10px 0;
+  }
+}
+
+.scase {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f2f2f2+0,dddddd+50,ffffff+51,ffffff+71,f6f8fb+100 */
+  background: #f2f2f2;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #f2f2f2 0%, #dddddd 50%, #ffffff 51%, #ffffff 71%, #f6f8fb 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #f2f2f2 0%,#dddddd 50%,#ffffff 51%,#ffffff 71%,#f6f8fb 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #f2f2f2 0%,#dddddd 50%,#ffffff 51%,#ffffff 71%,#f6f8fb 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#f6f8fb',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+  color: #3f345f !important;
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 3s ease infinite;
+  -moz-animation: AnimationName 3s ease infinite;
+  animation: AnimationName 3s ease infinite;
+  -webkit-animation: AnimationName 3s ease infinite;
+  -moz-animation: AnimationName 3s ease infinite;
+  animation: AnimationName 3s ease infinite;
+  border: medium none;
+}
+@-webkit-keyframes AnimationName {
+  0%{
+  background-position:0% 31%
+  }
+  50%{
+  background-position:100% 70%
+  }
+  100%{
+  background-position:0% 31%
+  }
+ }
+@-moz-keyframes AnimationName {
+  0%{
+  background-position:0% 31%
+  }
+  50%{
+  background-position:100% 70%
+  }
+  100%{
+  background-position:0% 31%
+  }
+}
+@keyframes AnimationName {
+  0%{
+  background-position:0% 31%
+  }
+  50%{
+  background-position:100% 70%
+  }
+  100%{
+  background-position:0% 31%
+  }
+}
+@media (max-width: 767px) {
+  .share-img {
+    width: 40%;
+    border-right: 1px solid #dfd8d8; 
+    margin-right: 5px;
+  }
+  .share-name {
+    display: none;
+  }
+  .carousel-item {
+    margin-right: 0;
+    flex: 0 0 33.333333%;
+    display: block;
+  }
+  .carousel-inner {
+    display: flex;
+  }
+}
+@media (max-width: 467px) {
+  .pr-btn {
+    font-size: xx-small;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+@media (max-width: 380px) {
+  .share-img {
+    width: 40%;
+    border-right: 1px solid #dfd8d8; 
+    margin-right: 5px;
+  }
+  .pr-btn {
+    font-size: xx-small;
+    display: flex;
+    justify-content: space-around;
+  }
+  .share-name {
+    display: none;
+  }
+}
+.share-img {
+  border: 1px solid #dfd8d8; 
+  border-right: 0; 
+  cursor: pointer; 
+  padding: 1rem 0 1rem 2rem;
+  margin-top: 7px;
+  &:hover{
+    background: rgba(73, 71, 71, 0.05);
+  }
+}
+.share-name {
+  margin-left: -10px;
+}
+.cuttedText {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.trunk{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  box-orient: vertical;
+}
+.carousel-inner {
+  padding: 1em;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: #e1e1e1;
+  width: 4vh;
+  height: 4vh;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.flex-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-1 {
+  width: 50%;
+}
+.item-2{
+  width: 45%;
+}

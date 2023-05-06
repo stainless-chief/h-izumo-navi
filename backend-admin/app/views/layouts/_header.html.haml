@@ -1,0 +1,62 @@
+/ Navbar Start
+%nav.navbar.navbar-expand-lg.bg-white.navbar-light.shadow.py-lg-0.px-4.px-lg-5.wow.fadeIn{"data-wow-delay" => "0.1s"}
+  %a.navbar-brand.d-block.d-lg-none{:href => root_path}
+    %h1.text-primary.fw-bold.m-0 Izumo nav
+  %button.navbar-toggler{"data-bs-target" => "#navbarCollapse", "data-bs-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarCollapse.collapse.navbar-collapse.justify-content-between.py-4.py-lg-0
+    .navbar-nav.ms-auto.py-0
+
+      %a.nav-item.nav-link.active{:href => "#"} Home
+      %a.nav-item.nav-link{:href => about_path} About Izumo
+
+    %a.navbar-brand.bg-secondary.py-3.px-4.mx-3.d-none.d-lg-block{:href => root_path}
+      %h1.text-primary.fw-bold.m-0 Izumo
+    .navbar-nav.me-auto.py-0
+      %a.nav-item.nav-link.active{:href => locations_path} Locations
+      - if current_user
+
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => '#', :role => "button"}
+            Tours
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown", :style => 'margin-top: 10px;'}
+            %a.dropdown-item{:href => tours_path} Avialable Tours
+            %a.dropdown-item{:href => new_tour_path} New tour
+
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => '#', :role => "button"}
+            %i.far.fa-user
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown", :style => 'margin-top: 10px;'}
+            -# - if current_user.name.present?
+            -#   %a.dropdown-item{:href => info_path(current_user)}= current_user.name
+            -# - else
+            %a.dropdown-item{:href => "#"}= current_user.email
+            %a.dropdown-item{:href => "#"} Test
+            - if current_user.admin?
+              %a.dropdown-item{:href => new_location_path} Add location
+              %a.dropdown-item{:href => "#"} Users
+            .dropdown-divider
+            %a.dropdown-item
+              %a= button_to("Log out", destroy_user_session_path, method: :delete, class: "btn scase")
+
+
+      - else
+        %a.nav-item.nav-link{:href => "#"} Test
+        %a.nav-item.nav-link
+          %button.btn.btn-primary{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", :type => "button"} Enter
+          / Navbar End
+
+
+/ Video Modal Start
+#videoModal.modal.modal-video.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content.rounded-0
+      .modal-header
+        %h3#exampleModalLabel.modal-title Video
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+      .modal-body
+        / 16:9 aspect ratio
+        .ratio.ratio-16x9
+          %iframe#video.embed-responsive-item{:allow => "autoplay", :allowfullscreen => "", :allowscriptaccess => "always", :src => ""}
+/ Video Modal End
+= render "shared/modal"
