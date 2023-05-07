@@ -1,73 +1,60 @@
 %flex-container{:style => "display: flex; justify-content: space-between"}
-  .flex-item.item-1
-    .short-description
-      .container
-        .row
-          .col-md-6
-            .product-thumbnail
-              .col-md-10.col-sm-10.col-xs-10
-                .thumb-main-image
-                  %a(href="")
-                    - if location.image?
-                      %img= image_tag location.image.url(:large), style: "width: 100%; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
-                %br/
-              .row
-                .thumb-image
+  .short-description
+    .container
+      .row
+        .col-md-6
+          .product-thumbnail
+            .col-md-10.col-sm-10.col-xs-10
+              .thumb-main-image
+                %a(href="")
                   - if location.image?
-                    = image_tag location.image.url(:thumb), style: "width: 15%"
-                    = image_tag location.image.url(:thumb), style: "width: 15%"
-                    = image_tag location.image.url(:thumb), style: "width: 15%"
-                    = image_tag location.image.url(:thumb), style: "width: 15%"
-                    = image_tag location.image.url(:thumb), style: "width: 15%"
+                    %img= image_tag location.image.url(:large), style: "width: 100%; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
+              %br/
+            .row
+              .thumb-image
+                - if location.image?
+                  = image_tag location.image.url(:thumb), style: "width: 15%"
+                  = image_tag location.image.url(:thumb), style: "width: 15%"
+                  = image_tag location.image.url(:thumb), style: "width: 15%"
+                  = image_tag location.image.url(:thumb), style: "width: 15%"
+                  = image_tag location.image.url(:thumb), style: "width: 15%"
 
-          .col-md-6
-            %h1.product-title= location.title
-            .product-info
-              %span.product-avilability
-                %strong Description:
-                %span= location.description
-            .product-info-btn{:style => "margin-left: 18px;"}
-              %a.nav-item.nav-link{"data-bs-target" => "#exampleModal3", "data-bs-toggle" => "modal", :type => "button"}
-                %i.fa.fa-share-nodes 
-                Share Location
-            .product-info
-              %span.product-avilability
-                %strong Address:
-                %span= location.address
-            .product-info
-              %span.product-avilability
-                %strong Country:
-                %span= location.country
-            .product-info
-              %span.product-avilability
-                %strong City:
-                %span= location.city
-            .product-info
-              %span.product-avilability
-                %strong State:
-                %span= location.state
-            .product-info
-              %span.product-avilability
-                %strong Latitude:
-                %span= location.latitude
-            .product-info
-              %span.product-avilability
-                %strong Longitude:
-                %span= location.longitude
+        .col-md-6
+          %h1.product-title= location.title
+          .product-info
+            %span.product-avilability
+              %strong Description:
+              %span= location.description
+          .product-info-btn{:style => "margin-left: 18px;"}
+            %a.nav-item.nav-link{"data-bs-target" => "#exampleModal3", "data-bs-toggle" => "modal", :type => "button"}
+              %i.fa.fa-share-nodes 
+              Share Location
+          .product-info
+            %span.product-avilability
+              %strong Address:
+              %span= location.address
+          .product-info
+            %span.product-avilability
+              %strong Country:
+              %span= location.country
+          .product-info
+            %span.product-avilability
+              %strong City:
+              %span= location.city
+          .product-info
+            %span.product-avilability
+              %strong State:
+              %span= location.state
+          .product-info
+            %span.product-avilability
+              %strong Latitude:
+              %span= location.latitude
+          .product-info
+            %span.product-avilability
+              %strong Longitude:
+              %span= location.longitude
   %br/
-  .flex-item.item-2
-    -# - if recent_products.any?
-    -#   %h5 #{t('.viewed')}
-    -#   - recent_products.each do |recently|
-    -#     .product-main
-    -#       %a.mask(href="#{recently.id}")
-    -#         %img.img-responsive.zoom-img
-    -#           = image_tag recently.image.url(:large), style: "width: 50%; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)", class: "image-prod" if recently.image?
-    -#       .product-bottom{:style => "margin-left: -25px"}
-    -#         %h3= link_to recently.title, product_path(recently)
-    -#         %p #{t('.explore')}
-    -#         %strong.item_price
-    -#           $ #{recently.price}
+
 
 /shared modal start
 .div{"data-controller" => "share-modal", "data-share-url" => "#{url_for(only_path: false)}"}
