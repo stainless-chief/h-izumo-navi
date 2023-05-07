@@ -52,11 +52,11 @@
   .modal-dialog
     .modal-content.rounded-0
       .modal-header
-        %h3#exampleModalLabel.modal-title Video
+        %h3#exampleModalLabel.modal-title Izumo, Shimane
         %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
       .modal-body
         / 16:9 aspect ratio
         .ratio.ratio-16x9
-          %iframe#video.embed-responsive-item{:allow => "autoplay", :allowfullscreen => "", :allowscriptaccess => "always", :src => ""}
+          %iframe#video.embed-responsive-item(allowfullscreen="" frameborder="0" height="" src="https://www.youtube.com/watch?v=jM-aZvKzkhU&ab_channel=IzumoJAPAN" width="100%")
 / Video Modal End
 = render "shared/modal"

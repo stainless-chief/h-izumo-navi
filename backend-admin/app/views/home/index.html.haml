@@ -4,12 +4,12 @@
   .container
     .row.g-5.align-items-center
       .col-lg-6.py-6.pb-0.pt-lg-0
-        %h3.text-primary.mb-3 #{t('.title1')}
-        %h1.display-3.mb-3 #{t('.title2')}
+        %h3.text-primary.mb-3 Welcome to
+        %h1.display-3.mb-3 Izumo
         .d-flex.align-items-center.pt-5
-          %button.btn-play{"data-bs-target" => "#videoModal", "data-bs-toggle" => "modal", "data-src" => "https://www.youtube.com/embed/DWRcNpR6Kdc", :type => "button"}
+          %button.btn-play{"data-bs-target" => "#videoModal", "data-bs-toggle" => "modal", "data-src" => "https://www.youtube.com/watch?v=jM-aZvKzkhU&ab_channel=IzumoJAPAN", :type => "button"}
             %span
-          %h5.ms-4.mb-0.d-none.d-sm-block #{t('.title3')}
+          %h5.ms-4.mb-0.d-none.d-sm-block
       .col-lg-6
         %img
           = image_tag "Izumo-taisha.jpeg", class: "img-fluid"
