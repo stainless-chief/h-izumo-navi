@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: %i[ show edit update destroy ]
 
-  attr_accessor :title
+  attr_accessor :location, :title
 
   # GET /locations or /locations.json
   def index
@@ -60,13 +60,14 @@ class LocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_location
-      @location = Location.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def location_params
-      params.require(:location).permit(:user_id, :title, :comment, :description, :address, :country, :city, :state, :image, :short_discription, :latitude, :longitude)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_location
+    @location = Location.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def location_params
+    params.require(:location).permit(:title, :description, :address, :country, :city, :state, :image, :short_describtion, :latitude, :longitude, :comment, :user_id)
+  end
 end

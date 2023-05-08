@@ -10,26 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_06_053351) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_07_232418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tour_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tour_id"], name: "index_likes_on_tour_id"
+    t.index ["user_id", "tour_id"], name: "index_likes_on_user_id_and_tour_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.text "short_describtion"
     t.string "address"
     t.string "country"
     t.string "city"
     t.string "state"
     t.string "image"
-    t.text "short_discription"
     t.float "latitude"
     t.float "longitude"
+    t.string "comment"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "tour_id"
-    t.string "comment"
-    t.bigint "user_id", null: false
+    t.boolean "was_here"
     t.index ["tour_id"], name: "index_locations_on_tour_id"
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
@@ -37,11 +48,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_053351) do
   create_table "tours", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "location"
-    t.bigint "user_id"
-    t.string "comment"
     t.index ["user_id"], name: "index_tours_on_user_id"
   end
 
@@ -58,6 +67,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_053351) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "likes", "tours"
+  add_foreign_key "likes", "users"
+  add_foreign_key "locations", "tours"
   add_foreign_key "locations", "users"
   add_foreign_key "tours", "users"
 end

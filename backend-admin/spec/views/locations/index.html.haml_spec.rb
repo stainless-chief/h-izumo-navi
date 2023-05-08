@@ -11,9 +11,11 @@ RSpec.describe "locations/index", type: :view do
         city: "City",
         state: "State",
         image: "Image",
-        short_discription: "MyText",
+        short_describtion: "MyText",
         latitude: 2.5,
-        longitude: 3.5
+        longitude: 3.5,
+        comment: "Comment",
+        user: nil
       ),
       Location.create!(
         title: "Title",
@@ -23,9 +25,11 @@ RSpec.describe "locations/index", type: :view do
         city: "City",
         state: "State",
         image: "Image",
-        short_discription: "MyText",
+        short_describtion: "MyText",
         latitude: 2.5,
-        longitude: 3.5
+        longitude: 3.5,
+        comment: "Comment",
+        user: nil
       )
     ])
   end
@@ -43,5 +47,7 @@ RSpec.describe "locations/index", type: :view do
     assert_select cell_selector, text: Regexp.new("MyText".to_s), count: 2
     assert_select cell_selector, text: Regexp.new(2.5.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(3.5.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("Comment".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
   end
 end

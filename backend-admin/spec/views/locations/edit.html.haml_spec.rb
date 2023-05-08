@@ -10,9 +10,11 @@ RSpec.describe "locations/edit", type: :view do
       city: "MyString",
       state: "MyString",
       image: "MyString",
-      short_discription: "MyText",
+      short_describtion: "MyText",
       latitude: 1.5,
-      longitude: 1.5
+      longitude: 1.5,
+      comment: "MyString",
+      user: nil
     )
   }
 
@@ -39,11 +41,15 @@ RSpec.describe "locations/edit", type: :view do
 
       assert_select "input[name=?]", "location[image]"
 
-      assert_select "textarea[name=?]", "location[short_discription]"
+      assert_select "textarea[name=?]", "location[short_describtion]"
 
       assert_select "input[name=?]", "location[latitude]"
 
       assert_select "input[name=?]", "location[longitude]"
+
+      assert_select "input[name=?]", "location[comment]"
+
+      assert_select "input[name=?]", "location[user_id]"
     end
   end
 end
