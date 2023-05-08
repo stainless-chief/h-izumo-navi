@@ -1,0 +1,95 @@
+%hr/
+.container.bootstrap.snippet
+  .row
+    .col-sm-10
+  .row
+    .col-sm-3
+      / left col
+      .text-center
+        -# %img.avatar.img-circle
+        -#   = image_tag current_user.avatar_thumbnail, class: "chat_pfp", style: "width: 100px; height: 100px" if current_user.chat_avatar.present?
+      %br/
+      .panel.panel-default
+        .panel-heading
+          Website
+          %i.fa.fa-link.fa-1x
+      %ul.list-group
+        %li.list-group-item.text-muted
+          Joins at:
+          = "#{time_ago_in_words(@user.created_at)} ago"
+          %i.fa.fa-dashboard.fa-1x
+        %li.list-group-item.text-right
+          %span.pull-left
+            %strong Favorite routes: 
+            -# = current_user.favorites.count if current_user.favorites.exists?
+        %li.list-group-item.text-right
+          %span.pull-left
+            %strong Own routes: 
+            = link_to current_user.tours.count, own_tours_path if current_user.tours.exists?
+        %li.list-group-item.text-right
+          %span.pull-left
+            %strong Reviews: 
+            -# = current_user.reviews.count if current_user.reviews.exists?
+      .panel.panel-default
+        .panel-heading Socials:
+        .panel-body
+          %i.fa.fa-facebook.fa-2x
+          %i.fa.fa-github.fa-2x
+          %i.fa.fa-twitter.fa-2x
+          %i.fa.fa-pinterest.fa-2x
+          %i.fa.fa-google-plus.fa-2x
+    / /col-3
+    .col-sm-9
+      %ul.nav.nav-tabs
+        %li.active
+          %a(data-toggle="tab" href="#home" style="font-family: cursive") Personal info
+      .tab-content
+        #home.tab-pane.active
+          %hr/
+          %form#registrationForm.form(action="##" method="post")
+            .form-group
+              .col-xs-6
+                %h6 Name
+                %i
+              .col-xs-6
+                %h6 Profile id:
+                %i= @user.id
+                %i -
+                %i= @user.role
+            .form-group
+              .col-xs-6
+                -# %h6 #{t('.status')}
+                -# %i= @user.payment_status
+                -# - if @user.id == current_user.id && @user.payment_status == "free"
+                -#   - if @user.profile.country == "RU"
+                -#     %a.nav-item.nav-link.btn.scase{"data-target" => "#exampleModal4", "data-toggle" => "modal", :type => "button", :style => "height: 25px; display: flex; align-items: center; font-size: x-small; width: fit-content;"} #{t('.upgrade')}
+                -#   - else
+                -#     = stripe_elements_tag(submit_path: user_payments_path(user_id: current_user.id, monthly_fee: @monthly_fee))
+            .form-group
+              .col-xs-6
+                %h6 Phone
+                %i
+            .form-group
+              .col-xs-6
+                %h6 Email
+                %i= @user.email
+            .form-group
+              -# .col-xs-6
+              -#   %h6 #{t('.location')}
+              -#   - if @user.profile.present?
+              -#     .row
+              -#       %i.em #{t('.address')}:
+              -#       .form-control= @user.profile.address
+              -#       %i.em #{t('.state')}:
+              -#       .form-control= @user.profile.state
+              -#       %i.em #{t('.city')}:
+              -#       .form-control= @user.profile.city
+              -#       %i.em #{t('.country')}:
+              -#       .form-control= @user.profile.country
+            - if @user.id == current_user.id
+              .row
+                = link_to "Update", edit_user_registration_path, class: "btn btn-outline-primary scase", style: "width: 45%; height: 25px; display: flex; align-items: center; font-size: small;"
+                -# = link_to "#{t('.update-info')}", profile_path(current_user.profile), class: "btn btn-outline-primary scase", style: "width: 45%; height: 25px; display: flex; align-items: center; font-size: small;"
+              %br/
+        #messages.tab-pane
+          %h2

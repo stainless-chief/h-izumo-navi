@@ -1,96 +1,96 @@
 %h3.text-center Most popular locations
 / Carousel starts
-#carouselExampleControls.carousel{"data-bs-ride" => "carousel", :style => "max-width: 100%"}
+#carouselExampleControls.carousel{"data-bs-ride" => "carousel"}
   .carousel-inner
     .carousel-item.active{:style => "align-items: center"}
       .card{:style => "align-items: center"}
         .img-wrapper
-          %img.d-block.w-300
-            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+          %img.d-block.w-100
+            = image_tag Location.find(1).image.url(:large)
         .card-body
-          %h3.card-title= Location.find(3).title
+          %h3.card-title= Location.find(1).title
           %p.card-text
-            .trunk= Location.find(3).short_discription
+            .trunk= Location.find(1).short_describtion
        
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
-          %img.d-block.w-300
-            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+          %img.d-block.w-100
+            = image_tag Location.find(2).image.url(:large)
         .card-body
-          %h3.card-title= Location.find(3).title
+          %h3.card-title= Location.find(2).title
           %p.card-text
-            .trunk= Location.find(3).short_discription
+            .trunk= Location.find(2).short_describtion
           
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
-          %img.d-block.w-300
-            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+          %img.d-block.w-100
+            = image_tag Location.find(3).image.url(:large)
         .card-body
           %h3.card-title= Location.find(3).title
           %p.card-text
-            .trunk= Location.find(3).short_discription
+            .trunk= Location.find(3).short_describtion
           
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
-          %img.d-block.w-300
-            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+          %img.d-block.w-100
+            = image_tag Location.find(1).image.url(:large)
         .card-body
-          %h3.card-title= Location.find(3).title
+          %h3.card-title= Location.find(1).title
           %p.card-text
-            .trunk= Location.find(3).short_discription
+            .trunk= Location.find(1).short_describtion
          
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
-          %img.d-block.w-300
-            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+          %img.d-block.w-100
+            = image_tag Location.find(1).image.url(:large)
         .card-body
-          %h3.card-title= Location.find(3).title
+          %h3.card-title= Location.find(1).title
           %p.card-text
-            .trunk= Location.find(3).short_discription
+            .trunk= Location.find(1).short_describtion
           
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
-          %img.d-block.w-300
-            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+          %img.d-block.w-100
+            = image_tag Location.find(1).image.url(:large)
         .card-body
-          %h3.card-title= Location.find(3).title
+          %h3.card-title= Location.find(1).title
           %p.card-text
-            .trunk= Location.find(3).short_discription
+            .trunk= Location.find(1).short_describtion
          
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
-          %img.d-block.w-300
-            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+          %img.d-block.w-100
+            = image_tag Location.find(1).image.url(:large)
         .card-body
-          %h3.card-title= Location.find(3).title
+          %h3.card-title= Location.find(1).title
           %p.card-text
-            .trunk= Location.find(3).short_discription
+            .trunk= Location.find(1).short_describtion
           
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
-          %img.d-block.w-300
-            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+          %img.d-block.w-100
+            = image_tag Location.find(1).image.url(:large), style: "margin-left: -30px"
         .card-body
-          %h3.card-title= Location.find(3).title
+          %h3.card-title= Location.find(1).title
           %p.card-text
-            .trunk= Location.find(3).short_discription
+            .trunk= Location.find(1).short_describtion
           
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
-          %img.d-block.w-300
-            = image_tag Location.find(3).image.url(:large), style: "margin-left: -30px"
+          %img.d-block.w-100
+            = image_tag Location.find(1).image.url(:large), style: "margin-left: -30px"
         .card-body
-          %h3.card-title= Location.find(3).title
+          %h3.card-title= Location.find(1).title
           %p.card-text
-            .trunk= Location.find(3).short_discription
+            .trunk= Location.find(1).short_describtion
           -# %a.btn.btn-primary{:href => locations_path} Find more...
   %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselExampleControls", :type => "button"}
     %span.carousel-control-prev-icon{"aria-hidden" => "true"}

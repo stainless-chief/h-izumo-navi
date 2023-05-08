@@ -10,9 +10,11 @@ RSpec.describe "locations/show", type: :view do
       city: "City",
       state: "State",
       image: "Image",
-      short_discription: "MyText",
+      short_describtion: "MyText",
       latitude: 2.5,
-      longitude: 3.5
+      longitude: 3.5,
+      comment: "Comment",
+      user: nil
     ))
   end
 
@@ -28,5 +30,7 @@ RSpec.describe "locations/show", type: :view do
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/2.5/)
     expect(rendered).to match(/3.5/)
+    expect(rendered).to match(/Comment/)
+    expect(rendered).to match(//)
   end
 end

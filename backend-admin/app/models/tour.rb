@@ -3,4 +3,5 @@ class Tour < ApplicationRecord
   # _destroy is a special attribute that is used to mark a record for destruction
   accepts_nested_attributes_for :locations, allow_destroy: true, reject_if: :all_blank
   belongs_to :user
+  has_many :likes
 end

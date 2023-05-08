@@ -7,8 +7,10 @@ FactoryBot.define do
     city { "MyString" }
     state { "MyString" }
     image { "MyString" }
-    short_discription { "MyText" }
+    short_describtion { "MyText" }
     latitude { 1.5 }
     longitude { 1.5 }
+    comment { "MyString" }
+    user { nil }
   end
 end

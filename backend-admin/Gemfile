@@ -91,6 +91,7 @@ group :development do
   gem 'rspec-mocks'
   gem 'spring-commands-rspec'
   gem 'web-console'
+  gem 'annotate'
 end
 
 group :test do

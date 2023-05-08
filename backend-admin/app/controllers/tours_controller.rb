@@ -4,15 +4,21 @@ class ToursController < ApplicationController
   # GET /tours or /tours.json
   def index
     @tours = Tour.all
+    @locations = Location.all
   end
 
   # GET /tours/1 or /tours/1.json
   def show
   end
 
+  def show_own
+    @tours = Tour.where(user_id: current_user.id)
+  end
+
   # GET /tours/new
   def new
     @tour = Tour.new
+    @locations = Location.all
   end
 
   # GET /tours/1/edit
@@ -65,6 +71,6 @@ class ToursController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tour_params
-      params.require(:tour).permit(:name, :comment, :description, :user_id, :location, locations_attributes: %i[user_id title address _destroy comment])
+      params.require(:tour).permit(:name, :description, :user_id, locations_attributes: %i[user_id title address was_here _destroy comment])
     end
 end

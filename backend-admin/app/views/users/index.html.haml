@@ -1,0 +1,25 @@
+
+- if current_user && current_user.admin?
+  %h5.justify-content-center{:style => "display: flex"} All users
+  %hr/
+  %table
+    %thead
+      %tr
+        %th{:style => 'width: 5%'} id
+        %th{:style => 'width: 10%'} role
+        %th{:style => 'width: 15%'} name
+        %th{:style => 'width: 25%'} email
+        %th{:style => 'width: 20%'} actions
+        %th{:colspan => "3"}
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td= user.role
+          -# %td= user.name
+          %td= user.email
+          %td= link_to "Destroy", @user, data: { turbo_method: :delete, 'turbo-confirm': 'Are you shure?'}, class: 'btn btn-danger'
+  %br/ 
+  
+- else
+  = render status: :not_found

@@ -55,7 +55,6 @@
               %span= location.longitude
   %br/
 
-
 /shared modal start
 .div{"data-controller" => "share-modal", "data-share-url" => "#{url_for(only_path: false)}"}
   .hidden#exampleModal3.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -74,7 +73,7 @@
               .col-md-12
                 .card-body
                   %h4.card-title.text-center= location.title
-                  %p.card-text.cuttedText= location.short_discription
+                  %p.card-text.cuttedText= location.short_describtion
               .col-md-3.col-sm-3.share-img{"data-action" => "click->share-modal#copyLink"}
                 %img.img-fluid.rounded-start.d-flex{:style => "margin-top: 22px"}
                   %svg.w-10.h-10(fill="none" stroke="currentColor" stroke-width="1" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg")
