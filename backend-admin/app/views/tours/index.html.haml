@@ -20,18 +20,19 @@
                     %strong Author:
                     %em= tour.user.email
                     - like = current_user.likes.find_by(tour: tour)
-                    - if like.nil?
-                      .div{:style => "display: flex"}
-                        = button_to "Helpfull", likes_path, params: { like: { tour_id: "#{tour.id}"}}, method: :post, class: "btn btn-light btn-sm"
-                        %a{:style => "color: green; padding: 10px 20px 0"}
-                          %i.fa-regular.fa-thumbs-up.fa-xl
-                          %span{:style => "color: black"}= tour.likes.count
-                    - else
-                      .div{:style => "display: flex"}
-                        = button_to "Useless", like_path(like), method: :delete, class: "btn btn-light btn-sm"
-                        %a{:style => "color: green; padding: 10px 20px 0"}
-                          %i.fa-regular.fa-thumbs-up.fa-xl
-                          %span{:style => "color: black"}= tour.likes.count
+                    - if tour.user_id != current_user.id
+                      - if like.nil?
+                        .div{:style => "display: flex"}
+                          = button_to "Helpfull", likes_path, params: { like: { tour_id: "#{tour.id}"}}, method: :post, class: "btn btn-light btn-sm"
+                          %a{:style => "color: green; padding: 10px 20px 0"}
+                            %i.fa-regular.fa-thumbs-up.fa-xl
+                            %span{:style => "color: black"}= tour.likes.count
+                      - else
+                        .div{:style => "display: flex"}
+                          = button_to "Useless", like_path(like), method: :delete, class: "btn btn-light btn-sm"
+                          %a{:style => "color: green; padding: 10px 20px 0"}
+                            %i.fa-regular.fa-thumbs-up.fa-xl
+                            %span{:style => "color: black"}= tour.likes.count
 
 %br
 

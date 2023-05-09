@@ -9,6 +9,7 @@
             %span= tour.description
             %strong Locations:
             %span= tour.locations.count
+            %p= image_tag(url_for(tour.qrcode))
             .nav-item.nav-link{"data-bs-target" => "#exampleModal3", "data-bs-toggle" => "modal", :type => "button"}
               %i.fa.fa-share-nodes 
               Share Your Tour
@@ -23,7 +24,7 @@
                     = link_to location.title.split(","), "#"
                     = location.was_here 
                   = location.comment
-                  = location.meet_time
+                  = location.meet_time.strftime("%H:%M:%S")
               
   %br/
 
@@ -40,6 +41,7 @@
               .col-md-12
                 .card-body
                   %h4.card-title.text-center= tour.name
+                  .qr= image_tag(url_for(tour.qrcode))
                   %p.card-text.cuttedText
                   - tour.locations.each do |location|
                     %p
