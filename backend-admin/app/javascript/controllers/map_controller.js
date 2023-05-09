@@ -8,7 +8,7 @@ export default class extends Controller {
      else {
        var center =[document.getElementById('location_longitude').value, document.getElementById('location_latitude').value]
      }
-    mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpZWYtc3MiLCJhIjoiY2xndGVkNnp3MTV0bjNkbWtzc25sdDlodiJ9.IigjwyBzw-Z_FdBd3eW1tg';
+    mapboxgl.accessToken = '';
     const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',

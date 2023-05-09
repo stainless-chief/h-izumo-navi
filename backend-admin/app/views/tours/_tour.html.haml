@@ -24,7 +24,7 @@
                     = link_to location.title.split(","), "#"
                     = location.was_here 
                   = location.comment
-                  = location.meet_time.strftime("%H:%M:%S")
+                  = location.meet_time.strftime("%H:%M:%S") if location.meet_time?
               
   %br/
 
