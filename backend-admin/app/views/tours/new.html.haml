@@ -2,15 +2,11 @@
 
 %flex-container{:style => "display: flex; justify-content: space-between"}
   .flex-item.item-1
-    .short-description
-      .container
-        .row
-          .col-md-6
-            .product-thumbnail
-              .col-md-10.col-sm-10.col-xs-10
-                = render 'form'
+    .col-md-6.col-sm-6.col-xs-6
+      = render 'form'
+    
 
   .flex-item.item-2
-    here will be map
+
 
 = link_to 'Back', tours_path

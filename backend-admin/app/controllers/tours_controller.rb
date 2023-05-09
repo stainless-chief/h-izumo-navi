@@ -1,4 +1,5 @@
 class ToursController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tour, only: %i[ show edit update destroy ]
 
   # GET /tours or /tours.json
@@ -71,6 +72,6 @@ class ToursController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tour_params
-      params.require(:tour).permit(:name, :description, :user_id, locations_attributes: %i[user_id title address was_here _destroy comment])
+      params.require(:tour).permit(:name, :description, :user_id, locations_attributes: %i[user_id meet_time title address was_here _destroy comment])
     end
 end

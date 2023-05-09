@@ -6,10 +6,8 @@
     = f.label :comment
     = f.text_field :comment, class: 'form-control'
   .form-group
-    = f.label :was_here
-    = f.check_box :was_here
-  -# .form-group 
-  -#   = f.date_select :date
+    = f.label :meet_time
+    = f.time_field :meet_time
   .form-group
     = f.hidden_field :user_id, value: "#{current_user.id}"
     %button(data-action="nested-form#remove" type="button" class="btn scase") Remove location

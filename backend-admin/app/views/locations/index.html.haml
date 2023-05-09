@@ -8,7 +8,7 @@
           %img.d-block.w-100
             = image_tag Location.find(1).image.url(:large)
         .card-body
-          %h3.card-title= Location.find(1).title
+          %h3.card-title#loc_title= Location.find(1).title
           %p.card-text
             .trunk= Location.find(1).short_describtion
        
