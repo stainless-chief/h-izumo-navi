@@ -1,8 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: %i[ show edit update destroy ]
 
-  attr_accessor :location, :title
-
   # GET /locations or /locations.json
   def index
     @locations = Location.where(user_id: 1)

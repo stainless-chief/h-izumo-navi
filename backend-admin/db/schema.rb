@@ -67,10 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_035350) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "tour_id"
     t.boolean "was_here"
     t.time "meet_time"
-    t.index ["tour_id"], name: "index_locations_on_tour_id"
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
@@ -100,7 +98,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_035350) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "likes", "tours"
   add_foreign_key "likes", "users"
-  add_foreign_key "locations", "tours"
   add_foreign_key "locations", "users"
   add_foreign_key "tours", "users"
 end
