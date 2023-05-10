@@ -7,7 +7,10 @@
         public string Description { get; set; } = string.Empty;
         public int TotalEvents { get; set; }
 
-        public Source() { }
+        public Source()
+        { 
+        }
+
         public Source(Source source) 
         { 
             Code = source.Code;
@@ -15,6 +18,5 @@
             Description = source.Description;
             TotalEvents = source.TotalEvents;
         }
-
     }
 }

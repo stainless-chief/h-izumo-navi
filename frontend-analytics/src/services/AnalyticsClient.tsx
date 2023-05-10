@@ -57,7 +57,7 @@ class AnalyticsClient {
             { 
               type: "Polygon",
               coordinates:[
-                value.zoneCoordinates.map(zone => [zone.x, zone.y])
+                value.coordinates.map(zone => [zone.x, zone.y])
               ],
             }
           }

@@ -4,7 +4,7 @@ import { ZoneCoordinates } from "./ZoneCoordinates";
 class StatisticItem {
   placeName: string;
   temperature: number;
-  placeCoordinates: ZoneCoordinates[];
+  coordinates: ZoneCoordinates[];
   sources: AnalyticsSource[];
 }
 

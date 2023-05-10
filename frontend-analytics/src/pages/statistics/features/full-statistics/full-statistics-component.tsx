@@ -27,8 +27,8 @@ function StatisticsComponent(
                 size="small"
                 style={{ marginLeft: 16 }}
                 onClick={() => {
-                  var x = params.row.placeCoordinates[0].x;
-                  var y = params.row.placeCoordinates[0].y;
+                  var x = params.row.coordinates[0].x;
+                  var y = params.row.coordinates[0].y;
                   moveToLocation(x, y);
                 }}
             >

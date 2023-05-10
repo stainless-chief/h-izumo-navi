@@ -75,7 +75,7 @@ function StatisticsPage() {
             { 
               type: "Polygon",
               coordinates:[
-                value.placeCoordinates.map(zone => [zone.x, zone.y])
+                value.coordinates.map(zone => [zone.x, zone.y])
               ],
             }
           }

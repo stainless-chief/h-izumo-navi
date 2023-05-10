@@ -4,6 +4,6 @@ namespace Abstractions.IRepositories
 {
     public interface ISourceRepository
     {
-        Task<IEnumerable<Source>> GetAsync();
+        Task<IEnumerable<Source>> GetAsync(bool countHits);
     }
 }

@@ -14,22 +14,27 @@ namespace Analytics.Controllers
     {
         private readonly Supervisor _supervisor = new();
         private readonly IHeatZoneRepository _heatZoneRepository;
-        private readonly ISourceRepository _sourceRepository;
         private readonly IHitRepository _hitRepository;
+        private readonly ISourceRepository _sourceRepository;
         private readonly IStatisticsRepository _statisticsRepository;
 
-        public MainController(IHeatZoneRepository heatZoneRepository, ISourceRepository sourceRepository, IHitRepository hitRepository, IStatisticsRepository statisticsRepository)
+        public MainController(
+            IHeatZoneRepository heatZoneRepository,
+            IHitRepository hitRepository,
+            ISourceRepository sourceRepository,
+            IStatisticsRepository statisticsRepository
+            )
         {
             _heatZoneRepository = heatZoneRepository;
-            _sourceRepository = sourceRepository;
             _hitRepository = hitRepository;
+            _sourceRepository = sourceRepository;
             _statisticsRepository = statisticsRepository;
         }
 
         [AllowAnonymous]
         [ApiVersion("1.0")]
         [HttpGet("ping")]
-        public ActionResult<ExecutionResult<string>> Ping()
+        public ExecutionResult<string> Ping()
         {
             var result = _supervisor.SafeExecute
             (
@@ -42,11 +47,11 @@ namespace Analytics.Controllers
         [AllowAnonymous]
         [ApiVersion("1.0")]
         [HttpGet("source/all")]
-        public async Task<ActionResult<ExecutionResult<IEnumerable<Source>>>> GetCategoriesAsync()
+        public async Task<ExecutionResult<IEnumerable<Source>>> GetSources()
         {
             var result = await _supervisor.SafeExecuteAsync
             (
-                () => _sourceRepository.GetAsync()
+                () => _sourceRepository.GetAsync(true)
             );
 
             return result;
@@ -55,7 +60,7 @@ namespace Analytics.Controllers
         [AllowAnonymous]
         [ApiVersion("1.0")]
         [HttpPost("heatzone")]
-        public async Task<ActionResult<ExecutionResult<IEnumerable<HeatZone>>>> GetHeatZones([FromBody] IEnumerable<string> sourceCode)
+        public async Task<ExecutionResult<IEnumerable<HeatZone>>> GetHeatZones([FromBody] IEnumerable<string> sourceCode)
         {
             var result = await _supervisor.SafeExecuteAsync
             (
@@ -68,7 +73,7 @@ namespace Analytics.Controllers
         [AllowAnonymous]
         [ApiVersion("1.0")]
         [HttpPost("save")]
-        public async Task<ActionResult<ExecutionResult<bool>>> Save([FromBody] Hit[] hits)
+        public async Task<ExecutionResult<bool>> Save([FromBody] Hit[] hits)
         {
             var result = await _supervisor.SafeExecuteAsync
             (
@@ -81,7 +86,7 @@ namespace Analytics.Controllers
         [AllowAnonymous]
         [ApiVersion("1.0")]
         [HttpGet("statistics")]
-        public async Task<ActionResult<ExecutionResult<IEnumerable<StatisticItem>>>> GetStatistics()
+        public async Task<ExecutionResult<IEnumerable<StatisticItem>>> GetStatistics()
         {
             var result = await _supervisor.SafeExecuteAsync
             (

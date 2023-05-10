@@ -12,9 +12,27 @@ namespace Infrastructure
         internal DbSet<Source> Sources => Set<Source>();
         internal DbSet<Place> Places => Set<Place>();
 
-
         internal DbSet<ExampleHit> ExampleHits => Set<ExampleHit>();
-        internal DbSet<FakeTwitterHit> FakeTwitterHit => Set<FakeTwitterHit>();
+        internal DbSet<FakeTwitterHit> FakeTwitterHits => Set<FakeTwitterHit>();
+        internal DbSet<HiWebHit> HiIzumoHits => Set<HiWebHit>();
+
+        internal IQueryable<BaseHit> GetHits(string code)
+        {
+            if (code == ExampleHit.Code)
+            {
+                return ExampleHits.OfType<BaseHit>();
+            }
+            if (code == FakeTwitterHit.Code)
+            {
+                return FakeTwitterHits.OfType<BaseHit>();
+            }
+            if (code == HiWebHit.Code)
+            {
+                return HiIzumoHits.OfType<BaseHit>();
+            }
+
+            throw new InvalidOperationException();
+        }
 
         public DataContext(DbContextOptions options) : base(options)
         {
