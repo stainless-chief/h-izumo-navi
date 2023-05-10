@@ -1,9 +1,10 @@
 {
   "Header": {
-    "Full": "Izumo heatmap"
+    "Full": "Izumo analytics"
   },
   "Navigation" : {
-    "Heatmap": "Heatmap"
+    "Heatmap": "Heatmap",
+    "Statistics": "Statistics"
   },
   "HeatMap" : {
     "FilterHeader": "Data sources",
@@ -12,5 +13,8 @@
   },
   "HeatMapTooltip" : {
     "Temperature": "Temperature"
+  },
+  "Statistics" : {
+    "MoveToLocation": "Show"
   }
 }

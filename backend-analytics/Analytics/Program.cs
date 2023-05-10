@@ -34,6 +34,7 @@ namespace Analytics
             builder.Services.AddTransient<IHeatZoneRepository, HeatZoneRepository>();
             builder.Services.AddTransient<ISourceRepository, SourceRepository>();
             builder.Services.AddTransient<IHitRepository, HitRepository>();
+            builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
 
             var app = builder.Build();
             app.UseCors(builder => builder.AllowAnyOrigin()

@@ -1,5 +1,5 @@
 import * as axios from "axios";
-import { ExecutionResult, AnalyticsSource, AnalyticsHeatZone, AnalyticsHeatZoneCollection  } from "./";
+import { ExecutionResult, AnalyticsSource, AnalyticsHeatZone, AnalyticsHeatZoneCollection, StatisticItem  } from "./";
 import { Utils } from "./Utils";
 import { Feature, FeatureCollection, GeoJsonProperties, Geometry, Position } from "geojson";
 import { number } from "yargs";
@@ -14,6 +14,16 @@ class AnalyticsClient {
         Accept: "application/json"
       }
     });
+  };
+
+  public static async getStatistics() {
+    return await this.init().get<ExecutionResult<StatisticItem[]>>("/statistics")
+      .then(response => {
+        return response.data;
+      })
+      .catch((error: axios.AxiosError) => {
+        return Utils.create<StatisticItem[]>(error);
+      });
   };
 
   public static async getSources() {

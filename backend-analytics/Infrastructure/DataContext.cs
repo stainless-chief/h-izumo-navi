@@ -10,6 +10,8 @@ namespace Infrastructure
         public Migrator Migrator { get; set; }
 
         internal DbSet<Source> Sources => Set<Source>();
+        internal DbSet<Place> Places => Set<Place>();
+
 
         internal DbSet<ExampleHit> ExampleHits => Set<ExampleHit>();
         internal DbSet<FakeTwitterHit> FakeTwitterHit => Set<FakeTwitterHit>();

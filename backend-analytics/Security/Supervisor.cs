@@ -19,7 +19,7 @@ namespace Security
                 result.Data = await func();
                 result.IsSucceed = true;
             }
-            catch (DbException)
+            catch (DbException ee)
             {
                 result.IsSucceed = false;
                 result.Error = new Incident

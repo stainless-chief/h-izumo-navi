@@ -16,12 +16,14 @@ namespace Analytics.Controllers
         private readonly IHeatZoneRepository _heatZoneRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IHitRepository _hitRepository;
+        private readonly IStatisticsRepository _statisticsRepository;
 
-        public MainController(IHeatZoneRepository heatZoneRepository, ISourceRepository sourceRepository, IHitRepository hitRepository)
+        public MainController(IHeatZoneRepository heatZoneRepository, ISourceRepository sourceRepository, IHitRepository hitRepository, IStatisticsRepository statisticsRepository)
         {
             _heatZoneRepository = heatZoneRepository;
             _sourceRepository = sourceRepository;
             _hitRepository = hitRepository;
+            _statisticsRepository = statisticsRepository;
         }
 
         [AllowAnonymous]
@@ -71,6 +73,19 @@ namespace Analytics.Controllers
             var result = await _supervisor.SafeExecuteAsync
             (
                 () => _hitRepository.SaveAsync(hits)
+            );
+
+            return result;
+        }
+
+        [AllowAnonymous]
+        [ApiVersion("1.0")]
+        [HttpGet("statistics")]
+        public async Task<ActionResult<ExecutionResult<IEnumerable<StatisticItem>>>> GetStatistics()
+        {
+            var result = await _supervisor.SafeExecuteAsync
+            (
+                () => _statisticsRepository.GetAsync()
             );
 
             return result;
