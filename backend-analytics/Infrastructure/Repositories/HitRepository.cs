@@ -48,7 +48,7 @@ namespace Infrastructure.Repositories
                 }
                 if (hit.Source == HiWebHit.Code)
                 {
-                    await _context.HiIzumoHits.AddAsync(new HiWebHit
+                    await _context.HiWebHits.AddAsync(new HiWebHit
                     {
                         Id = Guid.NewGuid(),
                         DateTime = DateTime.UtcNow,

@@ -2,9 +2,9 @@
 
 namespace Infrastructure.Models
 {
-    [Table("hit_hiizumo")]
+    [Table("hit_hiweb")]
     internal class HiWebHit : BaseHit
     {
-        public static string Code => "HiIzumo";
+        public static string Code => "HiWeb";
     }
 }

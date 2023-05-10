@@ -51,7 +51,7 @@ namespace Infrastructure.Repositories
 
             if (sourceCode == Models.HiWebHit.Code)
             {
-                return await _context.HiIzumoHits.CountAsync();
+                return await _context.HiWebHits.CountAsync();
             }
 
             throw new ArgumentException($"{nameof(sourceCode)} {sourceCode} not found");

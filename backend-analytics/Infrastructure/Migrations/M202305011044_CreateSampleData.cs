@@ -1,11 +1,12 @@
 ﻿using FluentMigrator;
+using Infrastructure.Models;
 
 namespace Infrastructure.Migrations
 {
     [Migration(202305011044, "Fill database with sample data")]
     public class M202305011044_FillDbWithSamples : Migration
     {
-        private const string _sourceName = "example";
+        private readonly string _sourceName = ExampleHit.Code.ToLower();
         private const string _hit = "hit";
 
         public override void Up()
@@ -15,15 +16,14 @@ namespace Infrastructure.Migrations
                 //Izumo Enmusubi Airport
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.413789}', 
-                        '{132.886314}', 
-                        '{100}'
+                        '{132.886314}'
                     );");
             }
 
@@ -32,15 +32,14 @@ namespace Infrastructure.Migrations
                 //Izumo Airport Country Club
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.385646}', 
-                        '{132.860302}', 
-                        '{100}'
+                        '{132.860302}'
                     );");
             }
 
@@ -49,15 +48,14 @@ namespace Infrastructure.Migrations
                 //Izumo Airport Country Club
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.384559}', 
-                        '{132.820309}', 
-                        '{100}'
+                        '{132.820309}'
                     );");
             }
 
@@ -66,15 +64,14 @@ namespace Infrastructure.Migrations
                 //Mankusen Jinja
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.374605}', 
-                        '{132.787088}', 
-                        '{100}'
+                        '{132.787088}'
                     );");
             }
 
@@ -83,15 +80,14 @@ namespace Infrastructure.Migrations
                 //Tabushi Station
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.421902}', 
-                        '{132.806963}', 
-                        '{100}'
+                        '{132.806963}'
                     );");
             }
 
@@ -99,15 +95,14 @@ namespace Infrastructure.Migrations
             {
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.440182}', 
-                        '{132.774025}', 
-                        '{100}'
+                        '{132.774025}'
                     );");
             }
 
@@ -116,15 +111,14 @@ namespace Infrastructure.Migrations
                 // Cape Uppurui-hana Lighthouse
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.469707}', 
-                        '{132.728328}', 
-                        '{100}'
+                        '{132.728328}'
                     );");
             }
 
@@ -133,15 +127,14 @@ namespace Infrastructure.Migrations
                 // Lakeside Hot Spring Hotel Kunibiki
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.324472}', 
-                        '{132.677099}', 
-                        '{100}'
+                        '{132.677099}'
                     );");
             }
 
@@ -150,15 +143,14 @@ namespace Infrastructure.Migrations
                 // 7-Eleven
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.367605}', 
-                        '{132.733781}', 
-                        '{100}'
+                        '{132.733781}'
                     );");
             }
 
@@ -167,15 +159,14 @@ namespace Infrastructure.Migrations
                 // Umibozu
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude, reliability)
+                    (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
                         '{DateTime.Now}', 
                         'chief', 
                         '{035.363490}',
-                        '{132.756296}', 
-                        '{100}'
+                        '{132.756296}'
                     );");
             }
         }
