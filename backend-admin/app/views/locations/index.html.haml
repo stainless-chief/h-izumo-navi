@@ -6,7 +6,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag Location.find(1).image.url(:large)
+            = image_tag 'izumo_taisha.jpg'
         .card-body
           %h3.card-title#loc_title= Location.find(1).title
           %p.card-text
@@ -16,7 +16,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag Location.find(2).image.url(:large)
+            = image_tag 'izumo_taisha.jpg'
         .card-body
           %h3.card-title= Location.find(2).title
           %p.card-text
@@ -26,7 +26,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag Location.find(3).image.url(:large)
+            = image_tag 'izumo_taisha.jpg'
         .card-body
           %h3.card-title= Location.find(3).title
           %p.card-text
@@ -36,7 +36,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag Location.find(1).image.url(:large)
+            = image_tag 'izumo_taisha.jpg'
         .card-body
           %h3.card-title= Location.find(1).title
           %p.card-text
@@ -46,7 +46,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag Location.find(1).image.url(:large)
+            = image_tag 'izumo_taisha.jpg'
         .card-body
           %h3.card-title= Location.find(1).title
           %p.card-text
@@ -56,7 +56,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag Location.find(1).image.url(:large)
+            = image_tag 'izumo_taisha.jpg'
         .card-body
           %h3.card-title= Location.find(1).title
           %p.card-text
@@ -66,7 +66,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag Location.find(1).image.url(:large)
+            = image_tag 'izumo_taisha.jpg'
         .card-body
           %h3.card-title= Location.find(1).title
           %p.card-text
@@ -76,7 +76,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag Location.find(1).image.url(:large), style: "margin-left: -30px"
+            = image_tag 'izumo_taisha.jpg'
         .card-body
           %h3.card-title= Location.find(1).title
           %p.card-text
@@ -86,7 +86,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag Location.find(1).image.url(:large), style: "margin-left: -30px"
+            = image_tag 'izumo_taisha.jpg'
         .card-body
           %h3.card-title= Location.find(1).title
           %p.card-text
@@ -112,7 +112,7 @@
 
                 %img.card-img-top
                   - if location.image?
-                    = image_tag location.image.url(:thumb), style: "border-radius: 10px 10px 0 0", class: "image-thumbnail"
+                    = image_tag location, style: "border-radius: 10px 10px 0 0", class: "image-thumbnail"
 
                 .card-body.p-4
                   .text-center
