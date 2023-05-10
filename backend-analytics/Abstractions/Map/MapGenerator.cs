@@ -27,6 +27,9 @@ namespace Abstractions.Map
                             new ZoneCoordinates { X = longitude, Y =  latitude + Size},
                             new ZoneCoordinates { X = longitude + Size, Y =  latitude + Size},
                             new ZoneCoordinates { X = longitude + Size, Y =  latitude },
+
+                            // HACK, because polygons broke down on higher zoom levels: 
+                            new ZoneCoordinates { X = longitude, Y =  latitude},
                         }
                     });
                 }

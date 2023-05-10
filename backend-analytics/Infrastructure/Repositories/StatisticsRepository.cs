@@ -31,6 +31,9 @@ namespace Infrastructure.Repositories
                     new() { X = x.LongitudeMin, Y =  x.LatitudeMax},
                     new() { X = x.LongitudeMax, Y =  x.LatitudeMax},
                     new() { X = x.LongitudeMax, Y =  x.LatitudeMin },
+
+                    // HACK, because polygons broke down on higher zoom levels: 
+                    new() { X = x.LongitudeMin, Y =  x.LatitudeMin}, 
                 },
             }).ToList();
 
