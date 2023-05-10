@@ -1,2 +1,0 @@
-  [1m[35m (173.1ms)[0m  [1m[35mCREATE DATABASE "h_izumo_navi_development" ENCODING = 'unicode'[0m
-  [1m[35m (51.5ms)[0m  [1m[35mCREATE DATABASE "h_izumo_navi_test" ENCODING = 'unicode'[0m
