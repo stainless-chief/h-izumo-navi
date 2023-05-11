@@ -1,28 +1,27 @@
 
 using Abstractions.IRepositories;
-using Infrastructure.Repositories;
 using Infrastructure;
-using Microsoft.EntityFrameworkCore;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 
 namespace Analytics
 {
     public class Program
     {
-        const string KeyDatabase = "PostgreSQL";
+        private const string KeyDatabase = "PostgreSQL";
+
+        protected Program() { }
 
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
 
             builder.Services.AddControllers();
             builder.Services.AddCors();
             builder.Services.AddApiVersioning();
             builder.Configuration.AddEnvironmentVariables();
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -34,11 +33,12 @@ namespace Analytics
             builder.Services.AddTransient<IHeatZoneRepository, HeatZoneRepository>();
             builder.Services.AddTransient<ISourceRepository, SourceRepository>();
             builder.Services.AddTransient<IHitRepository, HitRepository>();
+            builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
 
             var app = builder.Build();
             app.UseCors(builder => builder.AllowAnyOrigin()
-                              .AllowAnyMethod()
-                              .AllowAnyHeader());
+                                          .AllowAnyMethod()
+                                          .AllowAnyHeader());
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -53,10 +53,10 @@ namespace Analytics
 
             // Configure the HTTP request pipeline.
             //if (app.Environment.IsDevelopment())
-            {
+            //{
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            //}
 
             app.UseAuthorization();
 

@@ -20,8 +20,5 @@ namespace Infrastructure.Models
 
         [Column("longitude")]
         public double Longitude { get; set; }
-
-        [Column("reliability")]
-        public int Reliability { get; set; }
     }
 }

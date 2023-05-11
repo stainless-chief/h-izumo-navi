@@ -1,45 +1,15 @@
-﻿using Abstractions.Models;
+﻿using Abstractions.Extensions;
 using Abstractions.IRepositories;
-using Microsoft.EntityFrameworkCore;
+using Abstractions.Map;
+using Abstractions.Models;
 using Infrastructure.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
     public class HeatZoneRepository : IHeatZoneRepository
     {
-        private static readonly double Xmin = 132.617758;
-        private static readonly double Xmax = 132.922474;
-        private static readonly double Ymin = 35.281593;
-        private static readonly double Ymax = 35.514545;
-
-        private static readonly double size = 0.005765;
-
         private readonly DataContext _context;
-
-        private static IEnumerable<HeatZone> GenerateMap()
-        {
-            var lst = new List<HeatZone>();
-
-            for (var x = Xmin; x < Xmax; x += size)
-            {
-                for (var y = Ymin; y < Ymax; y += size)
-                {
-                    lst.Add(new HeatZone
-                    {
-                        Temperature = 0,
-                        ZoneCoordinates = new()
-                        {
-                            new ZoneCoordinates { X = x, Y =  y},
-                            new ZoneCoordinates { X = x, Y =  y + size},
-                            new ZoneCoordinates { X = x + size, Y =  y + size},
-                            new ZoneCoordinates { X = x + size, Y =  y },
-                        }
-                    });
-                }
-            }
-
-            return lst;
-        }
 
         public HeatZoneRepository(DataContext context)
         {
@@ -53,56 +23,41 @@ namespace Infrastructure.Repositories
                 return Enumerable.Empty<HeatZone>();
             }
 
-            var result = GenerateMap();
+            var result = MapGenerator.CreateIzumo();
 
-            if (sourceCode.Contains(SourcesNames.Example))
+            foreach ( var code in sourceCode) 
             {
-                foreach (var item in _context.ExampleHits)
+                await foreach (var item in _context.GetHits(code).AsNoTracking().AsAsyncEnumerable())
                 {
-                    var tmp = result.FirstOrDefault(x => x.IsIn(item.Longitude, item.Latitude));
-                    if (tmp != null)
+                    var temp = result.FirstOrDefault(x => x.IsIn(item.Longitude, item.Latitude));
+                    if (temp != null)
                     {
-                        tmp.Temperature++;
-                        if (tmp.HitStatistics.ContainsKey(SourcesNames.Example))
+                        temp.Temperature++;
+                        if (temp.HitStatistics.ContainsKey(code))
                         {
-                            tmp.HitStatistics[SourcesNames.Example]++;
+                            temp.HitStatistics[code]++;
                         }
                         else
                         {
-                            tmp.HitStatistics.Add(SourcesNames.Example, 1);
-                        }
-                    }
-                }
-            }
-            if (sourceCode.Contains(SourcesNames.FakeTwitter))
-            {
-                foreach (var item in _context.FakeTwitterHit)
-                {
-                    var tmp = result.FirstOrDefault(x => x.IsIn(item.Longitude, item.Latitude));
-                    if (tmp != null)
-                    {
-                        tmp.Temperature++;
-                        if (tmp.HitStatistics.ContainsKey(SourcesNames.FakeTwitter))
-                        {
-                            tmp.HitStatistics[SourcesNames.FakeTwitter]++;
-                        }
-                        else
-                        {
-                            tmp.HitStatistics.Add(SourcesNames.FakeTwitter, 1);
+                            temp.HitStatistics.Add(code, 1);
                         }
                     }
                 }
             }
 
-            var maxTemp = result.Max(x => x.Temperature);
+            NormalizeHeat(result);
 
-            // normalize heat
-            foreach (var item in result)
+            return result;
+        }
+
+        private static void NormalizeHeat(IEnumerable<HeatZone> zones)
+        {
+            var maxTemp = zones.Max(x => x.Temperature);
+
+            foreach (var item in zones)
             {
                 item.Temperature = IntegerExtensions.RoundOff(item.Temperature * 100d / maxTemp);
             }
-
-            return result;
         }
     }
 }

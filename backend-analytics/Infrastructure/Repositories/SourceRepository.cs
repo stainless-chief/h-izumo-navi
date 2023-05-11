@@ -13,38 +13,45 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Source>> GetAsync()
+        public async Task<IEnumerable<Source>> GetAsync(bool countHits)
         {
-            var items = await _context.Sources
-                                    .AsNoTracking()
-                                    .Select
-                                    (x => new Source
-                                    {
-                                         Code = x.Code,
-                                         Description = x.Description,
-                                         Name = x.DisplayName,
-                                         TotalEvents = -1,
-                                    })
-                                    .ToListAsync();
+            var sources = await _context.Sources
+                                      .AsNoTracking()
+                                      .Select(x => new Source
+                                      {
+                                          Code = x.Code,
+                                          Description = x.Description,
+                                          Name = x.DisplayName,
+                                          TotalEvents = 0,
+                                      })
+                                      .ToListAsync();
 
-            foreach (var item in items)
+            if (countHits)
             {
-                item.TotalEvents = CoutHits(item.Code);
+                foreach (var item in sources)
+                {
+                    item.TotalEvents = await CountHits(item.Code);
+                }
             }
 
-            return items;
+            return sources;
         }
 
-        public int CoutHits(string sourceCode)
+        private async Task<int> CountHits(string sourceCode)
         {
-            if (sourceCode == SourcesNames.FakeTwitter)
+            if (sourceCode == Models.FakeTwitterHit.Code)
             {
-                return _context.FakeTwitterHit.Count();
+                return await _context.FakeTwitterHits.CountAsync();
             }
 
-            if (sourceCode == SourcesNames.Example)
+            if (sourceCode == Models.ExampleHit.Code)
             {
-                return _context.ExampleHits.Count();
+                return await _context.ExampleHits.CountAsync();
+            }
+
+            if (sourceCode == Models.HiWebHit.Code)
+            {
+                return await _context.HiWebHits.CountAsync();
             }
 
             throw new ArgumentException($"{nameof(sourceCode)} {sourceCode} not found");

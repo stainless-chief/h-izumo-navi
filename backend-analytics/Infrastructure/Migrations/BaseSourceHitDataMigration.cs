@@ -22,7 +22,6 @@ namespace Infrastructure.Migrations
                     person VARCHAR(512) NOT NULL,
                     latitude float NOT NULL,
                     longitude float NOT NULL,
-                    reliability int,
 
 					PRIMARY KEY(id)
                 );");
@@ -43,7 +42,6 @@ namespace Infrastructure.Migrations
         {
             Execute.Sql(@$"DROP TABLE IF EXISTS {DataContext.SchemaData}.{ViewSourcesToHits.ToLower()} CASCADE;");
             Execute.Sql(@$"DELETE FROM {DataContext.SchemaData}.{TableSources} WHERE ID = '{SourceId}'");
-
         }
     }
 }

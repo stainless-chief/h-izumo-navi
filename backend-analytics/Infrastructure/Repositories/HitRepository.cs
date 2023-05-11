@@ -1,4 +1,5 @@
 ﻿using Abstractions.IRepositories;
+using Abstractions.Map;
 using Abstractions.Models;
 using Infrastructure.Models;
 
@@ -13,52 +14,52 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<bool> SaveAsync(Hit hit)
-        {
-            if (hit.Source == SourcesNames.FakeTwitter)
-            {
-                return await SaveTwitter(hit) == 1;
-            }
-
-            throw new ArgumentException($"{nameof(hit.Source)} not found");
-        }
-
         public async Task<bool> SaveAsync(IEnumerable<Hit> hits)
         {
-            if (hits.All(x =>  x.Source == SourcesNames.FakeTwitter))
+            // looks messy
+            foreach (var hit in hits)
             {
-                foreach (Hit hit in hits) 
+                if (!MapGenerator.IsInIzumo(hit.Longitude, hit.Latitude))
                 {
-                    await _context.FakeTwitterHit.AddAsync(new FakeTwitterHit
+                    continue;
+                }
+
+                if (hit.Source == FakeTwitterHit.Code)
+                {
+                    await _context.FakeTwitterHits.AddAsync(new FakeTwitterHit
                     {
                         Id = Guid.NewGuid(),
                         DateTime = DateTime.UtcNow,
                         Latitude = hit.Latitude,
                         Longitude = hit.Longitude,
                         Person = hit.PersonId,
-                        Reliability = 100,
                     });
                 }
-
-                return await _context.SaveChangesAsync() == hits.Count();
+                if (hit.Source == ExampleHit.Code)
+                {
+                    await _context.ExampleHits.AddAsync(new ExampleHit
+                    {
+                        Id = Guid.NewGuid(),
+                        DateTime = DateTime.UtcNow,
+                        Latitude = hit.Latitude,
+                        Longitude = hit.Longitude,
+                        Person = hit.PersonId,
+                    });
+                }
+                if (hit.Source == HiWebHit.Code)
+                {
+                    await _context.HiWebHits.AddAsync(new HiWebHit
+                    {
+                        Id = Guid.NewGuid(),
+                        DateTime = DateTime.UtcNow,
+                        Latitude = hit.Latitude,
+                        Longitude = hit.Longitude,
+                        Person = hit.PersonId,
+                    });
+                }
             }
 
-            throw new ArgumentException($"Inconsistent sources ");
-        }
-
-        private async Task<int> SaveTwitter(Hit hit)
-        {
-            await _context.FakeTwitterHit.AddAsync(new FakeTwitterHit
-            {
-                Id = Guid.NewGuid(),
-                DateTime = DateTime.UtcNow,
-                Latitude = hit.Latitude,
-                Longitude = hit.Longitude,
-                Person = hit.PersonId,
-                Reliability = 100,
-            });
-
-            return await _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync() == hits.Count();
         }
     }
 }

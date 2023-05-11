@@ -1,0 +1,10 @@
+@import "/public/assets/scss/variables";
+
+.full-statistics-container {
+  flex: 1 0 70%;
+  gap: 10px;
+  flex-direction: column;
+  display: flex;
+  background-color: $color-panel;
+  height: 600px;
+}

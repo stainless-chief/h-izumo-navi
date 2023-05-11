@@ -12,6 +12,10 @@ function GreetingsPage() {
       <img src={("/assets/images/heatmap.png")}/>
       <b>{t("Navigation.Heatmap")}</b>
     </Link>
+    <Link to="/statistics">
+      <img src={("/assets/images/statistics.png")}/>
+      <b>{t("Navigation.Statistics")}</b>
+    </Link>
   </div>
   );
 }

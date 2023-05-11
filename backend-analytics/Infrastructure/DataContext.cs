@@ -10,9 +10,29 @@ namespace Infrastructure
         public Migrator Migrator { get; set; }
 
         internal DbSet<Source> Sources => Set<Source>();
+        internal DbSet<Place> Places => Set<Place>();
 
         internal DbSet<ExampleHit> ExampleHits => Set<ExampleHit>();
-        internal DbSet<FakeTwitterHit> FakeTwitterHit => Set<FakeTwitterHit>();
+        internal DbSet<FakeTwitterHit> FakeTwitterHits => Set<FakeTwitterHit>();
+        internal DbSet<HiWebHit> HiWebHits => Set<HiWebHit>();
+
+        internal IQueryable<BaseHit> GetHits(string code)
+        {
+            if (code.Equals(ExampleHit.Code, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return ExampleHits.OfType<BaseHit>();
+            }
+            if (code.Equals(FakeTwitterHit.Code, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return FakeTwitterHits.OfType<BaseHit>();
+            }
+            if (code.Equals(HiWebHit.Code, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return HiWebHits.OfType<BaseHit>();
+            }
+
+            throw new InvalidOperationException();
+        }
 
         public DataContext(DbContextOptions options) : base(options)
         {

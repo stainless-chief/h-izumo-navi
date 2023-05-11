@@ -3,7 +3,9 @@ import { Incident } from "./models/Incident";
 import { ExecutionResult } from "./models/ExecutionResult";
 import { AnalyticsClient } from "./AnalyticsClient";
 import { AnalyticsHeatZone, AnalyticsHeatZoneCollection } from "./models/AnalyticsHeatZone"; 
+import { StatisticItem} from "./models/StatisticItem"; 
 
+export { StatisticItem };
 export { ExecutionResult };
 export { AnalyticsSource };
 export { Incident };
