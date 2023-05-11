@@ -1,5 +1,5 @@
-import { BBox, Feature, FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
-import { ZoneCoordinates } from "./ZoneCoordinates";
+import { BBox, Feature, FeatureCollection, GeoJsonProperties, Geometry } from 'geojson';
+import { ZoneCoordinates } from './ZoneCoordinates';
 
 class AnalyticsHeatZone {
   temperature: number;

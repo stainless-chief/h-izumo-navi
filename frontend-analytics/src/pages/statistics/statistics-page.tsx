@@ -1,12 +1,12 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
-import "./statistics-page.scss";
-import { AnalyticsClient, AnalyticsHeatZone, AnalyticsHeatZoneCollection, AnalyticsSource, Incident, StatisticItem } from "../../services";
-import { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
+import './statistics-page.scss';
+import { AnalyticsClient, AnalyticsHeatZoneCollection, Incident, StatisticItem } from '../../services';
+import { FeatureCollection, GeoJsonProperties, Geometry } from 'geojson';
+import { StatisticsComponent } from './features/full-statistics/full-statistics-component';
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import Map, { Layer, Source, FillLayer, Popup } from 'react-map-gl';
 import mapboxgl from 'mapbox-gl';
-import { useTranslation } from 'react-i18next';
-import { StatisticsComponent } from './features/full-statistics/full-statistics-component';
 
 // The following is required to stop "npm build" from transpiling mapbox code.
 // notice the exclamation point in the import.
@@ -40,17 +40,12 @@ export const dataLayer: FillLayer = {
 };
 
 function StatisticsPage() {
-  const { t } = useTranslation();
-  const [incident, setIncident] = useState<Incident | null>(null);
   const [heatZones, setHeatZones] = useState<FeatureCollection<Geometry, GeoJsonProperties>>();
-  const [statistics, setStatistics] = useState<StatisticItem[] | null>(null);
-  const mapRef = useRef(null);
   const [hoverInfo, setHoverInfo] = useState(null);
-
-  async function moveToLocation(latitude:number, longitude: number) 
-  {
-    mapRef.current?.flyTo({ center: [latitude,longitude ] });
-  }
+  const [incident, setIncident] = useState<Incident | null>(null);
+  const [statistics, setStatistics] = useState<StatisticItem[] | null>(null);
+  const { t } = useTranslation();
+  const mapRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async() => {
@@ -58,21 +53,17 @@ function StatisticsPage() {
       if (result.isSucceed) {
         setStatistics(result.data);
 
-        let zones: AnalyticsHeatZoneCollection;
-        zones = new AnalyticsHeatZoneCollection();
+        const zones = new AnalyticsHeatZoneCollection();
         zones.type = 'FeatureCollection';
 
-        zones.features = result.data.map(function (value: StatisticItem)
-        {
+        zones.features = result.data.map(function (value: StatisticItem) {
           return {
             type: 'Feature',
-            properties:
-            {
+            properties: {
               temperature: value.temperature,
               hitStatistics: value.sources,
             },
-            geometry:
-            { 
+            geometry: { 
               type: "Polygon",
               coordinates:[
                 value.coordinates.map(zone => [zone.x, zone.y])
@@ -81,15 +72,17 @@ function StatisticsPage() {
           }
         });
         setHeatZones(zones);
-
       } else {
         setIncident(result.error);
-      }
-    };
+      }};
 
     setIncident(null);
     fetchData();
   }, []);
+
+  async function moveToLocation(latitude:number, longitude: number) {
+    mapRef.current?.flyTo({ center: [latitude,longitude ] });
+  }
 
   const onHover = useCallback(event => {
     const {
@@ -99,7 +92,6 @@ function StatisticsPage() {
     const hoveredFeature = features[0];
 
     if (hoveredFeature) {
-      // prettier-ignore
       setHoverInfo({hoveredFeature, lngLat});
     }
   }, []);
@@ -128,10 +120,10 @@ function StatisticsPage() {
             <Source type="geojson" data={heatZones}>
               <Layer {...dataLayer} />
             </Source>
-            {hoverInfo
+            { hoverInfo
             && hoverInfo.hoveredFeature.properties.temperature > 0
             && (
-          <Popup
+            <Popup
               latitude={hoverInfo.lngLat.lat}
               longitude={hoverInfo.lngLat.lng}
               closeButton={false}>
@@ -144,10 +136,10 @@ function StatisticsPage() {
                   </div>
                 )
               }
-        </Popup>
-        )}
+            </Popup>)}
         </Map>
-      <StatisticsComponent statistics={statistics!} moveToLocation={moveToLocation!} />
+      <StatisticsComponent statistics={statistics!} 
+                           moveToLocation={moveToLocation!} />
     </div>
     );
   }

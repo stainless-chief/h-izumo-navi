@@ -1,9 +1,6 @@
-import * as axios from "axios";
-import { ExecutionResult, AnalyticsSource, AnalyticsHeatZone, AnalyticsHeatZoneCollection, StatisticItem  } from "./";
-import { Utils } from "./Utils";
-import { Feature, FeatureCollection, GeoJsonProperties, Geometry, Position } from "geojson";
-import { number } from "yargs";
-
+import * as axios from 'axios';
+import { ExecutionResult, AnalyticsSource, AnalyticsHeatZone, AnalyticsHeatZoneCollection, StatisticItem  } from './';
+import { Utils } from './Utils';
 
 class AnalyticsClient {
   private static init() {
@@ -11,13 +8,13 @@ class AnalyticsClient {
       baseURL: window._env_.REACT_APP_API_ANALYTICS,
       timeout: 31000,
       headers: {
-        Accept: "application/json"
+        Accept: 'application/json'
       }
     });
   };
 
   public static async getStatistics() {
-    return await this.init().get<ExecutionResult<StatisticItem[]>>("/statistics")
+    return await this.init().get<ExecutionResult<StatisticItem[]>>('/statistics')
       .then(response => {
         return response.data;
       })
@@ -27,7 +24,7 @@ class AnalyticsClient {
   };
 
   public static async getSources() {
-    return await this.init().get<ExecutionResult<AnalyticsSource[]>>("/source/all")
+    return await this.init().get<ExecutionResult<AnalyticsSource[]>>('/source/all')
       .then(response => {
         return response.data;
       })
@@ -38,24 +35,21 @@ class AnalyticsClient {
 
   public static async getHeatMap(codes: string[]) {
     return await this.init()
-    .post<ExecutionResult<AnalyticsHeatZone[]>>("/heatzone", codes)
+    .post<ExecutionResult<AnalyticsHeatZone[]>>('/heatzone', codes)
     .then(response => {
         let tmp: AnalyticsHeatZoneCollection;
         tmp = new AnalyticsHeatZoneCollection();
         tmp.type = 'FeatureCollection';
 
-        tmp.features = response.data.data.map(function (value: AnalyticsHeatZone)
-        {
+        tmp.features = response.data.data.map(function (value: AnalyticsHeatZone) {
           return {
             type: 'Feature',
-            properties:
-            {
+            properties: {
               temperature: value.temperature,
               hitStatistics: value.hitStatistics,
             },
-            geometry:
-            { 
-              type: "Polygon",
+            geometry: {
+              type: 'Polygon',
               coordinates:[
                 value.coordinates.map(zone => [zone.x, zone.y])
               ],

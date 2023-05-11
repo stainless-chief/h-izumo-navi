@@ -4,9 +4,9 @@ import { AnalyticsClient, AnalyticsSource, Incident } from "../../services";
 import { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import { HeatFilterComponent } from "./features/";
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import Map, { Layer, Source, FillLayer, Popup } from 'react-map-gl';
 import mapboxgl from 'mapbox-gl';
-import { useTranslation } from 'react-i18next';
 
 // The following is required to stop "npm build" from transpiling mapbox code.
 // notice the exclamation point in the import.
@@ -40,12 +40,11 @@ export const dataLayer: FillLayer = {
 };
 
 function HeatmapPage() {
-  const { t } = useTranslation();
   const [analyticsSources, setAnalyticsSources] = useState<AnalyticsSource[] | null>(null);
-  const [incident, setIncident] = useState<Incident | null>(null);
   const [heatZones, setHeatZones] = useState<FeatureCollection<Geometry, GeoJsonProperties>>();
-
   const [hoverInfo, setHoverInfo] = useState(null);
+  const [incident, setIncident] = useState<Incident | null>(null);
+  const { t } = useTranslation();
 
   async function reloadHeatZone(sourceCodes: string[]) 
   {
@@ -75,7 +74,6 @@ function HeatmapPage() {
     const hoveredFeature = features[0];
 
     if (hoveredFeature) {
-      // prettier-ignore
       setHoverInfo({hoveredFeature, lngLat});
     }
   }, []);
@@ -90,8 +88,7 @@ function HeatmapPage() {
   } else {
     return (
       <div className="heatmap-container">
-        <Map 
-          initialViewState={{
+        <Map initialViewState={{
           latitude: 35.383822,
           longitude: 132.767306,
           zoom: 12 }}
@@ -106,23 +103,20 @@ function HeatmapPage() {
             {hoverInfo
             && hoverInfo.hoveredFeature.properties.temperature > 0
             && (
-          <Popup
-              latitude={hoverInfo.lngLat.lat}
-              longitude={hoverInfo.lngLat.lng}
-              closeButton={false}>
-              {
-                (
-                  <div>
-                    <b>{t("HeatMapTooltip.Temperature")}</b> {hoverInfo.hoveredFeature.properties.temperature} <br/>
-                    {/* TODO: make tooltip pretty  */}
-                    {hoverInfo.hoveredFeature.properties.hitStatistics}
-                  </div>
-                )
-              }
-        </Popup>
-        )}
+            <Popup latitude={hoverInfo.lngLat.lat} longitude={hoverInfo.lngLat.lng}
+                   closeButton={false}>
+                    {(
+                    <div>
+                      <b>{t("HeatMapTooltip.Temperature")}</b>
+                      {hoverInfo.hoveredFeature.properties.temperature} <br/>
+                      {/* TODO: make tooltip pretty  */}
+                      { hoverInfo.hoveredFeature.properties.hitStatistics }
+                    </div>
+                    )}
+            </Popup>)}
         </Map>
-      <HeatFilterComponent analyticsSources={analyticsSources!} reloadHeatZone={reloadHeatZone}/>
+      <HeatFilterComponent analyticsSources={analyticsSources!} 
+                           reloadHeatZone={reloadHeatZone}/>
     </div>
     );
   }

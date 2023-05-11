@@ -1,25 +1,25 @@
 @import "/public/assets/scss/variables";
 
 .navigation {
-  margin-top: 5%;
-  flex-direction: row;
-  display: flex;
   align-items: center;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
+  margin-top: 5%;
 
   a {
+    color: inherit;
+    cursor: pointer;
     font-size: 25px;
     height: 100%;
     padding-left: 10px;
     padding-right: 10px;
     text-decoration: none;
     text-transform: capitalize;
-    cursor: pointer;
-    color: inherit;
 
-    flex-direction: column;
-    display: flex;
     align-items: center;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 
     &:hover {

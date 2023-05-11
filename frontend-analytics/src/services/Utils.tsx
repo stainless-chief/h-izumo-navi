@@ -1,6 +1,6 @@
-import * as axios from "axios";
-import { ExecutionResult } from "./models/ExecutionResult";
-import { Incident } from "./models/Incident";
+import * as axios from 'axios';
+import { ExecutionResult } from './models/ExecutionResult';
+import { Incident } from './models/Incident';
 
 class Utils {
   public static create<T>(error: axios.AxiosError) {

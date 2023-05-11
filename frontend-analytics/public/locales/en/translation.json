@@ -4,7 +4,9 @@
   },
   "Navigation" : {
     "Heatmap": "Heatmap",
-    "Statistics": "Statistics"
+    "HeatmapAlt": "Generic heat map image",
+    "Statistics": "Statistics",
+    "StatisticsAlt": "Generic statistics image"
   },
   "HeatMap" : {
     "FilterHeader": "Data sources",
