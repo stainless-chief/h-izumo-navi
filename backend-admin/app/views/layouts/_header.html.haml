@@ -6,23 +6,12 @@
     %span.navbar-toggler-icon
   #navbarCollapse.collapse.navbar-collapse.justify-content-between.py-4.py-lg-0
     .navbar-nav.ms-auto.py-0
-
-      %a.nav-item.nav-link.active{:href => "#"} Home
       %a.nav-item.nav-link{:href => about_path} About Izumo
-
     %a.navbar-brand.bg-secondary.py-3.px-4.mx-3.d-none.d-lg-block{:href => root_path}
       %h1.text-primary.fw-bold.m-0 Izumo
     .navbar-nav.me-auto.py-0
       %a.nav-item.nav-link.active{:href => locations_path} Locations
       - if current_user
-
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => '#', :role => "button"}
-            Tours
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown", :style => 'margin-top: 10px;'}
-            %a.dropdown-item{:href => "#"} Avialable Tours
-            %a.dropdown-item{:href => own_tours_path} My tours
-
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => '#', :role => "button"}
             %i.far.fa-user
@@ -34,13 +23,11 @@
             - if current_user.admin?
               %a.dropdown-item{:href => new_location_path} Add location
               %a.dropdown-item{:href => users_path} Users
+              %a.dropdown-item{:href => favorites_path} Favorites
             .dropdown-divider
             %a.dropdown-item
               %a= button_to("Log out", destroy_user_session_path, method: :delete, class: "btn scase")
-
-
       - else
-        %a.nav-item.nav-link{:href => "#"} Test
         %a.nav-item.nav-link
           %button.btn.btn-primary{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", :type => "button"} Enter
           / Navbar End

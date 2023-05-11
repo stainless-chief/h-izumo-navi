@@ -1,0 +1,140 @@
+.row
+  / customer reviews
+  .col-lg-5.col-md-5.col-12.mb-4.mb-lg-0.pr-lg-6
+    .mb-6{:style => "font-size: 11px"}
+      %h4.mb-3 Reviews
+      - if @location.average_rating.present?
+        - location_star_classes = ["color: grey", "color: grey", "color: grey", "color: grey", "color: grey"]
+        - (@location.average_rating.round(0)).times do |i|
+          - location_star_classes[i] = "color: gold"
+        - location_star_classes.each do |star_class|
+          %span(style="#{star_class}")
+            %i.fas.fa-star
+        %p.h5 #{@location.average_rating.round(1)} out of 5
+      %p.font-14 based on #{@location.reviews_count} reviews
+      - 5.downto(1) do |n|
+        .row.align-items-center.mb-1
+          .col-md-2.col-2.pr-0
+            = n 
+            %i.fas.fa-star(style="color: gold;")
+          .col-md-8.col-8.pr-2
+            .progress(style="height: 8px;")
+              .progress-bar.bg-warning(aria-valuemax="100" aria-valuemin="0" aria-valuenow="78" role="progressbar" style="width: calc(#{@location.reviews.where(rating: n).size} / #{@location.reviews_count} * 100%)")
+          .col-md-2.col-2
+            .font-12.text-primary
+              #{location_rating_percentage(location: @location, rating: n)} %
+    %br
+      %h4.mb-1 Review this location
+      %p.font-12 Share your thoughts with other tourists
+      %a.btn.btn-primary.btn-block{"data-bs-target" => "#exampleModal6", "data-bs-toggle" => "modal", :type => "button", :style => "height: 25px; display: flex; align-items: center; font-size: x-small; width: fit-content;"} Write a review
+  / customer reviews list
+  .col-lg-7.col-md-7.col-12
+    .d-flex.align-items-center.justify-content-between.mb-4
+      %div
+        %h5.mb-0 Ratings &amp; Reviews
+      -# %div
+      -#   %select.custom-select
+      -#     %option(selected="selected") #{t('.sort')}
+      -#     %option(value="Most Recent") #{t('.recent')}
+      -#     %option(value="Relevant") #{t('.relevant')}
+      -#     %option(value="Newest") #{t('.newest')}
+    / reviews
+    - if @location.reviews.present?
+      - @location.reviews.limit(3).includes(:user).order('created_at desc').each do |review|
+        .mb-4.pb-4.border-bottom
+          .d-flex.mb-3.align-items-center
+            %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
+            .ml-2
+              -# %h5.mb-1= review.user.name if review.user.name.present?
+              %imgimage_tag
+              
+              %p.font-12.mb-0
+                %span Kolkata
+                %span= review.created_at.to_date
+          .mb-2
+            - review_star_classes = ["color: grey", "color: grey", "color: grey", "color: grey", "color: grey"]
+            - review.rating.times do |i|
+              - review_star_classes[i] = "color: gold"
+            - review_star_classes.each do |star_class|
+              %span(style="#{star_class}")
+                %i.fas.fa-star
+            %span.font-14.mr-2 #{review.rating} out of 5
+            %p.h5= review.title
+          %p= review.body
+          -# - like = current_user.likes.find_by(review: review)
+          -# - if like.nil?
+          -#   .div{:style => "display: flex"}
+          -#     = button_to "#{t('.helpful')}", likes_path, params: { like: { review_id: "#{review.id}"}}, method: :post, class: "btn btn-light btn-sm"
+          -#     %a{:style => "color: green; padding: 10px 20px 0"}
+          -#       %i.fa-regular.fa-thumbs-up.fa-xl
+          -#       %span{:style => "color: black"}= review.likes.count
+          -# - else
+          -#   .div{:style => "display: flex"}
+          -#     = button_to "#{t('.useless')}", like_path(like), method: :delete, class: "btn btn-light btn-sm"
+          -#     %a{:style => "color: green; padding: 10px 20px 0"}
+          -#       %i.fa-regular.fa-thumbs-up.fa-xl
+          -#       %span{:style => "color: black"}= review.likes.count
+          
+      %a.btn.btn-primary.btn-block{"data-bs-target" => "#exampleModal6", "data-bs-toggle" => "modal", :type => "button", :style => "height: 25px; display: flex; align-items: center; font-size: x-small; width: fit-content;"} Read more reviews
+    - else 
+      %h5 You can add the first review here...
+/Reviews modal start
+#exampleModal6.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content.p-4
+      .modal-header.border-0.mb-2
+        %h5#exampleModalLabel{:style => "margin-left: 20%"} Travelers reviews
+      .modal-body
+        .col-md-12.wow.fadeInUp{"data-wow-delay" => "0.5s"}
+          .fade.show.p-0
+            - @location.reviews.includes(:user).order('created_at desc').each do |review|
+              .mb-4.pb-4.border-bottom
+                .d-flex.mb-3.align-items-center
+                  %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
+                  .ml-2
+                    -# %h5.mb-1= review.user.name if review.user.name.present?
+                    %imgimage_tag
+                    
+                    %p.font-12.mb-0
+                      %span Kolkata
+                      %span= review.created_at.to_date
+                .mb-2
+                  - review_star_classes = ["color: grey", "color: grey", "color: grey", "color: grey", "color: grey"]
+                  - review.rating.times do |i|
+                    - review_star_classes[i] = "color: gold"
+                  - review_star_classes.each do |star_class|
+                    %span(style="#{star_class}")
+                      %i.fas.fa-star
+                  %span.font-14.mr-2 #{review.rating} out of 5
+                  %p.h5= review.title
+                %p= review.body
+                - like = current_user.likes.find_by(review: review)
+                - if like.nil?
+                  .div{:style => "display: flex"}
+                    = button_to "#{t('.helpful')}", likes_path, params: { like: { review_id: "#{review.id}"}}, method: :post, class: "btn btn-light btn-sm"
+                    %a{:style => "color: green; padding: 10px 20px 0"}
+                      %i.fa-regular.fa-thumbs-up.fa-xl
+                      %span{:style => "color: black"}= review.likes.count
+                - else
+                  .div{:style => "display: flex"}
+                    = button_to "#{t('.useless')}", like_path(like), method: :delete, class: "btn btn-light btn-sm"
+                    %a{:style => "color: green; padding: 10px 20px 0"}
+                      %i.fa-regular.fa-thumbs-up.fa-xl
+                      %span{:style => "color: black"}= review.likes.count
+
+/Reviews modal end
+
+/New review modal start
+#exampleModal5.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content.p-4
+      .modal-header.border-0.mb-2
+        %h5#exampleModalLabel{:style => "text-align: center"} New review for #{@location.title}
+      .modal-body
+        %p{:style => 'display: flex; justify-content: center'}
+          - if @location.image?
+            = image_tag @location.image.url(:large), style: "width: 50%; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
+        .col-md-12.wow.fadeInUp{"data-wow-delay" => "0.5s"}
+          .fade.show.p-0
+            = render 'reviews/form'
+/New review modal end

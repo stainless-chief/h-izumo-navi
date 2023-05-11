@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'home/about', to: 'home#about', as: 'about'
   get 'show/:id', to: 'users#show', as: 'info'
   get 'users', to: 'users#index'
-  get 'show_own', to: 'tours#show_own', as: 'own_tours'
+  get 'favorites', to: 'locations#favorites'
   resources :locations
   resources :likes, only: %i[create destroy]
 

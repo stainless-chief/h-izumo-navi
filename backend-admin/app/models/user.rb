@@ -26,4 +26,5 @@ class User < ApplicationRecord
   has_many :likes
   has_many :favorites, dependent: :destroy
   has_many :favorited_products, through: :favorites, source: :location
+  has_many :reviews, dependent: :destroy
 end

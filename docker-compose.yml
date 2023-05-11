@@ -85,7 +85,7 @@ services:
       - H_IZUMO_NAVI_DATABASE_HOST=host.docker.internal
       - SECRET_KEY_BASE=what-is-it
     command: >
-        ash -c "rake db:migrate && bundle exec rails server -b 0.0.0.0 -p 3000"
+        ash -c "rake db:migrate && rake db:seed && bundle exec rails server -b 0.0.0.0 -p 3000"
 
 
   frontend_analytics:
