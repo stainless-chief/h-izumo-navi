@@ -16,7 +16,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag 'izumo_taisha.jpg'
+            = image_tag 'jinja.jpeg'
         .card-body
           %h3.card-title= Location.find(2).title
           %p.card-text
@@ -26,7 +26,7 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag 'izumo_taisha.jpg'
+            = image_tag 'museum.jpeg'
         .card-body
           %h3.card-title= Location.find(3).title
           %p.card-text
@@ -36,61 +36,61 @@
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag 'izumo_taisha.jpg'
+            = image_tag 'mitoshisha.jpeg'
         .card-body
-          %h3.card-title= Location.find(1).title
+          %h3.card-title= Location.find(4).title
           %p.card-text
-            .trunk= Location.find(1).short_describtion
+            .trunk= Location.find(4).short_describtion
          
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag 'izumo_taisha.jpg'
+            = image_tag 'kitayama.jpeg'
         .card-body
-          %h3.card-title= Location.find(1).title
+          %h3.card-title= Location.find(5).title
           %p.card-text
-            .trunk= Location.find(1).short_describtion
+            .trunk= Location.find(5).short_describtion
           
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag 'izumo_taisha.jpg'
+            = image_tag 'reizenji.jpeg'
         .card-body
-          %h3.card-title= Location.find(1).title
+          %h3.card-title= Location.find(6).title
           %p.card-text
-            .trunk= Location.find(1).short_describtion
+            .trunk= Location.find(6).short_describtion
          
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag 'izumo_taisha.jpg'
+            = image_tag 'Takahama Hachimangu.jpeg'
         .card-body
-          %h3.card-title= Location.find(1).title
+          %h3.card-title= Location.find(7).title
           %p.card-text
-            .trunk= Location.find(1).short_describtion
+            .trunk= Location.find(7).short_describtion
           
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag 'izumo_taisha.jpg'
+            = image_tag 'Agata_Jinja_Uji.jpg'
         .card-body
-          %h3.card-title= Location.find(1).title
+          %h3.card-title= Location.find(8).title
           %p.card-text
-            .trunk= Location.find(1).short_describtion
+            .trunk= Location.find(8).short_describtion
           
     .carousel-item
       .card{:style => "align-items: center"}
         .img-wrapper
           %img.d-block.w-100
-            = image_tag 'izumo_taisha.jpg'
+            = image_tag 'kizuki.jpeg'
         .card-body
-          %h3.card-title= Location.find(1).title
+          %h3.card-title= Location.find(9).title
           %p.card-text
-            .trunk= Location.find(1).short_describtion
+            .trunk= Location.find(9).short_describtion
           -# %a.btn.btn-primary{:href => locations_path} Find more...
   %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselExampleControls", :type => "button"}
     %span.carousel-control-prev-icon{"aria-hidden" => "true"}
@@ -108,14 +108,33 @@
         #locations.row.gx-4.gx-lg-5.row-cols-2.row-cols-md-3.row-cols-xl-4.justify-content-center
           - @locations.each do |location|
             .col.mb-5
-              .card.h-100{"data-geolocation-target" => "product", "data-latitude" => "#{location.latitude}", "data-longitude" => "#{location.longitude}"}
-
+              .card.h-100{"data-geolocation-target" => "location", "data-latitude" => "#{location.latitude}", "data-longitude" => "#{location.longitude}"}
                 %img.card-img-top
                   - if location.image?
-                    = image_tag location, style: "border-radius: 10px 10px 0 0", class: "image-thumbnail"
-
+                    = image_tag location.image.url(:thumb), style: "border-radius: 10px 10px 0 0", class: "image-thumbnail"
+                %i.fa-solid.fa-heart#favorite{"data-controller" => "favorites",
+                  "data-user-logged-in" => "#{user_signed_in?}",
+                  "data-user-id" => "#{current_user&.id}",
+                  "data-location-id" => "#{location.id}",
+                  "data-favorite-id" => "#{location.favorites.find_by(user: current_user)&.id}",
+                  "data-favorited" => "#{location.favorited_by?(current_user)}",
+                  "data-action" => "click->favorites#favorite"}
                 .card-body.p-4
                   .text-center
                     %h4= link_to location.title, location_path(location)
                     %strong= location.city
                     %p{"data-distance-away" => ""}= location.address
+                    - like = current_user.likes.find_by(location: location)
+                    - if location.user_id != current_user.id
+                      - if like.nil?
+                        .div{:style => "display: flex"}
+                          = button_to "Helpfull", likes_path, params: { like: { location_id: "#{location.id}"}}, method: :post, class: "btn btn-light btn-sm"
+                          %a{:style => "color: green; padding: 10px 20px 0"}
+                            %i.fa-regular.fa-thumbs-up.fa-xl
+                            %span{:style => "color: black"}= location.likes.count
+                      - else
+                        .div{:style => "display: flex"}
+                          = button_to "Useless", like_path(like), method: :delete, class: "btn btn-light btn-sm"
+                          %a{:style => "color: green; padding: 10px 20px 0"}
+                            %i.fa-regular.fa-thumbs-up.fa-xl
+                            %span{:style => "color: black"}= location.likes.count

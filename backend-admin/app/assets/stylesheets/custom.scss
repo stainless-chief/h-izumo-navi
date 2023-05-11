@@ -251,3 +251,37 @@ input {
   position: absolute;
   left: 60%;
 }
+#favorite {
+  cursor: pointer;
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+#favorite .fa-heart {
+  cursor: pointer;
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+ul.product-info-btn {
+  padding: 0px;
+  margin: 20px 0px;
+  list-style: none;
+}
+ul.product-info-btn li {
+  display: inline-block;
+}
+ul.product-info-btn li a {
+  padding: 10px;
+  border-right: 2px solid #ebebeb;
+  color: #6d6d6d;
+}
+ul.product-info-btn li a:hover {
+  color: #323232;
+}
+ul.product-info-btn li:first-child a {
+  padding-left: 0px;
+}
+ul.product-info-btn li:last-child a {
+  border: none;
+}

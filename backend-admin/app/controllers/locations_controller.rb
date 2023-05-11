@@ -57,6 +57,10 @@ class LocationsController < ApplicationController
     end
   end
 
+  def favorites
+    @favorites = Favorite.includes(:location).all
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

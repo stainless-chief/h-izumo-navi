@@ -2,16 +2,49 @@
 / Header Start
 .container-fluid.bg-light.my-6.mt-0{:style => "opacity: 0.7"}
   .container
-    .row.g-5.align-items-center
+    .row.align-items-center.justify-content-center
       .col-lg-6.py-6.pb-0.pt-lg-0
-        %h3.text-primary.mb-3 Welcome to
-        %h1.display-3.mb-3 Izumo
-        .d-flex.align-items-center.pt-5
+        .d-flex.align-items-center.justify-content-center
           %button.btn-play{"data-bs-target" => "#videoModal", "data-bs-toggle" => "modal", "data-src" => "https://www.youtube.com/watch?v=jM-aZvKzkhU&ab_channel=IzumoJAPAN", :type => "button"}
             %span
           %h5.ms-4.mb-0.d-none.d-sm-block
-      .col-lg-6
-        %img
-        -# *.jpeg files will be transformed into *.jpg files for production builds
-        = image_tag "izumo_taisha.jpg", class: "img-fluid"
-/ Header End
+          / Header End
+        %p
+          %button{:onclick => "getLocation();", :type => "button"} Get coordinates
+        %p
+          Coordinates:
+          %br/
+          %span#demo
+        %p
+          Raw data:
+          %br/
+          %span#raw
+      = js_map [{latitude: 35.36047281488273, longitude: 132.7580566546712, label: 'You are here', tooltip: 'no'}], id: "Idzumo-city", width: '500px', height: '500px', controls: true
+
+:javascript
+  var x = document.getElementById("demo");
+  var y = document.getElementById("raw");
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+
+  function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+    var tmp = {}
+    tmp['accuracy'] = position.coords['accuracy'];
+    tmp['altitude'] = position.coords['altitude'];
+    tmp['altitudeAccuracy'] = position.coords['altitudeAccuracy'];
+    tmp['heading'] = position.coords['heading'];
+    tmp['latitude'] = position.coords['latitude'];
+    tmp['longitude'] = position.coords['longitude'];
+    tmp['speed'] = position.coords['speed'];
+    y.innerHTML = JSON.stringify(tmp, null, "<br />");
+    
+  }
+  

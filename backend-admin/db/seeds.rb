@@ -20,7 +20,7 @@
     country: 'Japan', 
     city: 'Idzumo', 
     state: 'Shimane', 
-    image: 'izumo_taisha.jpg',
+    image: 'backend-admin/app/assets/images/izumo_taisha.jpg',
     latitude: 35.401944, 
     longitude: 132.685556, 
     user: me)
@@ -33,7 +33,7 @@
     country: 'Japan', 
     city: 'Idzumo', 
     state: 'Shimane',
-    image: 'jinja.jpeg',
+    image: 'backend-admin/app/assets/images/jinja.jpeg',
     latitude: 35.383854577493786, 
     longitude: 132.78870940097602, 
     user: me)
@@ -45,7 +45,7 @@
     country: 'Japan', 
     city: 'Idzumo', 
     state: 'Shimane',
-    image: 'museum.jpeg',
+    image: 'backend-admin/app/assets/images/museum.jpeg',
     latitude: 35.38204351395479, 
     longitude: 132.7149068956665, 
     user: me)
@@ -69,7 +69,7 @@
     country: 'Japan', 
     city: 'Idzumo', 
     state: 'Shimane',
-    image: 'kitayama.jpeg',
+    image: 'backend-admin/app/assets/images/kitayama.jpeg',
     latitude: 35.40350440389999,  
     longitude: 132.7095484740872, 
     user: me)
@@ -82,7 +82,7 @@
     country: 'Japan', 
     city: 'Idzumo', 
     state: 'Shimane',
-    image: 'reizenji.jpeg',
+    image: 'backend-admin/app/assets/images/reizenji.jpeg',
     latitude: 35.3973826768007, 
     longitude: 132.73697137908184, 
     user: me)
@@ -96,7 +96,7 @@
     country: 'Japan', 
     city: 'Idzumo', 
     state: 'Shimane',
-    image: 'Takahama Hachimangu.jpeg',
+    image: 'backend-admin/app/assets/images/Takahama Hachimangu.jpeg',
     latitude: 35.399227035024985, 
     longitude: 132.75115842196362, 
     user: me)
@@ -108,7 +108,7 @@
     country: 'Japan', 
     city: 'Idzumo', 
     state: 'Shimane',
-    image: 'Agata_Jinja_Uji.jpg',
+    image: 'backend-admin/app/assets/images/Agata_Jinja_Uji.jpg',
     latitude: 35.41840338636822,
     longitude: 132.79658558270904,
     user: me)
@@ -120,7 +120,7 @@
     country: 'Japan', 
     city: 'Idzumo', 
     state: 'Shimane',
-    image: 'kizuki.jpeg',
+    image: 'backend-admin/app/assets/images/kizuki.jpeg',
     latitude: 35.393215613138, 
     longitude: 132.6743090451686, 
     user: me)
@@ -131,7 +131,7 @@
     country: 'Japan', 
     city: 'Idzumo', 
     state: 'Shimane',
-    image: 'inasa beach.jpeg',
+    image: 'backend-admin/app/assets/images/inasa beach.jpeg',
     latitude: 35.400646637880264, 
     longitude: 132.67254118952482 , 
     user: me)

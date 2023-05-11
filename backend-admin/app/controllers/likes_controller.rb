@@ -9,7 +9,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like = current_user.likes.find(params[:id])
-    tour = @like.tour
+    location = @like.location
     @like.destroy
     redirect_to request.fullpath
   end
@@ -17,6 +17,6 @@ class LikesController < ApplicationController
   private
 
   def like_params
-    params.require(:like).permit(:tour_id)
+    params.require(:like).permit(:location_id)
   end
 end

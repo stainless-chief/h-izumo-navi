@@ -20,7 +20,7 @@
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => '#', :role => "button"}
             Tours
           .dropdown-menu{"aria-labelledby" => "navbarDropdown", :style => 'margin-top: 10px;'}
-            %a.dropdown-item{:href => tours_path} Avialable Tours
+            %a.dropdown-item{:href => "#"} Avialable Tours
             %a.dropdown-item{:href => own_tours_path} My tours
 
         %li.nav-item.dropdown
@@ -34,7 +34,6 @@
             - if current_user.admin?
               %a.dropdown-item{:href => new_location_path} Add location
               %a.dropdown-item{:href => users_path} Users
-            %a.dropdown-item{:href => new_tour_path} New tour
             .dropdown-divider
             %a.dropdown-item
               %a= button_to("Log out", destroy_user_session_path, method: :delete, class: "btn scase")

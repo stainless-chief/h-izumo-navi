@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   get 'users', to: 'users#index'
   get 'show_own', to: 'tours#show_own', as: 'own_tours'
   resources :locations
-  resources :tours
   resources :likes, only: %i[create destroy]
   
   devise_for :users
+  namespace :api do
+    resources :favorites, only: %i[create destroy]
+  end
 end

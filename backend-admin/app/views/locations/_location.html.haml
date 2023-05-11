@@ -25,10 +25,38 @@
             %span.product-avilability
               %strong Description:
               %span= location.description
-          .product-info-btn{:style => "margin-left: 18px;"}
-            %a.nav-item.nav-link{"data-bs-target" => "#exampleModal3", "data-bs-toggle" => "modal", :type => "button"}
-              %i.fa.fa-share-nodes 
-              Share Location
+          %ul.product-info-btn{:style => "margin-left: 18px;"}
+            %li
+              %a.nav-item.nav-link
+                %i.fa-solid.fa-heart#favorite{"data-controller" => "favorites",
+                  "data-user-logged-in" => "#{user_signed_in?}",
+                  "data-user-id" => "#{current_user&.id}",
+                  "data-location-id" => "#{location.id}",
+                  "data-favorite-id" => "#{location.favorites.find_by(user: current_user)&.id}",
+                  "data-favorited" => "#{location.favorited_by?(current_user)}",
+                  "data-action" => "click->favorites#favorite", :style => "margin-left: -17px"}
+                Favorite
+            %li
+              %a.nav-item.nav-link{"data-bs-target" => "#exampleModal3", "data-bs-toggle" => "modal", :type => "button"}
+                %i.fa.fa-share-nodes 
+                Share Location
+          
+            
+          .product-info
+            - like = current_user.likes.find_by(location: location)
+            - if location.user_id != current_user.id
+              - if like.nil?
+                .div{:style => "display: flex"}
+                  = button_to "Helpfull", likes_path, params: { like: { location_id: "#{location.id}"}}, method: :post, class: "btn btn-light btn-sm"
+                  %a{:style => "color: green; padding: 0 10px 0"}
+                    %i.fa-regular.fa-thumbs-up.fa-xl
+                    %span{:style => "color: black"}= location.likes.count
+              - else
+                .div{:style => "display: flex"}
+                  = button_to "Useless", like_path(like), method: :delete, class: "btn btn-light btn-sm"
+                  %a{:style => "color: green; padding: 10px 20px 0"}
+                    %i.fa-regular.fa-thumbs-up.fa-xl
+                    %span{:style => "color: black"}= location.likes.count
           .product-info
             %span.product-avilability
               %strong Address:
@@ -68,7 +96,7 @@
               .col-md-12(style="margin-top: -10px; text-align: center;")
                 %img.img-fluid.rounded-start
                   - if location.image?
-                    %img= image_tag location.image.url(:large), style: "width: 75%; border-radius: 10%; margin-top: 5%; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
+                    %img= image_tag location.image.url(:thumb), style: "width: 75%; border-radius: 10%; margin-top: 5%; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
 
               .col-md-12
                 .card-body

@@ -1,9 +1,0 @@
-= render @tour
-
-%br/
-%div{:style => "display: flex"}
-  = link_to "Back", tours_path, class: "btn scase pr-btn", style: "width: 25%"
-  - if current_user.id == @tour.user.id
-    = link_to "Edit", edit_tour_path(@tour), class: "btn scase pr-btn", style: "width: 25%"
-    \#{link_to "Destroy", @tour, class: "btn scase pr-btn", style: "width: 25%", data: { turbo_method: :delete, 'turbo-confirm': 'Are you shure?'}}
-%br/

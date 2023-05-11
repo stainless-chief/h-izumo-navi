@@ -1,3 +1,0 @@
-module ToursHelper
-
-end
