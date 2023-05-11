@@ -56,12 +56,12 @@ gem 'bootsnap', require: false
 gem 'sassc-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem 'image_processing', '~> 1.2'
 gem 'hotwire-rails', '~> 0.1.3'
+gem 'image_processing', '~> 1.2'
+gem 'jsonapi-serializer'
+gem 'mapkick-rb'
 gem 'noticed', '~> 1.6'
 gem 'rqrcode'
-gem "mapkick-rb"
-gem 'jsonapi-serializer'
 
 group :development, :test do
   gem 'database_cleaner'
@@ -85,6 +85,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'factory_bot_rails'
   gem 'guard-rspec', require: false
   gem 'parallel_tests'
@@ -94,7 +95,6 @@ group :development do
   gem 'rspec-mocks'
   gem 'spring-commands-rspec'
   gem 'web-console'
-  gem 'annotate'
 end
 
 group :test do

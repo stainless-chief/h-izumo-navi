@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Location < ApplicationRecord
   mount_uploader :image, ImageUploader
   belongs_to :user

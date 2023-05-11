@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
   def create
     @like = current_user.likes.new(like_params)
-    if !@like.save
-      flash[:notice] = @like.errors.full_messages.to_sentence
-    end
+    flash[:notice] = @like.errors.full_messages.to_sentence unless @like.save
     redirect_to request.fullpath
   end
 
