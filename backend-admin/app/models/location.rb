@@ -28,6 +28,7 @@ class Location < ApplicationRecord
   has_many :likes
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
+  has_many :reviews
 
   def favorited_by?(user)
     return if user.nil?

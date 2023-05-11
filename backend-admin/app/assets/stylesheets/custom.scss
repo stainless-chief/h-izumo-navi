@@ -285,3 +285,15 @@ ul.product-info-btn li:first-child a {
 ul.product-info-btn li:last-child a {
   border: none;
 }
+.favor:hover {
+  color: white;
+  background-color: lightgrey;
+	cursor: pointer;
+}
+.favorshow {
+  color: black !important;
+  &:hover {
+    color: lightgrey !important;
+    cursor: pointer;
+  }
+}
