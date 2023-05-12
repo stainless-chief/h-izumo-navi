@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'users', to: 'users#index'
   get 'favorites', to: 'locations#favorites'
   resources :locations
+  resources :reviews
   resources :likes, only: %i[create destroy]
+  
 
   devise_for :users
   namespace :api do

@@ -7,6 +7,6 @@ class Review < ApplicationRecord
   after_commit :update_average_rating, on: %i[create update]
 
   def update_average_rating
-    reviewable.update!(average_rating: reviewable.reviews.average(:rating))
+    location.update!(average_rating: location.reviews.average(:rating))
   end
 end
