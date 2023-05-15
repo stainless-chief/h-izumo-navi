@@ -8,4 +8,8 @@ class UsersController < ApplicationController
   def index
     @users = User.where.not(role: 1)
   end
+
+  def single_show
+    @user = User.find(params[:id])
+  end
 end

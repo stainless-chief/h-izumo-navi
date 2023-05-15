@@ -14,3 +14,4 @@ pin '#lib/adapters/http.js', to: 'https://ga.jspm.io/npm:@jspm/core@2.0.0-beta.2
 pin '#lib/defaults/env/FormData.js', to: 'https://ga.jspm.io/npm:axios@0.27.2/lib/helpers/null.js'
 pin '#lib/platform/node/index.js', to: 'https://ga.jspm.io/npm:@jspm/core@2.0.0-beta.27/nodelibs/@empty.js'
 pin 'form-data', to: 'https://ga.jspm.io/npm:form-data@4.0.0/lib/browser.js'
+pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true

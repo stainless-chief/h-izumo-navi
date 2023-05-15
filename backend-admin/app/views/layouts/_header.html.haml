@@ -11,6 +11,7 @@
       %h1.text-primary.fw-bold.m-0 Izumo
     .navbar-nav.me-auto.py-0
       %a.nav-item.nav-link.active{:href => locations_path} Locations
+      %a.nav-item.nav-link.active{:href => life_chat_path} Chat Rooms
       - if current_user
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => '#', :role => "button"}

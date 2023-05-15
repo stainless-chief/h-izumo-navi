@@ -21,11 +21,11 @@
         %li.list-group-item.text-right
           %span.pull-left
             %strong Favorite routes: 
-            = link_to current_user.likes.count, own_tours_path if current_user.likes.exists?
+            
         %li.list-group-item.text-right
           %span.pull-left
             %strong Own routes: 
-            = link_to current_user.tours.count, own_tours_path if current_user.tours.exists?
+            
         %li.list-group-item.text-right
           %span.pull-left
             %strong QR collection: 

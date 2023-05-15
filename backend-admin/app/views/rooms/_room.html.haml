@@ -1,0 +1,18 @@
+- if room.id.eql?(current_user.current_room)
+  - isActive = 'active'
+- else
+  - isActive = ''
+.room
+  %li.list-group-item.room_list_item.isActive{:class => "<haml_silent> </haml_silent>"}
+    .row
+      .col-12.d-flex.align-items-center.justify-content-between
+        .room-name-notification-block
+          = turbo_frame_tag dom_id(room) do
+            = link_to room.name, room_path(room, name_search: params[:name_search]), data: {turbo: "false"}, class: "ms-2 me-auto"
+          = render 'rooms/notifications', room: room
+        = render 'rooms/joinable_link', room: room
+    = turbo_frame_tag [dom_id(room), "last_message"] do
+      = render "rooms/last_message", |
+        room: room,                  |
+        user: user,                  |
+        last_message: last_message   |

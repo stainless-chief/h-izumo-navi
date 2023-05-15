@@ -27,4 +27,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_products, through: :favorites, source: :location
   has_many :reviews, dependent: :destroy
+  scope :all_except, ->(user) { where.not(id: user) }
+  after_create_commit { broadcast_append_to 'users' }
+  after_update_commit { broadcast_update }
+  has_many :messages
 end
