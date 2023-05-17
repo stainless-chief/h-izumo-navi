@@ -283,6 +283,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    pagy (6.0.4)
     parallel (1.23.0)
     parallel_tests (4.2.0)
       parallel
@@ -535,6 +536,7 @@ DEPENDENCIES
   mapkick-rb
   mini_magick
   noticed (~> 1.6)
+  pagy
   parallel_tests
   pg (~> 1.4)
   pry

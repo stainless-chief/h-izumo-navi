@@ -2,8 +2,22 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-8">
+        <%= f.file_field :avatar %>
+        <small> **Only .jpeg, .jpq, .png, .ico </small>
+      </div>
+    </div>
+  </div>
 
-  <div class="field">
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: false, class: 'form-control', placeholder: 'Your name' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -12,7 +26,7 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>

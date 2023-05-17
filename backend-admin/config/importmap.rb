@@ -15,3 +15,6 @@ pin '#lib/defaults/env/FormData.js', to: 'https://ga.jspm.io/npm:axios@0.27.2/li
 pin '#lib/platform/node/index.js', to: 'https://ga.jspm.io/npm:@jspm/core@2.0.0-beta.27/nodelibs/@empty.js'
 pin 'form-data', to: 'https://ga.jspm.io/npm:form-data@4.0.0/lib/browser.js'
 pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
+pin "@rails/actioncable", to: "actioncable.esm.js"
+pin_all_from "app/javascript/channels", under: "channels"
+pin "stimulus-use", to: "https://ga.jspm.io/npm:stimulus-use@0.52.0/dist/index.js"

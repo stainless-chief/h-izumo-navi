@@ -15,10 +15,12 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
   end
-  devise_for :users
-  devise_scope :user do
-    get 'users', to: 'devise/sessions#new'
-  end
+  devise_for :users, skip: :omniauth_callbacks, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations'
+  }
+
   namespace :api do
     resources :favorites, only: %i[create destroy]
   end

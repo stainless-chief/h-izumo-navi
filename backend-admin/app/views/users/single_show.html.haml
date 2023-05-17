@@ -1,0 +1,63 @@
+%hr/
+.container.bootstrap.snippet
+  .row
+    .col-sm-10
+  .row
+    .col-sm-3
+      / left col
+      .text-center
+        -# %img.avatar.img-circle
+        -#   = image_tag current_user.avatar_thumbnail, class: "chat_pfp", style: "width: 100px; height: 100px" if current_user.chat_avatar.present?
+      %br/
+      .panel.panel-default
+        .panel-heading
+          Website
+          %i.fa.fa-link.fa-1x
+      %ul.list-group
+        %li.list-group-item.text-muted
+          Joins at:
+          = "#{time_ago_in_words(@user.created_at)} ago"
+          %i.fa.fa-dashboard.fa-1x
+        %li.list-group-item.text-right
+          %span.pull-left
+            %strong Favorite routes: 
+            
+        %li.list-group-item.text-right
+          %span.pull-left
+            %strong Own routes: 
+            
+        %li.list-group-item.text-right
+          %span.pull-left
+            %strong QR collection: 
+            -# = current_user.reviews.count if current_user.reviews.exists?
+
+    / /col-3
+    .col-sm-9
+      %ul.nav.nav-tabs
+        %li.active
+          %a(data-bs-toggle="tab" href="#home" style="font-family: cursive") Personal info
+      .tab-content
+        #home.tab-pane.active
+          %form#registrationForm.form(action="##" method="post")
+            .form-group
+              .col-xs-6
+                %h6 Name
+                %i= @user.name
+              .col-xs-6
+                %h6 Profile id:
+                %i= @user.id
+                %i -
+                %i= @user.role
+            .form-group
+              .col-xs-6
+                %h6 Phone
+                %i
+            .form-group
+              .col-xs-6
+                %h6 Email
+                %i= @user.email
+            - if @user.id == current_user.id
+              .row
+                = link_to "Update", edit_user_registration_path, class: "btn btn-outline-primary scase", style: "width: 45%; height: 25px; display: flex; align-items: center; font-size: small;"
+                -# = link_to "#{t('.update-info')}", profile_path(current_user.profile), class: "btn btn-outline-primary scase", style: "width: 45%; height: 25px; display: flex; align-items: center; font-size: small;"
+              %br/
