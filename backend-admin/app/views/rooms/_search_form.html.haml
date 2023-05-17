@@ -1,0 +1,5 @@
+= form_with url: search_rooms_path, method: :post, id: "room_search_form", data: {controller: "debounce"} do |form|
+  = form.search_field :name_search, value: params[:name_search], class: 'room_search_field form-control',               |
+    placeholder: "Search room", data: { action: "input->debounce#search"}
+#search_results
+  = render 'rooms/search_results', rooms: @rooms

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_033235) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_141809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_033235) do
     t.index ["location_id"], name: "index_favorites_on_location_id"
     t.index ["user_id", "location_id"], name: "index_favorites_on_user_id_and_location_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "joinables", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_joinables_on_room_id"
+    t.index ["user_id"], name: "index_joinables_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -94,6 +103,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_033235) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "recipient_type", null: false
+    t.bigint "recipient_id", null: false
+    t.string "type", null: false
+    t.jsonb "params"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["read_at"], name: "index_notifications_on_read_at"
+    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
+  end
+
   create_table "participants", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
@@ -120,6 +141,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_033235) do
     t.boolean "is_privat", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_message_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -133,6 +155,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_033235) do
     t.integer "role", default: 0
     t.integer "status", default: 0
     t.string "name"
+    t.integer "current_room"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -141,6 +164,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_033235) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "locations"
   add_foreign_key "favorites", "users"
+  add_foreign_key "joinables", "rooms"
+  add_foreign_key "joinables", "users"
   add_foreign_key "likes", "locations"
   add_foreign_key "likes", "users"
   add_foreign_key "locations", "users"
