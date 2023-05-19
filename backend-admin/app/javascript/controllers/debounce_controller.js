@@ -12,7 +12,7 @@ export default class Debounce extends Controller {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       Debounce.form.requestSubmit();
-    }, 3000);
+    }, 500);
   }
 
   clearParam(input) {
