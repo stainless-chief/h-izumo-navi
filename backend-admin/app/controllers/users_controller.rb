@@ -11,9 +11,7 @@ class UsersController < ApplicationController
     @joined_rooms = current_user.joined_rooms
     @rooms = search_rooms
     @room_name = get_name(@user, current_user)
-    @single_room = Room.where(name: @room_name).first || Room.create_private_room([
-                                                                                    @user, current_user
-                                                                                  ], @room_name)
+    @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, current_user], @room_name)
     current_user.update(current_room: @single_room)
 
     @message = Message.new
@@ -21,6 +19,7 @@ class UsersController < ApplicationController
     pagy_messages = @single_room.messages.includes(:user).order(created_at: :desc)
     @pagy, messages = pagy(pagy_messages, items: 10)
     @messages = messages.reverse
+
     render 'rooms/index'
   end
 

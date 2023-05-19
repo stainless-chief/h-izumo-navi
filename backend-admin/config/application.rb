@@ -13,6 +13,8 @@ module HIzumoNavi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.action_view.sanitized_allowed_tags = Loofah::HTML5::SafeList::ALLOWED_ELEMENTS
+    config.action_view.sanitized_allowed_attributes = Loofah::HTML5::SafeList::ALLOWED_ATTRIBUTES
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

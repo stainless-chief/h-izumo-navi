@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  
+  get 'admin/dashboard'
+  get 'call', to: 'call#user', as: 'call_user'
+  post 'call', to: 'call#create'
+
   root 'home#index'
   get 'home/about', to: 'home#about', as: 'about'
   get 'user/:id', to: 'users#show', as: 'user'
