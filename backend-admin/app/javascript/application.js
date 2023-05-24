@@ -3,8 +3,6 @@ import "@hotwired/turbo-rails";
 import "mapkick/bundle"
 import "controllers";
 import "channels";
-import "chartkick";
-import "Chart.bundle";
 
 var multipleCardCarousel = document.querySelector(
   "#carouselExampleControls"

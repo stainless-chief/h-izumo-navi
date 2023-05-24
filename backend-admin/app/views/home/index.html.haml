@@ -4,26 +4,9 @@
   .container
     .row.align-items-center.justify-content-center
       .col-lg-6.py-6.pb-0.pt-lg-0
-        .d-flex.align-items-center.justify-content-center
-          %button.btn-play{"data-bs-target" => "#videoModal", "data-bs-toggle" => "modal", "data-src" => "https://www.youtube.com/watch?v=jM-aZvKzkhU&ab_channel=IzumoJAPAN", :type => "button"}
-            %span
-          %h5.ms-4.mb-0.d-none.d-sm-block
-          / Header End
-        %p
-          %button{:onclick => "getLocation();", :type => "button"} Get coordinates
-        %p
-          Coordinates:
-          %br/
-          %span#demo
-        %p
-          Raw data:
-          %br/
-          %span#raw
-      #map
-      %br/
-      %button#fly Fly
-      
-      = js_map [{latitude: 35.36047281488273, longitude: 132.7580566546712, label: 'You are here', tooltip: 'no'}], id: "Idzumo-city", width: '500px', height: '500px', controls: true
+
+        #map
+        %button#fly Fly
 
 :javascript
   var x = document.getElementById("demo");
@@ -56,19 +39,21 @@
   // TO MAKE THE MAP APPEAR YOU MUST
   	// ADD YOUR ACCESS TOKEN FROM
   	// https://account.mapbox.com
-  	mapboxgl.accessToken = ENV['MAPBOX_ACCESS_TOKEN'];
+  	mapboxgl.accessToken = "pk.eyJ1IjoiY2hpZWYtc3MiLCJhIjoiY2xndGVkNnp3MTV0bjNkbWtzc25sdDlodiJ9.IigjwyBzw-Z_FdBd3eW1tg";
     const map = new mapboxgl.Map({
     container: 'map',
     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
     style: 'mapbox://styles/mapbox/streets-v12',
     center: [-74.5, 40],
-    zoom: 4
+    zoom: 12
     });
-    
+    const latitude = 132.7563618
+    const longitude = 35.3604771
+
     document.getElementById('fly').addEventListener('click', () => {
     // Fly to a random location
     map.flyTo({
-    center: [(Math.random() - 0.5) * 360, (Math.random() - 0.5) * 100],
+    center: [latitude, longitude],
     essential: true // this animation is considered essential with respect to prefers-reduced-motion
     });
     });

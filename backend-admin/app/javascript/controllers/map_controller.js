@@ -8,10 +8,10 @@ export default class extends Controller {
      else {
        var center =[document.getElementById('location_longitude').value, document.getElementById('location_latitude').value]
      }
-    mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpZWYtc3MiLCJhIjoiY2xndGVkNnp3MTV0bjNkbWtzc25sdDlodiJ9.IigjwyBzw-Z_FdBd3eW1tg';
+    mapboxgl.accessToken = "pk.eyJ1IjoiY2hpZWYtc3MiLCJhIjoiY2xndGVkNnp3MTV0bjNkbWtzc25sdDlodiJ9.IigjwyBzw-Z_FdBd3eW1tg";
     const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/mapbox/streets-v12',
     center: center,
     zoom: 13
     });

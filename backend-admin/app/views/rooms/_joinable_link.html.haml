@@ -1,4 +1,4 @@
-- if current_user.joined_room(room)
+- if current_user.has_joined_room(room)
   = link_to leave_room_path(room), method: :delete, data: {turbo: "false"} do
     %i.bi.bi-dash-square.room-leave-link-icon
 - else
