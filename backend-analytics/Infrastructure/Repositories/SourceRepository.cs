@@ -49,11 +49,6 @@ namespace Infrastructure.Repositories
                 return await _context.ExampleHits.CountAsync();
             }
 
-            if (sourceCode == Models.HiWebHit.Code)
-            {
-                return await _context.HiWebHits.CountAsync();
-            }
-
             throw new ArgumentException($"{nameof(sourceCode)} {sourceCode} not found");
         }
     }

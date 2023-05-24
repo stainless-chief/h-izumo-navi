@@ -14,7 +14,6 @@ namespace Infrastructure
 
         internal DbSet<ExampleHit> ExampleHits => Set<ExampleHit>();
         internal DbSet<FakeTwitterHit> FakeTwitterHits => Set<FakeTwitterHit>();
-        internal DbSet<HiWebHit> HiWebHits => Set<HiWebHit>();
 
         internal IQueryable<BaseHit> GetHits(string code)
         {
@@ -25,10 +24,6 @@ namespace Infrastructure
             if (code.Equals(FakeTwitterHit.Code, StringComparison.InvariantCultureIgnoreCase))
             {
                 return FakeTwitterHits.OfType<BaseHit>();
-            }
-            if (code.Equals(HiWebHit.Code, StringComparison.InvariantCultureIgnoreCase))
-            {
-                return HiWebHits.OfType<BaseHit>();
             }
 
             throw new InvalidOperationException();

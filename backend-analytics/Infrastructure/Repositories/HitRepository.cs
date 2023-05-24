@@ -46,17 +46,6 @@ namespace Infrastructure.Repositories
                         Person = hit.PersonId,
                     });
                 }
-                if (hit.Source == HiWebHit.Code)
-                {
-                    await _context.HiWebHits.AddAsync(new HiWebHit
-                    {
-                        Id = Guid.NewGuid(),
-                        DateTime = DateTime.UtcNow,
-                        Latitude = hit.Latitude,
-                        Longitude = hit.Longitude,
-                        Person = hit.PersonId,
-                    });
-                }
             }
 
             return await _context.SaveChangesAsync() == hits.Count();
