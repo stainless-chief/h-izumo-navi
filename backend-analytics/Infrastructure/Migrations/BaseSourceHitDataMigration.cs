@@ -18,7 +18,7 @@ namespace Infrastructure.Migrations
                 $@"CREATE TABLE {DataContext.SchemaData}.hit_{SourceCode.ToLower()} 
                 (
 	                id uuid NOT NULL UNIQUE,
-                    date DATE NOT NULL,
+                    date timestamp NOT NULL,
                     person VARCHAR(512) NOT NULL,
                     latitude float NOT NULL,
                     longitude float NOT NULL,

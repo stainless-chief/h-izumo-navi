@@ -3,6 +3,7 @@ using Abstractions.IRepositories;
 using Abstractions.Models;
 using Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Security.Policy;
 
 namespace Infrastructure.Repositories
@@ -22,20 +23,18 @@ namespace Infrastructure.Repositories
         {
             var sources = await _sourceRepository.GetAsync(false);
 
-            var result = _context.Places.Select(x => new StatisticItem
+            var result = _context.Places.ToList().Select(x => new StatisticItem
             {
                 PlaceName = x.DisplayName,
-                Coordinates = new List<ZoneCoordinates>
-                {
-                    new() { X = x.LongitudeMin, Y =  x.LatitudeMin},
-                    new() { X = x.LongitudeMin, Y =  x.LatitudeMax},
-                    new() { X = x.LongitudeMax, Y =  x.LatitudeMax},
-                    new() { X = x.LongitudeMax, Y =  x.LatitudeMin },
+                Coordinates = x.Region
+                .Select((x, i) => new { Index = i, Value = x })
+                .GroupBy(x => x.Index / 2)
+                .Select(x => x.Select(v => v.Value).ToList())
+                .Select( x => new ZoneCoordinates { Y = x[0], X = x[1] })
+                .ToList()
 
-                    // HACK, because polygons broke down on higher zoom levels: 
-                    new() { X = x.LongitudeMin, Y =  x.LatitudeMin}, 
-                },
             }).ToList();
+
 
             result.ForEach(x => x.Sources = sources.Select(x => new Source(x)).ToList());
 
