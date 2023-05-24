@@ -12,7 +12,7 @@ me = User.create!(email: 'roucke@mail.ru',
                   password: 'foobar')
 
 5.times do |_i|
-  user = User.create(email: Faker::Internet.email, password: 'foobar')
+  User.create(email: Faker::Internet.email, password: 'foobar')
 end
 
 Location.create!(title: 'Idzumoshi temple',
