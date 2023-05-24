@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories
             {
                 if (!MapGenerator.IsInIzumo(hit.Longitude, hit.Latitude))
                 {
-                    continue;
+                    throw new ArgumentOutOfRangeException(nameof(hits), $"ERROR: HAPPY FOX: Longitude: {hit.Longitude} : Latitude: {hit.Latitude} out of Izumo range");
                 }
 
                 if (hit.Source == FakeTwitterHit.Code)
