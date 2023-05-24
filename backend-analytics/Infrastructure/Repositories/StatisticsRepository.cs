@@ -26,7 +26,7 @@ namespace Infrastructure.Repositories
             var result = _context.Places.ToList().Select(x => new StatisticItem
             {
                 PlaceName = x.DisplayName,
-                Coordinates = x.Region
+                Coordinates = x.Region!
                 .Select((x, i) => new { Index = i, Value = x })
                 .GroupBy(x => x.Index / 2)
                 .Select(x => x.Select(v => v.Value).ToList())

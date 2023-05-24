@@ -13,6 +13,7 @@ namespace Infrastructure
         internal DbSet<Place> Places => Set<Place>();
 
         internal DbSet<ExampleHit> ExampleHits => Set<ExampleHit>();
+        internal DbSet<IzumoNaviLikeHit> IzumoNaviLikeHits => Set<IzumoNaviLikeHit>();
         internal DbSet<FakeTwitterHit> FakeTwitterHits => Set<FakeTwitterHit>();
 
         internal IQueryable<BaseHit> GetHits(string code)
@@ -22,6 +23,10 @@ namespace Infrastructure
                 return ExampleHits.OfType<BaseHit>();
             }
             if (code.Equals(FakeTwitterHit.Code, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return FakeTwitterHits.OfType<BaseHit>();
+            }
+            if (code.Equals(IzumoNaviLikeHit.Code, StringComparison.InvariantCultureIgnoreCase))
             {
                 return FakeTwitterHits.OfType<BaseHit>();
             }
