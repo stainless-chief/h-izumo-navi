@@ -1,8 +1,10 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
+import "@hotwired/turbo-rails";
 import "mapkick/bundle"
-import "controllers"
+import "controllers";
 import "channels";
+import "chartkick";
+import "Chart.bundle";
 
 var multipleCardCarousel = document.querySelector(
   "#carouselExampleControls"
@@ -56,3 +58,5 @@ function error(err) {
 }
 
 navigator.geolocation.getCurrentPosition(success, error, options);import "./channels"
+
+

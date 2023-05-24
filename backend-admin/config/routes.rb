@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   get 'admin/dashboard'
   get 'call', to: 'call#user', as: 'call_user'
@@ -20,6 +18,7 @@ Rails.application.routes.draw do
   resources :locations
   resources :reviews
   resources :likes, only: %i[create destroy]
+
   resources :rooms do
     resources :messages
     collection do
@@ -31,7 +30,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
-
   namespace :api do
     resources :favorites, only: %i[create destroy]
   end

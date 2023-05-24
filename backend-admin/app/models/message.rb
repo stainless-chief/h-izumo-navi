@@ -1,11 +1,10 @@
-# frozen_string_literal: true
-
-# ORM for messages
 class Message < ApplicationRecord
   belongs_to :user
   belongs_to :room
   before_create :confirm_participant
   has_many_attached :attachments, dependent: :destroy
+
+  @@not_resizables = %w[image/gif]
 
   validate :validate_attachment_filetypes
 
@@ -18,6 +17,7 @@ class Message < ApplicationRecord
   def chat_attachment(index)
     target = attachments[index]
     return unless attachments.attached?
+    return target if @@not_resizables.include?(target.content_type)
 
     if target.image?
       target.variant(resize_to_limit: [150, 150]).processed
@@ -37,15 +37,18 @@ class Message < ApplicationRecord
     room.update(last_message_at: Time.now)
   end
 
+  def self.messages_this_month
+    messages = Message.group_by_day(:created_at, range: 1.month.ago..Time.now).count
+  end
+
   private
 
   def validate_attachment_filetypes
     return unless attachments.attached?
 
     attachments.each do |attachment|
-      unless attachment.content_type.in?(%w[image/jpeg image/png image/gif application/pdf text/x-asciidoc application/vnd.openxmlformats-officedocument.wordprocessingml.document video/mp4
-                                            video/mpeg audio/x-wav audio/ogg])
-        errors.add(:attachments, 'must be a JPEG, PNG, GIF, PDF, TXT, DOCX, MP4, MP3, OGG, or WAV file')
+      unless attachment.content_type.in?(%w[image/jpeg image/png image/gif video/mp4 video/mpeg audio/x-wav audio/ogg])
+        errors.add(:attachments, 'must be a JPEG, PNG, GIF, MP4, MP3, OGG, or WAV file')
       end
     end
   end
