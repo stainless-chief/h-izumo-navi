@@ -14,6 +14,6 @@ namespace Infrastructure.Models
         public string DisplayName { get; set; } = string.Empty;
 
         [Column("region")]
-        public double[] Region { get; set; }
+        public double[]? Region { get; set; }
     }
 }
