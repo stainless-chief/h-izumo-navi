@@ -1,6 +1,7 @@
+- provide(:title, 'Life Chat')
 = turbo_frame_tag "appearance_channel"
 #appearance_channel
-= audio_tag "discord.mp3", id: 'audio-tag'
+= audio_tag "aim.wav", id: "audio-tag"
 = turbo_frame_tag "message_error" do
   = render 'shared/message_error'
 #chatroom_container.row.text-dark

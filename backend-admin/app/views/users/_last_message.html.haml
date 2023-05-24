@@ -2,7 +2,7 @@
   .row
     .col-12.d-flex.align-items-center.justify-content-between
       %em.last-message
-        = "#{sender.name}: #{last_message.body}".truncate(40)
+        = "#{sender.email}: #{last_message.body}".truncate(40)
       = content_tag(:em, class:"last-message-time", |
         data: {                                     |
         time: last_message.created_at.to_i          |

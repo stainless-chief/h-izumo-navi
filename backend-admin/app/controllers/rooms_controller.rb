@@ -5,12 +5,12 @@ class RoomsController < ApplicationController
   include RoomsHelper
   before_action :authenticate_user!
   before_action :set_status
-  
+
   def index
     @room = Room.new
     @joined_rooms = current_user.joined_rooms.order('last_message_at DESC')
     @rooms = search_rooms
-
+    
     current_user.update(current_room: nil)
 
     @users = User.all_except(current_user)
@@ -20,14 +20,19 @@ class RoomsController < ApplicationController
   def show
     @single_room = Room.find(params[:id])
     current_user.update(current_room: @single_room)
+
     @room = Room.new
     @rooms = search_rooms
     @joined_rooms = current_user.joined_rooms.order('last_message_at DESC')
+
     @message = Message.new
+
     pagy_messages = @single_room.messages.includes(:user).order(created_at: :desc)
     @pagy, messages = pagy(pagy_messages, items: 10)
     @messages = messages.reverse
+
     @users = User.all_except(current_user)
+
     set_notifications_to_read
     render 'index'
   end
@@ -65,7 +70,9 @@ class RoomsController < ApplicationController
   private
 
   def set_status
-    current_user&.update!(status: User.statuses[:online])
+    return if current_user.dnd?
+
+    current_user.update!(status: User.statuses[:online]) if current_user
   end
 
   def set_notifications_to_read

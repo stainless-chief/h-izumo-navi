@@ -1,28 +1,10 @@
-# frozen_string_literal: true
-
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :bigint           not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  role                   :integer          default("user")
-#
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :timeoutable, and :omniauthable
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :timeoutable
+         :recoverable, :rememberable, :validatable
   enum role: %i[user admin]
-  enum status: %i[offline away online]
-  has_many :tours
+  enum status: %i[offline away online dnd]
   has_many :locations
   has_many :likes
   has_many :favorites, dependent: :destroy
@@ -52,7 +34,7 @@ class User < ApplicationRecord
     broadcast_replace_to 'user_status', partial: 'users/status', user: self
   end
 
-  def joined_room(room)
+  def has_joined_room(room)
     joined_rooms.include?(room)
   end
 
@@ -64,14 +46,17 @@ class User < ApplicationRecord
       'bg-warning'
     when 'offline'
       'bg-dark'
+    when 'dnd'
+      'bg-danger'
     else
       'bg-dark'
     end
   end
-  
+
   # def name
   #   "#{first_name} #{last_name}".squish
   # end
+
 
   private
 

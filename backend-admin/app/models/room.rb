@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# ORM for rooms
 class Room < ApplicationRecord
   validates_uniqueness_of :name
   scope :public_rooms, -> { where(is_privat: false) }
@@ -9,14 +6,11 @@ class Room < ApplicationRecord
   has_many :participants, dependent: :destroy
   has_many :joinables, dependent: :destroy
   has_many :joined_users, through: :joinables, source: :user
+
   has_noticed_notifications model_name: 'Notification'
 
   def broadcast_if_public
     broadcast_latest_message
-  end
-
-  def latest_message
-    messages.includes(:user).order(created_at: :desc).first
   end
 
   def self.create_private_room(users, room_name)
@@ -29,6 +23,10 @@ class Room < ApplicationRecord
 
   def participant?(room, user)
     room.participants.where(user: user).exists?
+  end
+
+  def latest_message
+    messages.includes(:user).order(created_at: :desc).first
   end
 
   def broadcast_latest_message
