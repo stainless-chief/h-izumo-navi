@@ -2,8 +2,8 @@
 
 module LocationsHelper
   def location_rating_percentage(location:, rating:)
-    return 0 if location.reviews_count.nil? || location.reviews_count.zero? 
+    return 0 if location.reviews.count.nil? || location.reviews.count.zero? 
 
-    ((location.reviews.where(rating: rating).size.to_f / location.reviews_count) * 100).to_i
+    ((location.reviews.where(rating: rating).size.to_f / location.reviews.count) * 100).to_i
   end
 end

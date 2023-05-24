@@ -9,7 +9,9 @@ class LocationsController < ApplicationController
   end
 
   # GET /locations/1 or /locations/1.json
-  def show; end
+  def show;
+    @review = Review.new
+  end
 
   # GET /locations/new
   def new

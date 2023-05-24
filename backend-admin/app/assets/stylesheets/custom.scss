@@ -358,3 +358,39 @@ ul.product-info-btn li:last-child a {
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
 }
+.nav.nav-tabs {
+  // background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+  border: none;
+  border-radius: 10px;
+  text-transform: uppercase;  
+  margin: 0px 15px 30px;
+  overflow: hidden;
+  font-family: 'raleway', sans-serif;
+}
+.nav.nav-tabs li.active a {
+  // background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+  color: black;
+  border: none;
+  border-radius: 0px;
+}
+.nav.nav-tabs li a {
+  color: black;
+  border: none;
+  border-radius: 0px;
+  padding: 10px 20px;
+}
+.nav.nav-tabs li:hover a {
+  border: 0px;
+  background: repeating-radial-gradient(black, transparent 100px);
+  color: #fff;
+}
+.nav.nav-tabs li.collection-url a {
+  font-size: 10pt;
+  padding: 11px;
+}
+
+#qr {
+  height: calc(100vh - 150px);
+  overflow-x: hidden;
+  overflow-y: none;
+}
