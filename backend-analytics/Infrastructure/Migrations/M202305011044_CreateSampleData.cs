@@ -11,163 +11,153 @@ namespace Infrastructure.Migrations
 
         public override void Up()
         {
-            for (int i = 0; i < 100; i++)
+            // MARCH
             {
-                //Izumo Enmusubi Airport
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
+                var logDay = new DateTime(2023, 03, 01);
+
+                for (int i = 0; i < 100; i++)
+                {
+                    //Izumo Enmusubi Airport
+                    Execute.Sql(
+                        $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
                     (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
+                        '{logDay}', 
                         'chief', 
                         '{035.413789}', 
                         '{132.886314}'
                     );");
-            }
+                }
 
-            for (int i = 0; i < 90; i++)
-            {
-                //Izumo Airport Country Club
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
+                for (int i = 0; i < 40; i++)
+                {
+                    //Moonlit Rabbit Inn 
+                    Execute.Sql(
+                        $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
                     (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
+                        '{logDay}', 
                         'chief', 
-                        '{035.385646}', 
-                        '{132.860302}'
+                        '{35.396670881023084}', 
+                        '{132.69303411558639}'
                     );");
-            }
+                }
 
-            for (int i = 0; i < 80; i++)
-            {
-                //Izumo Airport Country Club
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
+                for (int i = 0; i < 60; i++)
+                {
+                    //Super Hotel Izumo Ekimae
+                    Execute.Sql(
+                        $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
                     (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
+                        '{logDay}', 
                         'chief', 
-                        '{035.384559}', 
-                        '{132.820309}'
+                        '{35.360455738163466}', 
+                        '{132.75645008659737}'
                     );");
-            }
+                }
 
-            for (int i = 0; i < 70; i++)
-            {
-                //Mankusen Jinja
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
+                for (int i = 0; i < 100; i++)
+                {
+                    //Izumo Taisha
+                    Execute.Sql(
+                        $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
                     (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
+                        '{logDay}', 
                         'chief', 
-                        '{035.374605}', 
-                        '{132.787088}'
+                        '{35.40147568484659}', 
+                        '{132.6854161448377}'
                     );");
-            }
+                }
 
-            for (int i = 0; i < 60; i++)
-            {
-                //Tabushi Station
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
+                for (int i = 0; i < 20; i++)
+                {
+                    //Izumo Hinomisaki Lighthouse
+                    Execute.Sql(
+                        $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
                     (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
+                        '{logDay}', 
                         'chief', 
-                        '{035.421902}', 
-                        '{132.806963}'
+                        '{35.43373288203316}', 
+                        '{132.62934450559612}'
                     );");
-            }
+                }
 
-            for (int i = 0; i < 50; i++)
-            {
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
+                for (int i = 0; i < 10; i++)
+                {
+                    //Hamayama Park
+                    Execute.Sql(
+                        $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
                     (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
+                        '{logDay}', 
                         'chief', 
-                        '{035.440182}', 
-                        '{132.774025}'
+                        '{35.37837163163506}', 
+                        '{132.7065951799203}'
                     );");
-            }
+                }
 
-            for (int i = 0; i < 40; i++)
-            {
-                // Cape Uppurui-hana Lighthouse
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
+                for (int i = 0; i < 10; i++)
+                {
+                    //Hamayama Park
+                    Execute.Sql(
+                        $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
                     (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
+                        '{logDay}', 
                         'chief', 
-                        '{035.469707}', 
-                        '{132.728328}'
+                        '{35.43219564609066}', 
+                        '{132.63338844646623}'
                     );");
-            }
+                }
 
-            for (int i = 0; i < 30; i++)
-            {
-                // Lakeside Hot Spring Hotel Kunibiki
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
+                for (int i = 0; i < 90; i++)
+                {
+                    //Ayumi
+                    Execute.Sql(
+                        $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
                     (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
+                        '{logDay}', 
                         'chief', 
-                        '{035.324472}', 
-                        '{132.677099}'
+                        '{35.368506055005035}', 
+                        '{132.7554250829865}'
                     );");
-            }
+                }
 
-            for (int i = 0; i < 20; i++)
-            {
-                // 7-Eleven
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
+                for (int i = 0; i < 10; i++)
+                {
+                    // Wild
+                    Execute.Sql(
+                        $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
                     (id, date, person, latitude, longitude)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
+                        '{logDay}', 
                         'chief', 
-                        '{035.367605}', 
-                        '{132.733781}'
+                        '{35.46230744814101}', 
+                        '{132.78584859498127}'
                     );");
-            }
-
-            for (int i = 0; i < 10; i++)
-            {
-                // Umibozu
-                Execute.Sql(
-                    $@"INSERT INTO {DataContext.SchemaData}.{_hit}_{_sourceName}
-                    (id, date, person, latitude, longitude)
-                    VALUES
-                    (
-                        '{Guid.NewGuid()}', 
-                        '{DateTime.Now}', 
-                        'chief', 
-                        '{035.363490}',
-                        '{132.756296}'
-                    );");
+                }
             }
         }
 

@@ -7,7 +7,7 @@ namespace Infrastructure.Models
     internal class Source
     {
         [Key]
-        [Column("Id")]
+        [Column("id")]
         public Guid Id { get; set; }
 
         [Column("code")]

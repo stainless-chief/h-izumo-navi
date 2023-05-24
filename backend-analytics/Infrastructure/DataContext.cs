@@ -13,8 +13,8 @@ namespace Infrastructure
         internal DbSet<Place> Places => Set<Place>();
 
         internal DbSet<ExampleHit> ExampleHits => Set<ExampleHit>();
+        internal DbSet<IzumoNaviLikeHit> IzumoNaviLikeHits => Set<IzumoNaviLikeHit>();
         internal DbSet<FakeTwitterHit> FakeTwitterHits => Set<FakeTwitterHit>();
-        internal DbSet<HiWebHit> HiWebHits => Set<HiWebHit>();
 
         internal IQueryable<BaseHit> GetHits(string code)
         {
@@ -26,9 +26,9 @@ namespace Infrastructure
             {
                 return FakeTwitterHits.OfType<BaseHit>();
             }
-            if (code.Equals(HiWebHit.Code, StringComparison.InvariantCultureIgnoreCase))
+            if (code.Equals(IzumoNaviLikeHit.Code, StringComparison.InvariantCultureIgnoreCase))
             {
-                return HiWebHits.OfType<BaseHit>();
+                return FakeTwitterHits.OfType<BaseHit>();
             }
 
             throw new InvalidOperationException();

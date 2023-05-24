@@ -7,22 +7,13 @@ namespace Infrastructure.Models
     internal class Place
     {
         [Key]
-        [Column("Id")]
+        [Column("id")]
         public Guid Id { get; set; }
 
         [Column("display_name")]
         public string DisplayName { get; set; } = string.Empty;
 
-        [Column("latitude_max")]
-        public double LatitudeMax { get; set; }
-
-        [Column("longitude_max")]
-        public double LongitudeMax { get; set; }
-
-        [Column("latitude_min")]
-        public double LatitudeMin { get; set; }
-
-        [Column("longitude_min")]
-        public double LongitudeMin { get; set; }
+        [Column("region")]
+        public double[]? Region { get; set; }
     }
 }

@@ -46,9 +46,9 @@ namespace Infrastructure.Repositories
                         Person = hit.PersonId,
                     });
                 }
-                if (hit.Source == HiWebHit.Code)
+                if (hit.Source == IzumoNaviLikeHit.Code)
                 {
-                    await _context.HiWebHits.AddAsync(new HiWebHit
+                    await _context.IzumoNaviLikeHits.AddAsync(new IzumoNaviLikeHit
                     {
                         Id = Guid.NewGuid(),
                         DateTime = DateTime.UtcNow,

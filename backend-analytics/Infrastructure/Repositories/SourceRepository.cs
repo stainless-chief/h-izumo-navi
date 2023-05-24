@@ -49,12 +49,12 @@ namespace Infrastructure.Repositories
                 return await _context.ExampleHits.CountAsync();
             }
 
-            if (sourceCode == Models.HiWebHit.Code)
+            if (sourceCode == Models.IzumoNaviLikeHit.Code)
             {
-                return await _context.HiWebHits.CountAsync();
+                return await _context.IzumoNaviLikeHits.CountAsync();
             }
 
-            throw new ArgumentException($"{nameof(sourceCode)} {sourceCode} not found");
+            throw new ArgumentException($"ERROR: USAGI RED. {nameof(sourceCode)} {sourceCode} not found");
         }
     }
 }

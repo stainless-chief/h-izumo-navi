@@ -2,9 +2,9 @@
 
 namespace Infrastructure.Models
 {
-    [Table("hit_faketwitter")]
+    [Table("hit_fake_twitter")]
     internal class FakeTwitterHit : BaseHit
     {
-        public static string Code => "FakeTwitter";
+        public static string Code => "Fake_Twitter";
     }
 }
