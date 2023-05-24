@@ -2,5 +2,6 @@
   = form_with(model: @room, remote: true, class:'d-flex',                                   |
     data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset"}) do |f|
     = f.text_field :name, class: 'form-control new-room-input', autocomplete: 'off', |
-      placeholder:"New room (admin only)", style: "border-radius: 10px 0 0 10px;"
+      placeholder:"New room (admin only)", style: "border-radius: 10px 0 0 10px; font-size: 10px"
     = f.submit data: {turbo: "false"}, class:"btn btn-success new-room-button", style: "border-radius: 0 10px 10px 0;"
+%br/
