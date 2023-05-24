@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@zxing/library": "^0.20.0",
     "stimulus-rails-nested-form": "^4.1.0"
   }
 }
