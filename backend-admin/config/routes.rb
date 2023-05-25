@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  get 'admin/dashboard'
-  get 'call', to: 'call#user', as: 'call_user'
-  post 'call', to: 'call#create'
-
   root 'home#index'
   get 'home/about', to: 'home#about', as: 'about'
+  get 'home/question', to: 'home#question', as: 'question'
   get 'user/:id', to: 'users#show', as: 'user'
   get 'single_show/:id', to: 'users#single_show', as: 'info'
   get 'users', to: 'users#index'
