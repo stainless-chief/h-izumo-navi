@@ -73,13 +73,13 @@ namespace CollectorFake.Jobs
                 hits.Add(new Hit
                 {
                     Source = _name,
-                    PersonId = "no-one",
+                    PersonId = "fake-person",
                     Latitude = (rnd.Next(_latitudeMin, _latitudeMax) / 1000000.0),
                     Longitude = (rnd.Next(_longitudeMin, _longitudeMax) / 1000000.0),
                 });
             }
 
-            //place
+            // places
             var length = rnd.Next(_minBatchSize, _maxBatchSize);
             for (int i = 0; i < length; i++)
             {
@@ -89,7 +89,7 @@ namespace CollectorFake.Jobs
                 hits.Add(new Hit
                 {
                      Source = _name,
-                     PersonId = "no-one",
+                     PersonId = "fake-person",
                      Latitude = place.Item1,
                      Longitude = place.Item2,
                 });
