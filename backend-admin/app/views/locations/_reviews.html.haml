@@ -26,7 +26,7 @@
     %br
       %h4.mb-1 Review this location
       %p.font-12 Share your thoughts with other tourists
-      %a.btn.btn-primary.btn-block{"data-bs-target" => "#reviewsList", "data-bs-toggle" => "modal", :type => "button", :style => "height: 25px; display: flex; align-items: center; font-size: x-small; width: fit-content;"} Write a review
+      %a.btn.btn-primary.btn-block{"data-bs-target" => "#reviewsList", "data-bs-toggle" => "modal", :type => "button", :style => "height: 25px; display: flex; align-items: center; width: fit-content;", class: "btn scase"} Write a review
   / customer reviews list
   .col-lg-7.col-md-7.col-12
     .d-flex.align-items-center.justify-content-between.mb-4
@@ -37,9 +37,9 @@
       - @location.reviews.limit(3).includes(:user).order('created_at desc').each do |review|
         .mb-4.pb-4.border-bottom
           .d-flex.mb-3.align-items-center
-            -# %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
+            %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
             .ml-2
-              -# %h5.mb-1= review.user.name if review.user.name.present?
+              %h5.mb-1= review.user.name if review.user.name?
               %imgimage_tag
               
               %p.font-12.mb-0
@@ -68,10 +68,10 @@
           -#       %i.fa-regular.fa-thumbs-up.fa-xl
           -#       %span{:style => "color: black"}= review.likes.count
           
-      %a.btn.btn-primary.btn-block{"data-bs-target" => "#newReviewModal", "data-bs-toggle" => "modal", :type => "button", :style => "height: 25px; display: flex; align-items: center; font-size: x-small; width: fit-content;"} Read more reviews
+      %a.btn.btn-primary.btn-block{"data-bs-target" => "#newReviewModal", "data-bs-toggle" => "modal", :type => "button", :style => "height: 25px; display: flex; align-items: center; width: fit-content;", class: "btn scase"} Read more reviews
     - else 
       %h5 You can add the first review here...
-      %a.btn.btn-primary.btn-block{"data-bs-target" => "#newReviewModal", "data-bs-toggle" => "modal", :type => "button", :style => "height: 25px; display: flex; align-items: center; font-size: x-small; width: fit-content;"} Read more reviews
+      %a.btn.btn-primary.btn-block{"data-bs-target" => "#newReviewModal", "data-bs-toggle" => "modal", :type => "button", :style => "height: 25px; display: flex; align-items: center; width: fit-content;", class: "btn scase"} Read more reviews
 /Reviews modal start
 #newReviewModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
@@ -84,9 +84,9 @@
             - @location.reviews.includes(:user).order('created_at desc').each do |review|
               .mb-4.pb-4.border-bottom
                 .d-flex.mb-3.align-items-center
-                  -# %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
+                  %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
                   .ml-2
-                    -# %h5.mb-1= review.user.name if review.user.name.present?
+                    %h5.mb-1= review.user.name if review.user.name?
                     %imgimage_tag
                     
                     %p.font-12.mb-0

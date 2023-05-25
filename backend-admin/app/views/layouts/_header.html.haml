@@ -7,10 +7,11 @@
   #navbarCollapse.collapse.navbar-collapse.justify-content-between.py-4.py-lg-0
     .navbar-nav.ms-auto.py-0
       %a.nav-item.nav-link{:href => about_path} About Izumo
+      %a.nav-item.nav-link.active{:href => locations_path} Locations
     %a.navbar-brand.bg-secondary.py-3.px-4.mx-3.d-none.d-lg-block{:href => root_path}
       %h1.text-primary.fw-bold.m-0 Izumo
     .navbar-nav.me-auto.py-0
-      %a.nav-item.nav-link.active{:href => locations_path} Locations
+      %a.nav-item.nav-link.active{:href => question_path} Q / A
       %a.nav-item.nav-link.active{:href => life_chat_path} Chat Rooms
       - if current_user
         %li.nav-item.dropdown
@@ -44,6 +45,6 @@
       .modal-body
         / 16:9 aspect ratio
         .ratio.ratio-16x9
-          -# %iframe{:allow => "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/jM-aZvKzkhU", :title => "YouTube video player", :width => "560"}
+          %iframe{:allow => "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/jM-aZvKzkhU", :title => "YouTube video player", :width => "560"}
           / Video Modal End
 = render "shared/modal"

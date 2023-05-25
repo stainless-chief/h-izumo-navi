@@ -7,6 +7,8 @@ class HomeController < ApplicationController
 
   def about; end
 
+  def question; end
+
   private
 
   def set_status

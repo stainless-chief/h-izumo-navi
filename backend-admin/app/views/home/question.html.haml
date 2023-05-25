@@ -1,0 +1,62 @@
+%h5.justify-content-center{:style => "display: flex"} Questions and Answers
+%hr/
+.container-xxl.py-6
+  .col.col-md-6
+    %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample", "data-bs-toggle" => "collapse", :type => "button"} Problem with registration?
+    #collapseExample.collapse
+      .card.card-body
+        %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample4", "data-bs-toggle" => "collapse", :type => "button"} Don't recieve confirmation letter?
+        #collapseExample4.collapse
+          %a{:href => "/users/confirmation/new"} Click here to resend letter. Registration link will expired afer 2 hours.
+        %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample5", "data-bs-toggle" => "collapse", :type => "button"} Forgot password?
+        #collapseExample5.collapse
+          %a{:href => "/users/password/new"} Click here to reset
+  .col.col-md-6
+    %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample2", "data-bs-toggle" => "collapse", :type => "button"} Account questions?
+    #collapseExample2.collapse
+      .card.card-body
+        %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample11", "data-bs-toggle" => "collapse", :type => "button"} Change avatar image
+        #collapseExample11.collapse
+          %p 1. Click 'Update profile';
+          %p 2. Near the current avatar image you will see a button 'Choose file';
+          %p 3. Click 'Upload';
+          %p 3. Then click 'Update' in the bottom;
+        %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample9", "data-bs-toggle" => "collapse", :type => "button"} Change name
+        #collapseExample9.collapse
+          %p 1. Click 'Update profile';
+          %p 2. Change information you want;
+          %p 3. Click 'Update';
+        %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample10", "data-bs-toggle" => "collapse", :type => "button"} Cancel account
+        #collapseExample10.collapse
+          %p 1. Click 'Update profile';
+          %p 2. In the bottom you will see a button 'Cancel my account';
+  .col.col-md-6
+    %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample3", "data-bs-toggle" => "collapse", :type => "button"} Other questions
+    #collapseExample3.collapse
+      .card.card-body
+        %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample11", "data-bs-toggle" => "collapse", :type => "button"} #{t('.cant-see')}
+        #collapseExample11.collapse
+          %strong #{t('.cant-see-text')}
+          %p #{t('.cant-see-text1')}
+          %p #{t('.cant-see-text2')}
+        %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample12", "data-bs-toggle" => "collapse", :type => "button"} #{t('.how-much')}
+        #collapseExample12.collapse
+          %em #{t('.how-much-text')}
+          %strong #{t('.how-much-text2')}
+          %p #{t('.how-much-text3')}
+          %strong #{t('.how-much-text4')}
+          %p #{t('.how-much-text5')}
+        %button.btn.btn-primary.py-3.px-5.mt-3{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-target" => "#collapseExample13", "data-bs-toggle" => "collapse", :type => "button"} #{t('.delete')}
+        #collapseExample13.collapse
+          %strong #{t('.delete-text')}
+          %p #{t('.delete-text2')}
+          %p #{t('.delete-text3')}
+          %strong #{t('.delete-text4')}
+          %p #{t('.delete-text5')}
+          %strong #{t('.delete-text6')}
+          %p #{t('.delete-text7')}
+          %p #{t('.delete-text8')}
+          %p #{t('.delete-text9')}
+    .col.col-sm-12.col-md-12
+    %br/
+    %p P.S. If you can't find answer for your question, you're alwais can send message to support
