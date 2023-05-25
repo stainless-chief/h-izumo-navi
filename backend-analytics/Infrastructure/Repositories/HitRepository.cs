@@ -2,6 +2,7 @@
 using Abstractions.Map;
 using Abstractions.Models;
 using Infrastructure.Models;
+using System.Security.Policy;
 
 namespace Infrastructure.Repositories
 {
@@ -19,12 +20,16 @@ namespace Infrastructure.Repositories
             // looks messy
             foreach (var hit in hits)
             {
-                if (!MapGenerator.IsInIzumo(hit.Longitude, hit.Latitude))
-                {
-                    throw new ArgumentOutOfRangeException(nameof(hits), $"ERROR: HAPPY FOX: Longitude: {hit.Longitude} : Latitude: {hit.Latitude} out of Izumo range");
-                }
+                //if (!MapGenerator.IsInIzumo(hit.Longitude, hit.Latitude))
+                //{
+                //    throw new ArgumentOutOfRangeException
+                //    (
+                //        nameof(hits), 
+                //        $"ERROR: HAPPY FOX: Longitude: {hit.Longitude}: Latitude: {hit.Latitude} out of Izumo range."
+                //    );
+                //}
 
-                if (hit.Source == FakeTwitterHit.Code)
+                if (string.Equals(hit.Source, FakeTwitterHit.Code, StringComparison.OrdinalIgnoreCase))
                 {
                     await _context.FakeTwitterHits.AddAsync(new FakeTwitterHit
                     {
@@ -35,7 +40,7 @@ namespace Infrastructure.Repositories
                         Person = hit.PersonId,
                     });
                 }
-                if (hit.Source == ExampleHit.Code)
+                if (string.Equals(hit.Source, ExampleHit.Code, StringComparison.OrdinalIgnoreCase))
                 {
                     await _context.ExampleHits.AddAsync(new ExampleHit
                     {
@@ -46,7 +51,7 @@ namespace Infrastructure.Repositories
                         Person = hit.PersonId,
                     });
                 }
-                if (hit.Source == IzumoNaviLikeHit.Code)
+                if (string.Equals(hit.Source, IzumoNaviLikeHit.Code, StringComparison.OrdinalIgnoreCase))
                 {
                     await _context.IzumoNaviLikeHits.AddAsync(new IzumoNaviLikeHit
                     {
