@@ -90,8 +90,8 @@ namespace CollectorFake.Jobs
                 {
                      Source = _name,
                      PersonId = "fake-person",
-                     Latitude = place.Item1,
-                     Longitude = place.Item2,
+                     Latitude = place.Item2,
+                     Longitude = place.Item1,
                 });
             }
 
@@ -102,6 +102,8 @@ namespace CollectorFake.Jobs
         {
             return new List<(double, double)>
             {
+                //Lat, long
+
                 //Shimane Museum of Ancient Izumo
                 (35.39888959627746, 132.6886550533022),
 
@@ -153,13 +155,17 @@ namespace CollectorFake.Jobs
             try
             {
                 var response = await _client.PostAsync("save", jsonContent);
+                
+                var ss = await response.Content.ReadAsStringAsync();
 
                 Console.WriteLine($"{response.StatusCode}{Environment.NewLine}");
+                Console.WriteLine($"{ss}");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"{ex}");
             }
         }
+
     }
 }
