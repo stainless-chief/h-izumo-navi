@@ -31,8 +31,8 @@
     }
   },
   "devDependencies": {
-    "electron": "^18.0.4",
-    "electron-builder": "^23.0.3"
+    "electron": "^24.4.0",
+    "electron-builder": "^23.6.0"
   },
   "dependencies": {
     "dotenv": "^16.0.0"
