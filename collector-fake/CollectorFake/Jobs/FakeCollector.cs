@@ -90,8 +90,8 @@ namespace CollectorFake.Jobs
                 {
                      Source = _name,
                      PersonId = "fake-person",
-                     Latitude = place.Item2,
-                     Longitude = place.Item1,
+                     Latitude = place.Item1,
+                     Longitude = place.Item2,
                 });
             }
 

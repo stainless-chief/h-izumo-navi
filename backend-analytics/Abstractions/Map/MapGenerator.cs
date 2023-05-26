@@ -1,4 +1,5 @@
 ﻿using Abstractions.Models;
+using System.Drawing;
 
 namespace Abstractions.Map
 {
@@ -37,12 +38,5 @@ namespace Abstractions.Map
 
             return lst;
         }
-
-        public static bool IsInIzumo(double longitude, double latitude)
-        {
-            return longitude >= LongitudeMin && longitude <= LongitudeMax
-                && latitude >= LatitudeMin && latitude <= LatitudeMax;
-        }
-
     }
 }
