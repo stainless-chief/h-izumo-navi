@@ -17,6 +17,11 @@ namespace CollectorFake.Jobs
         private readonly int _minBatchSize;
         private DateTime _lastJob = DateTime.MinValue;
 
+        private readonly int _maxHitMonth = 1000;
+        private int _currentHitMonth = 0;
+        private int _currentMonth = 1;
+
+
         public FakeCollector(IConfiguration configuration)
         {
             _client = new HttpClient
@@ -52,6 +57,13 @@ namespace CollectorFake.Jobs
 
                     Console.WriteLine($"Generate {data.Count()} values");
                     await Send(data);
+
+                    if (data.Count() > _maxHitMonth)
+                    {
+                        _currentHitMonth++;
+                        if (_currentHitMonth == 12) { _currentHitMonth = 1; }
+                    }
+
                     _lastJob = DateTime.UtcNow;
                 }
                 else
@@ -61,14 +73,13 @@ namespace CollectorFake.Jobs
             }
         }
 
-
         private IEnumerable<Hit> GenerateHits()
         {
             var hits = new List<Hit>();
             var rnd = new Random();
 
             // Noise
-            for (int i = 0; i < rnd.Next(0, _minBatchSize); i++)
+            for (int i = 0; i < rnd.Next(_minBatchSize*2, _maxBatchSize * 2); i++)
             {
                 hits.Add(new Hit
                 {
@@ -76,15 +87,15 @@ namespace CollectorFake.Jobs
                     PersonId = "fake-person",
                     Latitude = (rnd.Next(_latitudeMin, _latitudeMax) / 1000000.0),
                     Longitude = (rnd.Next(_longitudeMin, _longitudeMax) / 1000000.0),
+                    Date = new DateTime(2023, _currentMonth, 1),
                 });
             }
 
             // places
-            var length = rnd.Next(_minBatchSize, _maxBatchSize);
+            var length = rnd.Next(0, _maxBatchSize);
             for (int i = 0; i < length; i++)
             {
                 var place = GetPlaces()[rnd.Next(0, GetPlaces().Count - 1)];
-
 
                 hits.Add(new Hit
                 {
@@ -92,6 +103,7 @@ namespace CollectorFake.Jobs
                      PersonId = "fake-person",
                      Latitude = place.Item1,
                      Longitude = place.Item2,
+                    Date = new DateTime(2023, _currentMonth, 1),
                 });
             }
 
@@ -145,6 +157,22 @@ namespace CollectorFake.Jobs
 
                 //Inari Shrine
                 (35.390253986131505, 132.7409721847641),
+
+                //noise
+                (35.38415726908252, 132.74640123190022),
+
+                //noise
+                (35.38831356726028, 132.7607851080628),
+                //noise
+                (35.38235421387038, 132.84624918509058),
+                //noise
+                (35.39377943624971, 132.8925260728071),
+                //noise
+                (35.386996376257905, 132.89356295743764),
+                //noise
+                (35.44357610327539, 132.80798645765475),
+                //noise
+                (35.440955080799846, 132.79598292965562),
             };
         }
 

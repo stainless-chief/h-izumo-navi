@@ -34,7 +34,7 @@ namespace Infrastructure.Repositories
                     await _context.FakeTwitterHits.AddAsync(new FakeTwitterHit
                     {
                         Id = Guid.NewGuid(),
-                        DateTime = DateTime.UtcNow,
+                        DateTime = hit.Date ?? DateTime.UtcNow,
                         Latitude = hit.Latitude,
                         Longitude = hit.Longitude,
                         Person = hit.PersonId,
@@ -45,7 +45,7 @@ namespace Infrastructure.Repositories
                     await _context.ExampleHits.AddAsync(new ExampleHit
                     {
                         Id = Guid.NewGuid(),
-                        DateTime = DateTime.UtcNow,
+                        DateTime = hit.Date ?? DateTime.UtcNow,
                         Latitude = hit.Latitude,
                         Longitude = hit.Longitude,
                         Person = hit.PersonId,
@@ -56,7 +56,7 @@ namespace Infrastructure.Repositories
                     await _context.IzumoNaviLikeHits.AddAsync(new IzumoNaviLikeHit
                     {
                         Id = Guid.NewGuid(),
-                        DateTime = DateTime.UtcNow,
+                        DateTime = hit.Date ?? DateTime.UtcNow,
                         Latitude = hit.Latitude,
                         Longitude = hit.Longitude,
                         Person = hit.PersonId,
