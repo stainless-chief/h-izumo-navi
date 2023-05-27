@@ -2,7 +2,7 @@ FROM ruby:3.2.0-alpine3.17
 
 ENV BUNDLER_VERSION=2.4.1
 
-RUN apk add --update yarn build-base nodejs tzdata postgresql-dev postgresql-client libxslt-dev libxml2-dev imagemagick
+RUN apk add --update yarn build-base nodejs tzdata postgresql-dev postgresql-client libxslt-dev libxml2-dev imagemagick gcompat
 
 ENV INSTALL_PATH /app_name
 RUN mkdir -p $INSTALL_PATH
