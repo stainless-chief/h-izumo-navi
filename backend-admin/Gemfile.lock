@@ -535,6 +535,7 @@ DEPENDENCIES
   jsonapi-serializer
   mapkick-rb
   mini_magick
+  nokogiri (~> 1.15, >= 1.15.2)
   noticed (~> 1.6)
   pagy
   parallel_tests
