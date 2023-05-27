@@ -7,5 +7,6 @@
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public string PlaceName { get; set; } = string.Empty;
+        public DateTime? Date { get; set; } = null;
     }
 }

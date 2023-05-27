@@ -62,8 +62,8 @@ services:
       - Generator__LatitudeMax=35401324
       - Generator__LongitudeMin=132685292
       - Generator__LongitudeMax=132911341
-      - Generator__MaxBatchSize=30
-      - Generator__MinBatchSize=10
+      - Generator__MaxBatchSize=500
+      - Generator__MinBatchSize=200
     restart: always
 
   backend_admin:
