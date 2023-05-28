@@ -4,7 +4,7 @@ RUN apk add\
     build-base \
     postgresql-dev
 
-RUN apk add imagemagick imagemagick-dev imagemagick-libs libmagickwand-dev
+RUN apk add imagemagick imagemagick-dev imagemagick-libs
 
 COPY Gemfile* .
 RUN bundle install
