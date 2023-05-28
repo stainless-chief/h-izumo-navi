@@ -8,7 +8,7 @@
       / left col
       .text-center
         %img.avatar.img-circle
-          - if current_user.chat_avatar?
+          - if current_user.chat_avatar.present?
             = image_tag current_user.avatar_thumbnail, class: "chat_pfp", style: "width: 100px; height: 100px"
       %br/
       .panel.panel-default
