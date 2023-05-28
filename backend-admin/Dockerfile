@@ -1,6 +1,6 @@
 FROM ruby:3.2.0-alpine AS builder
 
-RUN apk add \
+RUN apk add\
     build-base \
     postgresql-dev
 
