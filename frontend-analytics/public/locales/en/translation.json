@@ -1,6 +1,9 @@
 {
   "Header": {
-    "Full": "Izumo Analytics"
+    "Analytics": "Izumo Analytics",
+    "Heatmap": "Izumo Heatmap",
+    "Statistics": "Izumo Statistics",
+    "MachineLearning": "Izumo Predictions"
   },
   "Navigation" : {
     "Heatmap": "Heatmap",
