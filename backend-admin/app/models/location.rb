@@ -23,6 +23,7 @@
 #  meet_time         :time
 #
 class Location < ApplicationRecord
+  include CarrierWave::MiniMagick
   mount_uploader :image, ImageUploader
   belongs_to :user
   has_many :likes
