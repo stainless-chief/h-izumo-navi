@@ -18,8 +18,8 @@ namespace CollectorFake.Jobs
         private DateTime _lastJob = DateTime.MinValue;
 
         private readonly int _maxHitMonth = 1000;
-        private int _currentHitMonth = 0;
         private int _currentMonth = 1;
+        private int _curretMonthHits = 0;
 
 
         public FakeCollector(IConfiguration configuration)
@@ -58,10 +58,18 @@ namespace CollectorFake.Jobs
                     Console.WriteLine($"Generate {data.Count()} values");
                     await Send(data);
 
-                    if (data.Count() > _maxHitMonth)
+                    _curretMonthHits += data.Count();
+                    if (_curretMonthHits > _maxHitMonth)
                     {
-                        _currentHitMonth++;
-                        if (_currentHitMonth == 12) { _currentHitMonth = 1; }
+                        _curretMonthHits = 0;
+                        _currentMonth++;
+
+                        if (_currentMonth == 7) { return; }
+
+                        if (_currentMonth == 12)
+                        {
+                            _currentMonth = 1;
+                        }
                     }
 
                     _lastJob = DateTime.UtcNow;
@@ -182,12 +190,7 @@ namespace CollectorFake.Jobs
 
             try
             {
-                var response = await _client.PostAsync("save", jsonContent);
-                
-                var ss = await response.Content.ReadAsStringAsync();
-
-                Console.WriteLine($"{response.StatusCode}{Environment.NewLine}");
-                Console.WriteLine($"{ss}");
+                await _client.PostAsync("save", jsonContent);                
             }
             catch (Exception ex)
             {
