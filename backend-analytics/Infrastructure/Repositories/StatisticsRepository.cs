@@ -19,11 +19,11 @@ namespace Infrastructure.Repositories
             _sourceRepository = sourceRepository;
         }
 
-        public async Task<IEnumerable<StatisticItem>> GetAsync()
+        public async Task<IEnumerable<PlaceItem>> GetAsync()
         {
             var sources = await _sourceRepository.GetAsync(false);
 
-            var result = _context.Places.ToList().Select(x => new StatisticItem
+            var result = _context.Places.ToList().Select(x => new PlaceItem
             {
                 PlaceName = x.DisplayName,
                 Coordinates = x.Region!
@@ -55,7 +55,7 @@ namespace Infrastructure.Repositories
             return result;
         }
 
-        private static void NormalizeHeat(List<StatisticItem> result)
+        private static void NormalizeHeat(List<PlaceItem> result)
         {
             var maxTemp = result.Max(x => x.Temperature);
 

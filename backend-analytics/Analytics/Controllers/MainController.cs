@@ -103,7 +103,7 @@ namespace Analytics.Controllers
         [AllowAnonymous]
         [ApiVersion("1.0")]
         [HttpGet("statistics")]
-        public async Task<ExecutionResult<IEnumerable<StatisticItem>>> GetStatistics()
+        public async Task<ExecutionResult<IEnumerable<PlaceItem>>> GetStatistics()
         {
             var result = await _supervisor.SafeExecuteAsync
             (
