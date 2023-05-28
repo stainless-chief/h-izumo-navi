@@ -1,4 +1,5 @@
 ﻿using Abstractions.IRepositories;
+using Abstractions.IServices;
 using Abstractions.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,18 +18,21 @@ namespace Analytics.Controllers
         private readonly IHitRepository _hitRepository;
         private readonly ISourceRepository _sourceRepository;
         private readonly IStatisticsRepository _statisticsRepository;
+        private readonly IPredictor _predictor;
 
         public MainController(
             IHeatZoneRepository heatZoneRepository,
             IHitRepository hitRepository,
             ISourceRepository sourceRepository,
-            IStatisticsRepository statisticsRepository
+            IStatisticsRepository statisticsRepository,
+            IPredictor predictor
             )
         {
             _heatZoneRepository = heatZoneRepository;
             _hitRepository = hitRepository;
             _sourceRepository = sourceRepository;
             _statisticsRepository = statisticsRepository;
+            _predictor = predictor;
         }
 
         [AllowAnonymous]
@@ -78,6 +82,19 @@ namespace Analytics.Controllers
             var result = await _supervisor.SafeExecuteAsync
             (
                 () => _hitRepository.SaveAsync(hits)
+            );
+
+            return result;
+        }
+
+        [AllowAnonymous]
+        [ApiVersion("1.0")]
+        [HttpPost("prediction")]
+        public async Task<ExecutionResult<IEnumerable<HeatZone>>> Predict()
+        {
+            var result = await _supervisor.SafeExecuteAsync
+            (
+                () => _predictor.PredictAsync("")
             );
 
             return result;

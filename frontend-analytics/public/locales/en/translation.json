@@ -1,12 +1,14 @@
 {
   "Header": {
-    "Full": "Izumo analytics"
+    "Full": "Izumo Analytics"
   },
   "Navigation" : {
     "Heatmap": "Heatmap",
     "HeatmapAlt": "Generic heat map image",
     "Statistics": "Statistics",
-    "StatisticsAlt": "Generic statistics image"
+    "StatisticsAlt": "Generic statistics image",
+    "MachineLearning": "Predictions",
+    "MachineLearningAlt": "Generic machine learning image"
   },
   "HeatMap" : {
     "FilterHeader": "Data sources",

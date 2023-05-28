@@ -1,7 +1,9 @@
 
 using Abstractions.IRepositories;
+using Abstractions.IServices;
 using Infrastructure;
 using Infrastructure.Repositories;
+using MaLe;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +36,7 @@ namespace Analytics
             builder.Services.AddTransient<ISourceRepository, SourceRepository>();
             builder.Services.AddTransient<IHitRepository, HitRepository>();
             builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
+            builder.Services.AddTransient<IPredictor, Predictor>();
 
             var app = builder.Build();
             app.UseCors(builder => builder.AllowAnyOrigin()

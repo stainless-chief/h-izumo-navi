@@ -63,6 +63,36 @@ class AnalyticsClient {
     // });
   };
 
+  public static async getPredictionMap() {
+    return await this.init()
+    .post<ExecutionResult<AnalyticsHeatZone[]>>('/prediction')
+    .then(response => {
+        let tmp: AnalyticsHeatZoneCollection;
+        tmp = new AnalyticsHeatZoneCollection();
+        tmp.type = 'FeatureCollection';
+
+        tmp.features = response.data.data.map(function (value: AnalyticsHeatZone) {
+          return {
+            type: 'Feature',
+            properties: {
+              temperature: value.temperature,
+              hitStatistics: value.hitStatistics,
+            },
+            geometry: {
+              type: 'Polygon',
+              coordinates:[
+                value.coordinates.map(zone => [zone.x, zone.y])
+              ],
+            }
+          }
+        });
+        return tmp;
+    })
+    // .catch((error: axios.AxiosError) => {
+    //     return Utils.create<AnalyticsHeatZone[]>(error);
+    // });
+  };
+
 }
 
 export { AnalyticsClient };
