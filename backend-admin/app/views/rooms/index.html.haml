@@ -9,7 +9,7 @@
   #side_panel.col-md-4.col-sm-4
     %li.list-group-item.d-flex.align-items-center.justify-content-between.user_list_item
       .icon-container
-        -# = link_to image_tag(current_user.chat_avatar, class: 'chat_pfp'), current_user  if current_user.chat_avatar.present?
+        = link_to image_tag(current_user.chat_avatar, class: 'chat_pfp'), current_user  if current_user.chat_avatar.present?
         = turbo_stream_from "user_status"
         %div
           = render "users/status", user: current_user
