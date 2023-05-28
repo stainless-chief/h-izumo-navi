@@ -12,7 +12,87 @@
           %h3.card-title#loc_title= Location.find(1).title
           %p.card-text
             .trunk= Location.find(1).short_describtion
-
+       
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-100
+            = image_tag 'jinja.jpeg'
+        .card-body
+          %h3.card-title= Location.find(2).title
+          %p.card-text
+            .trunk= Location.find(2).short_describtion
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-100
+            = image_tag 'museum.jpeg'
+        .card-body
+          %h3.card-title= Location.find(3).title
+          %p.card-text
+            .trunk= Location.find(3).short_describtion
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-100
+            = image_tag 'mitoshisha.jpeg'
+        .card-body
+          %h3.card-title= Location.find(4).title
+          %p.card-text
+            .trunk= Location.find(4).short_describtion
+         
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-100
+            = image_tag 'kitayama.jpeg'
+        .card-body
+          %h3.card-title= Location.find(5).title
+          %p.card-text
+            .trunk= Location.find(5).short_describtion
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-100
+            = image_tag 'reizenji.jpeg'
+        .card-body
+          %h3.card-title= Location.find(6).title
+          %p.card-text
+            .trunk= Location.find(6).short_describtion
+         
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-100
+            = image_tag 'Takahama Hachimangu.jpeg'
+        .card-body
+          %h3.card-title= Location.find(7).title
+          %p.card-text
+            .trunk= Location.find(7).short_describtion
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-100
+            = image_tag 'Agata_Jinja_Uji.jpg'
+        .card-body
+          %h3.card-title= Location.find(8).title
+          %p.card-text
+            .trunk= Location.find(8).short_describtion
+          
+    .carousel-item
+      .card{:style => "align-items: center"}
+        .img-wrapper
+          %img.d-block.w-100
+            = image_tag 'kizuki.jpeg'
+        .card-body
+          %h3.card-title= Location.find(9).title
+          %p.card-text
+            .trunk= Location.find(9).short_describtion
+          -# %a.btn.btn-primary{:href => locations_path} Find more...
   %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#carouselExampleControls", :type => "button"}
     %span.carousel-control-prev-icon{"aria-hidden" => "true"}
     %span.visually-hidden Previous
