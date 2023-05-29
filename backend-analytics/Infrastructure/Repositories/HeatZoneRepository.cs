@@ -66,21 +66,21 @@ namespace Infrastructure.Repositories
 
         private static void NormalizeEmotions(IEnumerable<HeatZone> zones)
         {
-            var maxTemp = zones.Max(x => x.Emotion);
-
             foreach (var item in zones)
             {
-                item.Emotion = IntegerExtensions.RoundOff(item.Temperature * 100d / maxTemp);
+                if (item.Emotion == 0) { continue; }
+
+                item.Emotion = item.Emotion > 0 ? 100 : -100;
             }
         }
 
         private static void NormalizeHeat(IEnumerable<HeatZone> zones)
         {
-            var maxTemp = zones.Max(x => x.Temperature);
+            var max = zones.Max(x => x.Temperature);
 
             foreach (var item in zones)
             {
-                item.Temperature = IntegerExtensions.RoundOff(item.Temperature * 100d / maxTemp);
+                item.Temperature = IntegerExtensions.RoundOff(item.Temperature * 100d / max);
             }
         }
 

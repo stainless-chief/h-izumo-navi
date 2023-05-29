@@ -11,7 +11,9 @@
     "Statistics": "Statistics",
     "StatisticsAlt": "Generic statistics image",
     "MachineLearning": "Predictions",
-    "MachineLearningAlt": "Generic machine learning image"
+    "MachineLearningAlt": "Generic machine learning image",
+    "Satisfaction": "Satisfaction",
+    "SatisfactionAlt": "Generic satisfaction image"
   },
   "HeatMap" : {
     "FilterHeader": "Data sources",
@@ -19,7 +21,8 @@
     "ClearHeatData": "Clear"
   },
   "HeatMapTooltip" : {
-    "Temperature": "Temperature"
+    "Temperature": "Temperature",
+    "Satisfaction": "Satisfaction"
   },
   "Statistics" : {
     "MoveToLocation": "Show"
