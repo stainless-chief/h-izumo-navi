@@ -8,7 +8,7 @@
       / left col
       .text-center
         %img.avatar.img-circle
-          = image_tag current_user.avatar_thumbnail, class: "chat_pfp", style: "width: 100px; height: 100px" if current_user.avatar.present?
+          -# = image_tag current_user.avatar_thumbnail, class: "chat_pfp", style: "width: 100px; height: 100px" if current_user.avatar.present?
       %br/
       .panel.panel-default
         .panel-heading
@@ -37,8 +37,8 @@
       %ul.nav.nav-tabs
         %li.active
           %a(data-bs-toggle="tab" href="#home" style="font-family: cursive") Personal info
-        %li
-          %a(data-bs-toggle="tab" href="#qr" style="font-family: cursive") QR collection
+        -# %li
+        -#   %a(data-bs-toggle="tab" href="#qr" style="font-family: cursive") QR collection
       .tab-content
         #home.tab-pane.active
           %hr/
@@ -77,5 +77,21 @@
               .row
                 = link_to "Update", edit_user_registration_path, class: "btn btn-outline-primary scase", style: "width: 45%; height: 25px; display: flex; align-items: center; font-size: small;"
               %br/
-        #qr.tab-pane
-          %h2
+        #qr
+          %ul.nav.nav-tabs
+            -# %li.active
+            -#   %a(data-bs-toggle="tab" href="#home" style="font-family: cursive") Personal info
+            %li
+              %a(data-bs-toggle="tab" href="#qr" style="font-family: cursive") QR collection
+              %h2
+                #reader{:style => "width:300px;height:250px"}
+:javascript
+  $('#reader').html5_qrcode(function(data){
+      // do something when code is read
+    },
+    function(error){
+      //show read errors 
+    }, function(videoError){
+      //the video stream could be opened
+    }
+  );

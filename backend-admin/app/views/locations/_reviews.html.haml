@@ -37,7 +37,7 @@
       - @location.reviews.limit(3).includes(:user).order('created_at desc').each do |review|
         .mb-4.pb-4.border-bottom
           .d-flex.mb-3.align-items-center
-            %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
+            -# %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
             .ml-2
               %h5.mb-1= review.user.name if review.user.name?
               %imgimage_tag
@@ -84,7 +84,7 @@
             - @location.reviews.includes(:user).order('created_at desc').each do |review|
               .mb-4.pb-4.border-bottom
                 .d-flex.mb-3.align-items-center
-                  %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
+                  -# %img.rounded-circle.avatar-lg #{image_tag(current_user.chat_avatar, class: 'chat_pfp') if current_user.chat_avatar.present?}
                   .ml-2
                     %h5.mb-1= review.user.name if review.user.name?
                     %imgimage_tag

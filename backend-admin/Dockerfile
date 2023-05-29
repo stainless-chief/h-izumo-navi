@@ -1,7 +1,8 @@
-FROM ruby:3.2.0-alpine AS builder
+FROM ruby:3.2.0-alpine
 
-RUN apk update && \
-    apk add --no-cache file libpq-dev unzip \
+RUN apk update && apk upgrade
+
+RUN apk add --no-cache file libpq-dev unzip \
     imagemagick \
     imagemagick-libs \
     postgresql-dev \
@@ -27,27 +28,16 @@ COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
 
-RUN apk update && apk upgrade
-
-
-RUN apk add \
+RUN apk add tzdata \
+    nodejs \
+    gcompat \
 		ruby-dev \
 		ruby-irb
 
 RUN gem install rdoc \
 		ruby-vips 
 
-FROM ruby:3.2.0-alpine AS runner
-
-RUN apk update && \
-    apk add tzdata \
-    nodejs \
-    postgresql-dev \
-    gcompat
-
 WORKDIR /app
-
-COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 
 COPY . .
 

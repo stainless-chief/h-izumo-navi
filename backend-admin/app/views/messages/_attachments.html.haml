@@ -4,7 +4,7 @@
       .col-12
         - if attachment.image?
           .message-image-container
-            = image_tag(message.chat_attachment(index), class: "message-image")
+            -# = image_tag(message.chat_attachment(index), class: "message-image")
         - elsif attachment.video?
           = video_tag(url_for(attachment), class:'message-video', controls:'')
         - elsif attachment.audio?

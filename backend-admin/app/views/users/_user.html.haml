@@ -7,7 +7,7 @@
     .row
       .col-12.d-flex.align-items-center.justify-content-between
         .icon-container
-          = link_to image_tag(user.chat_avatar, class: 'chat_pfp'), user
+          -# = link_to image_tag(user.chat_avatar, class: 'chat_pfp'), user
           = turbo_stream_from "user_status"
           %div
             = render "users/status", user: user
