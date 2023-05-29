@@ -20,6 +20,10 @@ function GreetingsPage() {
       <img src={("/assets/images/machine.png")} alt={t("Navigation.MachineLearningAlt")}/>
       <b>{t("Navigation.MachineLearning")}</b>
     </Link>
+    <Link to="/satisfaction">
+      <img src={("/assets/images/machine.png")} alt={t("Navigation.SatisfactionAlt")}/>
+      <b>{t("Navigation.Satisfaction")}</b>
+    </Link>    
   </div>
   );
 }

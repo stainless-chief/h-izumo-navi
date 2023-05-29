@@ -3,6 +3,7 @@ using Abstractions.IRepositories;
 using Abstractions.Map;
 using Abstractions.Models;
 using Infrastructure.Helpers;
+using Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.PortableExecutable;
 
@@ -50,12 +51,27 @@ namespace Infrastructure.Repositories
                             temp.HitStatistics.Add(code, 1);
                         }
                     }
+                    if(item is IzumoNaviLikeHit)
+                    {
+                        temp.Emotion += (item as IzumoNaviLikeHit).Emotion;
+                    }
                 }
             }
 
             NormalizeHeat(result);
+            NormalizeEmotions(result);
 
             return result;
+        }
+
+        private static void NormalizeEmotions(IEnumerable<HeatZone> zones)
+        {
+            var maxTemp = zones.Max(x => x.Emotion);
+
+            foreach (var item in zones)
+            {
+                item.Emotion = IntegerExtensions.RoundOff(item.Temperature * 100d / maxTemp);
+            }
         }
 
         private static void NormalizeHeat(IEnumerable<HeatZone> zones)
