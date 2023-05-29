@@ -16,6 +16,7 @@ namespace Infrastructure.Migrations
 	                id uuid NOT NULL UNIQUE,
 	                display_name VARCHAR(128) NOT NULl,
                     region float[] NOT NULL,
+                    characteristics text[], 
 
 					PRIMARY KEY(id)
                 );");
@@ -23,7 +24,7 @@ namespace Infrastructure.Migrations
             //IZUMOSHI STATION
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
@@ -37,13 +38,21 @@ namespace Infrastructure.Migrations
                                     35.360726456564436, 132.7574867114975,
                                     35.36049900577044, 132.7557606254807,
                                 })
-                        }}}'
+                        }}}',
+                        '{{{string.Join(",", 
+                                new PlaceCharacteristics[]
+                                { 
+                                    PlaceCharacteristics.TransportationHub,
+                                    PlaceCharacteristics.Shop,
+                                    PlaceCharacteristics.Dinery,
+                                    PlaceCharacteristics.Parking
+                                })}}}' 
                     );");
 
             //Izumo Enmusubi Airport
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
@@ -60,13 +69,21 @@ namespace Infrastructure.Migrations
                                     35.41956329699273, 132.89985851333026,
                                     35.41794580390438, 132.9012839640453,
                                     35.40709976358817, 132.87830799349535,
-                                })}}}'
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.TransportationHub,
+                                    PlaceCharacteristics.Shop,
+                                    PlaceCharacteristics.Dinery,
+                                    PlaceCharacteristics.Taxi,
+                                })}}}' 
                     );");
 
             //Shōbara Station
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
@@ -79,13 +96,20 @@ namespace Infrastructure.Migrations
                                  35.393904424342615, 132.86914025235893,
                                  35.393703265321896, 132.8692582695556,
                                  35.39326596137186, 132.86731366801982,
-                                })}}}'
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Transportation,
+                                    PlaceCharacteristics.Parking,
+                                    PlaceCharacteristics.Taxi,
+                                })}}}' 
                     );");
 
             //Izumotaisha-Mae Station
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
@@ -98,13 +122,19 @@ namespace Infrastructure.Migrations
                                  35.39337735682656, 132.68808874230535,
                                  35.39317394859004, 132.68794099977117,
                                  35.39337200398479, 132.68698559805023,
-                                })}}}'
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Transportation,
+                                    PlaceCharacteristics.Parking,
+                                })}}}' 
                     );");
 
             // Izumo Taisha
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
@@ -119,17 +149,24 @@ namespace Infrastructure.Migrations
                                  35.39935368314022, 132.6868343529888,
                                  35.396715369178075, 132.68704917214785,
                                  35.39659862762839, 132.68604668273883,
-                                })}}}'
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Shrine,
+                                    PlaceCharacteristics.Landmark,
+                                    PlaceCharacteristics.Parking,
+                                })}}}' 
                     );");
 
             // Hinomisaki Shrine
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
-                        'Hinomisaki Shrine',
+                        'Hinomisaki Jinja',
                         '{{{string.Join(",",
                                 new[]
                                 {
@@ -141,13 +178,18 @@ namespace Infrastructure.Migrations
                                  35.42943179858585, 132.62993297744308,
                                  35.42934358333753, 132.62984275904526,
                                  35.42929947567713, 132.62930144865834,
-                                })}}}'
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Shrine,
+                                })}}}' 
                     );");
 
             // Izumo Hinomisaki Lighthouse
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
@@ -160,13 +202,18 @@ namespace Infrastructure.Migrations
                                  35.433932314068436, 132.62972643535926,
                                  35.4335647704377, 132.62980312099742,
                                  35.43362725297328, 132.62907235197505,
-                                })}}}'
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Landmark,
+                                })}}}' 
                     );");
 
             // Owashi Beach
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
@@ -179,13 +226,18 @@ namespace Infrastructure.Migrations
                                     35.43263721576489, 132.63337181116592,
                                     35.43217779866903, 132.63385089118094,
                                     35.43191656032791, 132.6334049782439,
-                                })}}}'
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Landmark,
+                                })}}}' 
                     );");
 
             // Izumo Glamping Reuna
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
@@ -198,13 +250,18 @@ namespace Infrastructure.Migrations
                                     35.425098908901354, 132.62722639780705,
                                     35.42428992438539, 132.62621708407386,
                                     35.424647226881724, 132.62493475924896,
-                                })}}}'
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Hotel,
+                                })}}}' 
                     );");
 
             // Super Hotel Izumo Ekimae
             Execute.Sql(
                 $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
-                    (id, display_name, region)
+                    (id, display_name, region, characteristics)
                     VALUES
                     (
                         '{Guid.NewGuid()}', 
@@ -217,8 +274,62 @@ namespace Infrastructure.Migrations
                                     35.36053852465425, 132.75653788374265,
                                     35.360420404278166, 132.75657811687955,
                                     35.36035150064564, 132.756214677543,
-                                })}}}'
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Hotel,
+                                })}}}' 
                     );");
+
+            // Awazu Inari Jinja
+            Execute.Sql(
+                $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
+                    (id, display_name, region, characteristics)
+                    VALUES
+                    (
+                        '{Guid.NewGuid()}', 
+                        'Awazu Inari Jinja',
+                        '{{{string.Join(",",
+                                new[]
+                                {
+                                    35.3901653725668, 132.74090753556686,
+                                    35.39029168775242, 132.7408540795816,
+                                    35.39032010864192, 132.74097726076505,
+                                    35.390187477738564, 132.74103226619914,
+                                    35.3901653725668, 132.74090753556686,
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Shrine,
+                                })}}}' 
+                    );");
+
+            // Aeon Mall 
+            Execute.Sql(
+                $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
+                    (id, display_name, region, characteristics)
+                    VALUES
+                    (
+                        '{Guid.NewGuid()}', 
+                        'Aeon Mall',
+                        '{{{string.Join(",",
+                                new[]
+                                {
+                                    35.36659186175686, 132.73919543680805,
+                                    35.36840937257326, 132.73780315121576,
+                                    35.368838699859836, 132.7386806421353,
+                                    35.36688285706038, 132.740254275851,
+                                    35.36659186175686, 132.73919543680805,
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Shrine,
+                                })}}}' 
+                    );");
+
         }
 
         public override void Down()
