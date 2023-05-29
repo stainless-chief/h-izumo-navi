@@ -1,81 +1,48 @@
 FROM ruby:3.2.0-alpine AS builder
 
-RUN apk add\
-    build-base \
+RUN apk update && \
+    apk add libpq-dev unzip \
+    imagemagick \
+    imagemagick-dev \
+    imagemagick-libs \
     postgresql-dev \
-    cmake \
-	autoconf \
-	automake \
-	libtool \
-	bc \
-	zlib-dev \
-	libxml2-dev \
-	jpeg-dev \
-	tiff-dev \
-	glib-dev \
-	gdk-pixbuf-dev \
-	libjpeg-turbo-dev \
-	libexif-dev \
-	lcms2-dev \
-	fftw-dev \
-	giflib-dev \
-	libpng-dev \
-	libwebp-dev \
-	orc-dev \
-	poppler-dev \
-	librsvg-dev \
-	libgsf-dev \
-	openexr-dev \
-	gtk-doc
+    build-base 
 
-RUN apk add imagemagick imagemagick-dev imagemagick-libs
+COPY Gemfile Gemfile.lock ./
 
-COPY Gemfile* .
 RUN bundle install
 
-ARG OPENJPEG_VERSION=2.3.1
-ARG OPENJPEG_URL=https://github.com/uclouvain/openjpeg/archive
-
-RUN wget ${OPENJPEG_URL}/v${OPENJPEG_VERSION}.tar.gz \
-	&& tar xf v${OPENJPEG_VERSION}.tar.gz \
-	&& cd openjpeg-${OPENJPEG_VERSION} \
-	&& mkdir build \
-	&& cd build \
-	&& cmake .. \
-	&& make \
-	&& make install 
-    
-ARG MAGICK_VERSION=7.0.8-64
-ARG MAGICK_URL=https://github.com/ImageMagick/ImageMagick/archive
-
-RUN wget ${MAGICK_URL}/${MAGICK_VERSION}.tar.gz \
-	&& tar xf ${MAGICK_VERSION}.tar.gz \
-	&& cd ImageMagick-${MAGICK_VERSION} \
-	&& ./configure \
-	&& make V=0 \
-	&& make install 
-
-ARG VIPS_VERSION=8.8.3
+ARG VIPS_VERSION=8.9.1
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
-RUN wget ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.gz \
-	&& tar xf vips-${VIPS_VERSION}.tar.gz \
-	&& cd vips-${VIPS_VERSION} \
-	&& ./configure \
+RUN apk update && apk upgrade
+
+RUN wget -O- ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.gz | tar xzC /tmp
+RUN cd /tmp/vips-${VIPS_VERSION} \
+	&& ./configure --prefix=/usr --disable-static --disable-debug \
 	&& make V=0 \
 	&& make install 
+
+RUN apk add \
+	ruby-dev \
+	ruby-irb
+RUN gem install rdoc \
+	ruby-vips
 
 FROM ruby:3.2.0-alpine AS runner
 
-RUN apk add \
-      tzdata \
-      nodejs \
-      postgresql-dev \
-      gcompat
+RUN apk update && \
+    apk add tzdata \
+    nodejs \
+    postgresql-dev \
+    gcompat
 
 WORKDIR /app
 
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
+
 COPY . .
+
 EXPOSE 3000
-CMD ["rails", "server", "-b", "0.0.0.0"]
+
+CMD ["./bin/rails", "server"]
