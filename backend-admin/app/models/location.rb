@@ -16,4 +16,10 @@ class Location < ApplicationRecord
 
     favorited_users.include?(user)
   end
+
+  def sended_analitics?(user)
+    return if user.nil?
+
+    sended_analitics.include?(user)
+  end
 end

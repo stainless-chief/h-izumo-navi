@@ -22,6 +22,9 @@ Rails.application.routes.draw do
       post :search
     end
   end
+  
+  resources :analitics, only: [:create]
+
   devise_for :users, skip: :omniauth_callbacks, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
