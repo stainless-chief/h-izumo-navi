@@ -17,14 +17,14 @@ namespace Analytics.Controllers
         private readonly IHeatZoneRepository _heatZoneRepository;
         private readonly IHitRepository _hitRepository;
         private readonly ISourceRepository _sourceRepository;
-        private readonly IStatisticsRepository _statisticsRepository;
+        private readonly IPlaceRepository _statisticsRepository;
         private readonly IPredictor _predictor;
 
         public MainController(
             IHeatZoneRepository heatZoneRepository,
             IHitRepository hitRepository,
             ISourceRepository sourceRepository,
-            IStatisticsRepository statisticsRepository,
+            IPlaceRepository statisticsRepository,
             IPredictor predictor
             )
         {

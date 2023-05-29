@@ -7,32 +7,6 @@
         public List<ZoneCoordinates> Coordinates { get; set; } = new();
         public List<Source> Sources { get; set; } = new();
 
-        public List<PlaceCharacteristics> Characteristics { get; set; } = new();
-    }
-
-    public enum PlaceCharacteristics
-    {
-        None,
-        ImpassableTerrain,
-
-        TransportationHub,
-        Transportation,
-        Parking,
-
-        Shop,
-        
-        Dinery,
-
-        Hotel,
-
-        Landmark,
-        Museum,
-        Park,
-        Camping,
-
-        Shrine,
-
-        Education,
-        Office,
+        public List<string> Characteristics { get; set; } = new();
     }
 }

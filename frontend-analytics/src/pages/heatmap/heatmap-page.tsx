@@ -110,7 +110,8 @@ function HeatmapPage() {
                       <b>{t("HeatMapTooltip.Temperature")}</b>
                       {hoverInfo.hoveredFeature.properties.temperature} <br/>
                       {/* TODO: make tooltip pretty  */}
-                      { hoverInfo.hoveredFeature.properties.hitStatistics }
+                      { hoverInfo.hoveredFeature.properties.hitStatistics }<br/>
+                      { hoverInfo.hoveredFeature.properties.characteristics }<br/>
                     </div>
                     )}
             </Popup>)}

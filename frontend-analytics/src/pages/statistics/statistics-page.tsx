@@ -61,6 +61,7 @@ function StatisticsPage() {
             type: 'Feature',
             properties: {
               temperature: value.temperature,
+              characteristics: value.characteristics,
               hitStatistics: value.sources,
             },
             geometry: { 
@@ -121,7 +122,6 @@ function StatisticsPage() {
               <Layer {...dataLayer} />
             </Source>
             { hoverInfo
-            && hoverInfo.hoveredFeature.properties.temperature > 0
             && (
             <Popup
               latitude={hoverInfo.lngLat.lat}
@@ -130,7 +130,9 @@ function StatisticsPage() {
               {
                 (
                   <div>
-                    <b>{t("HeatMapTooltip.Temperature")}</b> {hoverInfo.hoveredFeature.properties.temperature} <br/>
+                    <b>{t("HeatMapTooltip.Temperature")} : </b>
+                    {hoverInfo.hoveredFeature.properties.temperature} <br/>
+                    {hoverInfo.hoveredFeature.properties.characteristics}
                     {/* TODO: make tooltip pretty  */}
                     {/* {hoverInfo.hoveredFeature.properties.hitStatistics} */}
                   </div>

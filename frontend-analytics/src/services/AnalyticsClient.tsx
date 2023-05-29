@@ -47,6 +47,7 @@ class AnalyticsClient {
             properties: {
               temperature: value.temperature,
               hitStatistics: value.hitStatistics,
+              characteristics: value.zoneCharacteristics
             },
             geometry: {
               type: 'Polygon',

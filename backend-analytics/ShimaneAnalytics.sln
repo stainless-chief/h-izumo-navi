@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security", "Security\Securi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analytics", "Analytics\Analytics.csproj", "{29C70B9C-3C8E-4300-9C69-C6B60456490C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaLe", "MaLe\MaLe.csproj", "{5A9511D3-CFDA-4A0C-98AC-BE56CC6AF9DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaLe", "MaLe\MaLe.csproj", "{5A9511D3-CFDA-4A0C-98AC-BE56CC6AF9DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

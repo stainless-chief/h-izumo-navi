@@ -1,4 +1,5 @@
-﻿namespace Abstractions.Models
+﻿
+namespace Abstractions.Models
 {
     public class ZoneCoordinates
     {

@@ -1,4 +1,6 @@
 ﻿using Abstractions.Models;
+using NetTopologySuite.Geometries;
+using NetTopologySuite.Operation.Overlay;
 
 namespace Abstractions.Extensions
 {
@@ -22,6 +24,17 @@ namespace Abstractions.Extensions
                 j = i;
             }
             return result;
+        }
+
+        public static bool IsIn(this PlaceItem place, HeatZone zone)
+        {
+            var placePoly = new Polygon(new LinearRing(place.Coordinates.Select(c => new Coordinate(c.X, c.Y)).ToArray()));
+            var zonePoly = new Polygon(new LinearRing(zone.Coordinates.Select(c => new Coordinate(c.X, c.Y)).ToArray()));
+
+            var isOverlaps = placePoly.Overlaps(zonePoly);
+            var isWithin = placePoly.Within(zonePoly);
+
+            return isOverlaps || isWithin;
         }
     }
 }

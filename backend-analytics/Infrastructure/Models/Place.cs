@@ -15,5 +15,8 @@ namespace Infrastructure.Models
 
         [Column("region")]
         public double[]? Region { get; set; }
+
+        [Column("characteristics")]
+        public string[]? Characteristics { get; set; }
     }
 }

@@ -2,8 +2,10 @@
 
 namespace Abstractions.IRepositories
 {
-    public interface IStatisticsRepository
+    public interface IPlaceRepository
     {
         Task<IEnumerable<PlaceItem>> GetAsync();
+
+        Task<IEnumerable<PlaceItem>> GetPlacesAsync();
     }
 }
