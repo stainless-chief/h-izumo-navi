@@ -79,6 +79,8 @@ namespace Analytics.Controllers
         [HttpPost("save")]
         public async Task<ExecutionResult<bool>> Save([FromBody] Hit[] hits)
         {
+            Console.WriteLine("incoming");
+
             var result = await _supervisor.SafeExecuteAsync
             (
                 () => _hitRepository.SaveAsync(hits)
