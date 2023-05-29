@@ -9,7 +9,7 @@ namespace Infrastructure.Migrations
         protected abstract string SourceDisplayName { get; }
         protected abstract string SourceDescription { get; }
 
-        private const string TableSources = "source";
+        internal const string TableSources = "source";
         private const string ViewSourcesToHits = "sources_to_hits";
 
         public override void Up()

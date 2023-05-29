@@ -6,5 +6,8 @@ namespace Infrastructure.Models
     internal class IzumoNaviLikeHit : BaseHit
     {
         public static string Code => "Izumo_Navi_Like";
+
+        [Column("emotion")]
+        public int Emotion { get; set; }
     }
 }

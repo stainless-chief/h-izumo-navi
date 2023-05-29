@@ -7,5 +7,7 @@
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public DateTime? Date { get; set; }
+        
+        public int Emotion { get; set; }
     }
 }
