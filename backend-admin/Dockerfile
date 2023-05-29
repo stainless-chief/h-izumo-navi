@@ -1,33 +1,41 @@
 FROM ruby:3.2.0-alpine AS builder
 
 RUN apk update && \
-    apk add libpq-dev unzip \
+    apk add --no-cache file libpq-dev unzip \
     imagemagick \
-    imagemagick-dev \
     imagemagick-libs \
     postgresql-dev \
-    build-base 
+    build-base \
+    autoconf \
+		automake \
+		libtool \
+		zlib-dev \
+		expat-dev \
+		jpeg-dev \
+		tiff-dev \
+		glib-dev \
+		libjpeg-turbo-dev \
+		libexif-dev \
+		lcms2-dev \
+		fftw-dev \
+		giflib-dev \
+		libpng-dev \
+		libwebp-dev \
+		libgsf-dev 
 
 COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
 
-ARG VIPS_VERSION=8.9.1
-ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
-
 RUN apk update && apk upgrade
 
-RUN wget -O- ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.gz | tar xzC /tmp
-RUN cd /tmp/vips-${VIPS_VERSION} \
-	&& ./configure --prefix=/usr --disable-static --disable-debug \
-	&& make V=0 \
-	&& make install 
 
 RUN apk add \
-	ruby-dev \
-	ruby-irb
+		ruby-dev \
+		ruby-irb
+
 RUN gem install rdoc \
-	ruby-vips
+		ruby-vips 
 
 FROM ruby:3.2.0-alpine AS runner
 
