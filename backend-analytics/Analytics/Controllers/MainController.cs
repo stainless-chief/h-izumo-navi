@@ -79,7 +79,7 @@ namespace Analytics.Controllers
         [HttpPost("save")]
         public async Task<ExecutionResult<bool>> Save([FromBody] Hit[] hits)
         {
-            Console.WriteLine("incoming");
+            Console.WriteLine($"incoming {string.Join(",", hits.Select(x => x.Source).Distinct())}");
 
             var result = await _supervisor.SafeExecuteAsync
             (
