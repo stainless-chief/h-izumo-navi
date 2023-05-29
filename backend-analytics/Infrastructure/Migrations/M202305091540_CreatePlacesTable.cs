@@ -254,6 +254,7 @@ namespace Infrastructure.Migrations
                         '{{{string.Join(",",
                                 new PlaceCharacteristics[]
                                 {
+                                    PlaceCharacteristics.Parking,
                                     PlaceCharacteristics.Hotel,
                                 })}}}' 
                     );");
@@ -278,6 +279,7 @@ namespace Infrastructure.Migrations
                         '{{{string.Join(",",
                                 new PlaceCharacteristics[]
                                 {
+                                    PlaceCharacteristics.Parking,
                                     PlaceCharacteristics.Hotel,
                                 })}}}' 
                     );");
@@ -303,6 +305,7 @@ namespace Infrastructure.Migrations
                                 new PlaceCharacteristics[]
                                 {
                                     PlaceCharacteristics.Shrine,
+                                    PlaceCharacteristics.Parking
                                 })}}}' 
                     );");
 
@@ -326,10 +329,60 @@ namespace Infrastructure.Migrations
                         '{{{string.Join(",",
                                 new PlaceCharacteristics[]
                                 {
-                                    PlaceCharacteristics.Shrine,
+                                    PlaceCharacteristics.Shop,
+                                    PlaceCharacteristics.Parking
                                 })}}}' 
                     );");
 
+            // Uryu Castle Ruins
+            Execute.Sql(
+                $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
+                    (id, display_name, region, characteristics)
+                    VALUES
+                    (
+                        '{Guid.NewGuid()}', 
+                        'Uryu Castle Ruins',
+                        '{{{string.Join(",",
+                                new[]
+                                {
+                                    35.431641621200455, 132.63681877738145,
+                                    35.431935624536976, 132.63694542494068,
+                                    35.43183632551686, 132.63741617152883,
+                                    35.431618256650836, 132.63718438259963,
+                                    35.431641621200455, 132.63681877738145,
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.Landmark,
+                                    PlaceCharacteristics.Parking
+                                })}}}' 
+                    );");
+
+            // Nishi-Izumo
+            Execute.Sql(
+                $@"INSERT INTO {DataContext.SchemaData}.{_placeTable}
+                    (id, display_name, region, characteristics)
+                    VALUES
+                    (
+                        '{Guid.NewGuid()}', 
+                        'Nishi-Izumo',
+                        '{{{string.Join(",",
+                                new[]
+                                {
+                                    35.33470349527953, 132.72109338391655,
+                                    35.33547660530983, 132.72266994256944,
+                                    35.335226061204196, 132.72296536450625,
+                                    35.33446010726423, 132.7212981317936,
+                                    35.33470349527953, 132.72109338391655,
+                                })}}}',
+                        '{{{string.Join(",",
+                                new PlaceCharacteristics[]
+                                {
+                                    PlaceCharacteristics.TransportationHub,
+                                    PlaceCharacteristics.Parking
+                                })}}}' 
+                    );");
         }
 
         public override void Down()

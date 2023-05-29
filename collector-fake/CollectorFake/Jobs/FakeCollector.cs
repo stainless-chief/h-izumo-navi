@@ -1,6 +1,10 @@
 ﻿using CollectorFake.Models;
+using System.Collections.Generic;
+using System;
 using System.Text;
 using System.Text.Json;
+using System.Linq;
+using Microsoft.AspNetCore.SignalR;
 
 namespace CollectorFake.Jobs
 {
@@ -53,7 +57,8 @@ namespace CollectorFake.Jobs
             {
                 if ((DateTime.UtcNow - _lastJob) > _delay)
                 {
-                    var data = GenerateHits();
+                    var rnd = new Random();
+                    var data = GenerateHits().Take(_maxHitMonth + rnd.Next(463));
 
                     Console.WriteLine($"Generate {data.Count()} values");
                     await Send(data);
@@ -86,36 +91,102 @@ namespace CollectorFake.Jobs
             var hits = new List<Hit>();
             var rnd = new Random();
 
-            // Noise
-            for (int i = 0; i < rnd.Next(_minBatchSize*2, _maxBatchSize * 2); i++)
+            // group
+            var groupSize = rnd.Next(10, 30);
+            
+            // arrival
+            var hub = GetHub();
+            for (int i = 0; i <= groupSize; i++)
             {
                 hits.Add(new Hit
                 {
                     Source = _name,
                     PersonId = "fake-person",
-                    Latitude = (rnd.Next(_latitudeMin, _latitudeMax) / 1000000.0),
-                    Longitude = (rnd.Next(_longitudeMin, _longitudeMax) / 1000000.0),
+                    Latitude = hub.Item1,
+                    Longitude = hub.Item2,
                     Date = new DateTime(2023, _currentMonth, 1),
                 });
             }
 
-            // places
-            var length = rnd.Next(0, _maxBatchSize);
-            for (int i = 0; i < length; i++)
+            // visit
+            for (int i = 0; i <= groupSize; i++)
             {
-                var place = GetPlaces()[rnd.Next(0, GetPlaces().Count - 1)];
+                var places = GetPlaces().OrderBy(x => rnd.Next()).Take(rnd.Next(5, 10));
 
-                hits.Add(new Hit
+                for (int plc = 0; plc <= rnd.Next(5, 10); plc++)
                 {
-                     Source = _name,
-                     PersonId = "fake-person",
-                     Latitude = place.Item1,
-                     Longitude = place.Item2,
-                    Date = new DateTime(2023, _currentMonth, 1),
-                });
+                    var place = GetPlaces()[rnd.Next(GetPlaces().Count)];
+
+                    {
+                        hits.Add(new Hit
+                        {
+                            Source = _name,
+                            PersonId = "fake-person",
+                            Latitude = place.Item1,
+                            Longitude = place.Item2,
+                            Date = new DateTime(2023, _currentMonth, 1),
+                        });
+
+                        //noise
+                        //if (rnd.Next(0, 1) == 1)
+                        {
+                            var noiseLength = rnd.Next(50, 250);
+                            for (var noise = 0; noise < noiseLength; noise++)
+                            {
+                                hits.Add(new Hit
+                                {
+                                    Source = _name,
+                                    PersonId = "fake-person",
+                                    Latitude = place.Item1 + rnd.Next(40000, 90000) / 100000,
+                                    Longitude = place.Item2 + rnd.Next(40000, 50000) / 100000,
+                                    Date = new DateTime(2023, _currentMonth, 1),
+                                });
+                            }
+                        }
+
+
+                        //pure noise
+                        if (rnd.Next(0, 1) == 1)
+                        {
+                            var pureNoiseLength = rnd.Next(10, 100);
+                            for (var noise = 0; noise < pureNoiseLength; noise++)
+                            {
+                                hits.Add(new Hit
+                                {
+                                    Source = _name,
+                                    PersonId = "fake-person",
+                                    Latitude = (rnd.Next(_latitudeMin, _latitudeMax) / 1000000.0),
+                                    Longitude = (rnd.Next(_longitudeMin, _longitudeMax) / 1000000.0),
+                                    Date = new DateTime(2023, _currentMonth, 1),
+                                });
+                            }
+                        }
+                    }
+                }
             }
+
 
             return hits;
+        }
+
+        public static (double, double) GetHub()
+        {
+            var rnd = new Random();
+            var hubs = new List<(double, double)>
+            {
+                //Izumo Enmusubi Airport
+                (35.41360729021943, 132.8878918189998),
+
+                //Izumoshi Station
+                (35.36081880718673, 132.75679555793602),
+
+                 //Izumoshi Station
+                (35.36081880718673, 132.75679555793602),
+
+                (35.33500415006196, 132.72205277396878),
+            };
+
+            return hubs[rnd.Next(hubs.Count)];
         }
 
         private static List<(double, double)> GetPlaces()
@@ -129,6 +200,60 @@ namespace CollectorFake.Jobs
 
                 //Izumo Hinomisaki Lighthouse
                 (35.433729250646685, 132.62933943261814),
+
+                //Izumo Hinomisaki Lighthouse
+                (35.433729250646685, 132.62933943261814),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+                
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+                
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+                
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
+
+                //Hinomisaki Jinja
+                (35.42954401217566, 132.62952833436685),
 
                 //Hinomisaki Jinja
                 (35.42954401217566, 132.62952833436685),
@@ -151,12 +276,6 @@ namespace CollectorFake.Jobs
                 //Shimane Winery
                 (35.39602157900597, 132.71140410555083),
 
-                //Izumo Enmusubi Airport 
-                (35.41360729021943, 132.8878918189998),
-
-                //Izumoshi Station
-                (35.36081880718673, 132.75679555793602),
-
                 //Watanabe Liquor Store
                 (35.356749801725435, 132.7315762071781),
 
@@ -166,21 +285,17 @@ namespace CollectorFake.Jobs
                 //Inari Jinja
                 (35.390253986131505, 132.7409721847641),
 
-                //noise
-                (35.38415726908252, 132.74640123190022),
+                //Inari Jinja
+                (35.390253986131505, 132.7409721847641),
 
-                //noise
-                (35.38831356726028, 132.7607851080628),
-                //noise
-                (35.38235421387038, 132.84624918509058),
-                //noise
-                (35.39377943624971, 132.8925260728071),
-                //noise
-                (35.386996376257905, 132.89356295743764),
-                //noise
-                (35.44357610327539, 132.80798645765475),
-                //noise
-                (35.440955080799846, 132.79598292965562),
+                //Inari Jinja
+                (35.390253986131505, 132.7409721847641),
+
+                //Inari Jinja
+                (35.390253986131505, 132.7409721847641),
+
+                //Uryu Castle Ruins
+                (35.43172339707068, 132.63704100800425),
             };
         }
 
