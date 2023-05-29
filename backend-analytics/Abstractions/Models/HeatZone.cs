@@ -5,5 +5,6 @@
         public int Temperature { get; set; }
         public List<ZoneCoordinates> Coordinates { get; set; } = new();
         public Dictionary<string, int> HitStatistics { get; set; } = new();
+        public List<PlaceCharacteristics> ZoneCharacteristics { get; set; } = new();
     }
 }

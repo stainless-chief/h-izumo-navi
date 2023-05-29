@@ -6,6 +6,7 @@ class StatisticItem {
   temperature: number;
   coordinates: ZoneCoordinates[];
   sources: AnalyticsSource[];
+  characteristics: string[];
 }
 
 export { StatisticItem };

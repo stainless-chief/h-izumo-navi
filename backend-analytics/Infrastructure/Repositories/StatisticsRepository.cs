@@ -27,13 +27,13 @@ namespace Infrastructure.Repositories
             var result = _context.Places.ToList().Select(x => new PlaceItem
             {
                 PlaceName = x.DisplayName,
-                 Characteristics = x.Characteristics.Select(x => StringToPlaceCharacteristicsConverter.Convert(x)).ToList(),
-                Coordinates = x.Region!
-                .Select((x, i) => new { Index = i, Value = x })
-                .GroupBy(x => x.Index / 2)
-                .Select(x => x.Select(v => v.Value).ToList())
-                .Select( x => new ZoneCoordinates { Y = x[0], X = x[1] })
-                .ToList()
+                 Characteristics = x.Characteristics.ToList(),
+                    Coordinates = x.Region!
+                    .Select((x, i) => new { Index = i, Value = x })
+                    .GroupBy(x => x.Index / 2)
+                    .Select(x => x.Select(v => v.Value).ToList())
+                    .Select( x => new ZoneCoordinates { Y = x[0], X = x[1] })
+                    .ToList()
 
             }).ToList();
 

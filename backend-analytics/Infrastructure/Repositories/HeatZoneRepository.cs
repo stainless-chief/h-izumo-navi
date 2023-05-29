@@ -10,10 +10,12 @@ namespace Infrastructure.Repositories
     public class HeatZoneRepository : IHeatZoneRepository
     {
         private readonly DataContext _context;
+        private readonly IStatisticsRepository _statisticsRepository;
 
-        public HeatZoneRepository(DataContext context)
+        public HeatZoneRepository(DataContext context, IStatisticsRepository statisticsRepository)
         {
             _context = context;
+            _statisticsRepository = statisticsRepository;
         }
 
         public async Task<IEnumerable<HeatZone>> GetAsync(IEnumerable<string> sourceCode)
@@ -58,6 +60,16 @@ namespace Infrastructure.Repositories
             {
                 item.Temperature = IntegerExtensions.RoundOff(item.Temperature * 100d / maxTemp);
             }
+        }
+
+        private async Task<List<PlaceCharacteristics>> SeekForCharacteristics(HeatZone zone)
+        {
+            var ss = new List<PlaceCharacteristics>();
+
+            var places = await _statisticsRepository.GetAsync();
+
+
+            return ss;
         }
     }
 }

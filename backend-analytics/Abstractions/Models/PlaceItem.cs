@@ -7,6 +7,6 @@
         public List<ZoneCoordinates> Coordinates { get; set; } = new();
         public List<Source> Sources { get; set; } = new();
 
-        public List<PlaceCharacteristics> Characteristics { get; set; } = new();
+        public List<string> Characteristics { get; set; } = new();
     }
 }
