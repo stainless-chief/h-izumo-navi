@@ -4,22 +4,27 @@ using Abstractions.Map;
 using Abstractions.Models;
 using Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.PortableExecutable;
 
 namespace Infrastructure.Repositories
 {
     public class HeatZoneRepository : IHeatZoneRepository
     {
         private readonly DataContext _context;
-        private readonly IStatisticsRepository _statisticsRepository;
+        private readonly IPlaceRepository _placeRepository;
+        private IEnumerable<PlaceItem>? _places;
 
-        public HeatZoneRepository(DataContext context, IStatisticsRepository statisticsRepository)
+
+        public HeatZoneRepository(DataContext context, IPlaceRepository placeRepository)
         {
             _context = context;
-            _statisticsRepository = statisticsRepository;
+            _placeRepository = placeRepository;
         }
 
         public async Task<IEnumerable<HeatZone>> GetAsync(IEnumerable<string> sourceCode)
         {
+            await PreparePlaces();
+
             if (sourceCode == null || !sourceCode.Any())
             {
                 return Enumerable.Empty<HeatZone>();
@@ -34,6 +39,7 @@ namespace Infrastructure.Repositories
                     var temp = result.FirstOrDefault(x => x.IsIn(item.Longitude, item.Latitude));
                     if (temp != null)
                     {
+                        FillCharacteristics(temp);
                         temp.Temperature++;
                         if (temp.HitStatistics.ContainsKey(code))
                         {
@@ -62,14 +68,23 @@ namespace Infrastructure.Repositories
             }
         }
 
-        private async Task<List<PlaceCharacteristics>> SeekForCharacteristics(HeatZone zone)
+        private async Task PreparePlaces()
         {
-            var ss = new List<PlaceCharacteristics>();
+            if (_places == null)
+            {
+                _places = await _placeRepository.GetPlacesAsync();
+            }
+        }
 
-            var places = await _statisticsRepository.GetAsync();
-
-
-            return ss;
+        private void FillCharacteristics(HeatZone zone)
+        {
+            foreach (var place in _places)
+            {
+                if (place.IsIn(zone))
+                {
+                    place.Characteristics.ToList().ForEach(x => { zone.ZoneCharacteristics.Add(x); });
+                }
+            }
         }
     }
 }

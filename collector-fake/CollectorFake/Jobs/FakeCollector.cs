@@ -130,13 +130,13 @@ namespace CollectorFake.Jobs
                 //Izumo Hinomisaki Lighthouse
                 (35.433729250646685, 132.62933943261814),
 
-                //Hinomisaki Shrine
+                //Hinomisaki Jinja
                 (35.42954401217566, 132.62952833436685),
 
                 //Inasa Beach
                 (35.40016907071431, 132.67236129865637),
 
-                //Susa Shrine
+                //Susa Jinja
                 (35.23460317055524, 132.73696922711596),
 
                 //Izumotaisha mae Station
@@ -163,7 +163,7 @@ namespace CollectorFake.Jobs
                 //Lakeside Hot Spring Hotel Kunibiki 
                 (35.32421721363435, 132.67696064990585),
 
-                //Inari Shrine
+                //Inari Jinja
                 (35.390253986131505, 132.7409721847641),
 
                 //noise

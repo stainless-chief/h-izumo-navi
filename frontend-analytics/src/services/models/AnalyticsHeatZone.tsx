@@ -5,6 +5,7 @@ class AnalyticsHeatZone {
   temperature: number;
   hitStatistics: Record<string, number>;
   coordinates: ZoneCoordinates[];
+  zoneCharacteristics: string[];
 }
 
 class AnalyticsHeatZoneCollection implements FeatureCollection<Geometry, GeoJsonProperties> {

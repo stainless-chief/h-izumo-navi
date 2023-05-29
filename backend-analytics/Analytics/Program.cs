@@ -35,7 +35,7 @@ namespace Analytics
             builder.Services.AddTransient<IHeatZoneRepository, HeatZoneRepository>();
             builder.Services.AddTransient<ISourceRepository, SourceRepository>();
             builder.Services.AddTransient<IHitRepository, HitRepository>();
-            builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
+            builder.Services.AddTransient<IPlaceRepository, StatisticsRepository>();
             builder.Services.AddTransient<IPredictor, Predictor>();
 
             var app = builder.Build();
