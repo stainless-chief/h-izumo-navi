@@ -9,30 +9,4 @@
 
         public List<PlaceCharacteristics> Characteristics { get; set; } = new();
     }
-
-    public enum PlaceCharacteristics
-    {
-        None,
-        ImpassableTerrain,
-
-        TransportationHub,
-        Transportation,
-        Parking,
-
-        Shop,
-        
-        Dinery,
-
-        Hotel,
-
-        Landmark,
-        Museum,
-        Park,
-        Camping,
-
-        Shrine,
-
-        Education,
-        Office,
-    }
 }

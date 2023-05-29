@@ -1,6 +1,7 @@
 ﻿using Abstractions.Extensions;
 using Abstractions.IRepositories;
 using Abstractions.Models;
+using Infrastructure.Converters;
 using Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Infrastructure.Repositories
             var result = _context.Places.ToList().Select(x => new PlaceItem
             {
                 PlaceName = x.DisplayName,
+                 Characteristics = x.Characteristics.Select(x => StringToPlaceCharacteristicsConverter.Convert(x)).ToList(),
                 Coordinates = x.Region!
                 .Select((x, i) => new { Index = i, Value = x })
                 .GroupBy(x => x.Index / 2)
