@@ -61,6 +61,14 @@ services:
       - Generator__MinBatchSize=200
     restart: always
 
+  imagemagick:
+    container_name: imagemagick
+    image: v4tech/imagemagick
+    volumes:
+      - $TMPDIR:$TMPDIR
+    tty: true
+    command: "/bin/ash"
+
   backend_admin:
     depends_on:
       postgres:
@@ -68,6 +76,7 @@ services:
     links:
       - postgres
       - redis
+      - imagemagick
     build:
       context: ./backend-admin
       dockerfile: Dockerfile
