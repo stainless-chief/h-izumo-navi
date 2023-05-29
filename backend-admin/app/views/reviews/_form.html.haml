@@ -1,4 +1,4 @@
-= form_for @review, data: { controller: "analitics"} do |f|
+= form_for @review, data: { controller: "analitics", "data-location-latitude" => "#{location.latitude}", "data-location-longitude" => "#{location.longitude}", "data-user-id" => "#{current_user&.id}", "data-location-id" => "#{location.id}"} do |f|
   - if @review.errors.any?
     #error_explanation
       %h2= "#{pluralize(@review.errors.count, "error")} prohibited this review from being saved:"
