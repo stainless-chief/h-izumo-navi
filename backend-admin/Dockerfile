@@ -3,15 +3,48 @@ FROM ruby:3.2.0-alpine AS builder
 RUN apk add\
     build-base \
     postgresql-dev \
-    glib-2.0 \
-    gmodule-2.0 \
-    gobject-2.0
+    cmake \
+	autoconf \
+	automake \
+	libtool \
+	bc \
+	zlib-dev \
+	libxml2-dev \
+	jpeg-dev \
+	tiff-dev \
+	glib-dev \
+	gdk-pixbuf-dev \
+	libjpeg-turbo-dev \
+	libexif-dev \
+	lcms2-dev \
+	fftw-dev \
+	giflib-dev \
+	libpng-dev \
+	libwebp-dev \
+	orc-dev \
+	poppler-dev \
+	librsvg-dev \
+	libgsf-dev \
+	openexr-dev \
+	gtk-doc
 
 RUN apk add imagemagick imagemagick-dev imagemagick-libs
 
 COPY Gemfile* .
 RUN bundle install
 
+ARG OPENJPEG_VERSION=2.3.1
+ARG OPENJPEG_URL=https://github.com/uclouvain/openjpeg/archive
+
+RUN wget ${OPENJPEG_URL}/v${OPENJPEG_VERSION}.tar.gz \
+	&& tar xf v${OPENJPEG_VERSION}.tar.gz \
+	&& cd openjpeg-${OPENJPEG_VERSION} \
+	&& mkdir build \
+	&& cd build \
+	&& cmake .. \
+	&& make \
+	&& make install 
+    
 ARG MAGICK_VERSION=7.0.8-64
 ARG MAGICK_URL=https://github.com/ImageMagick/ImageMagick/archive
 
