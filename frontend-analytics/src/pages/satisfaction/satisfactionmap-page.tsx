@@ -19,18 +19,10 @@ export const dataLayer: FillLayer = {
   type: 'fill',
   paint: {
     'fill-color': {
-      property: 'temperature',
+      property: 'emotion',
       stops: [
+        [-100, '#00ffe4'],
         [0, '#808080'],
-        [10, '#00ffe4'],
-        [20, '#33f3b9'],
-        [30, '#5ae68b'],
-        [40, '#7ad65b'],
-        [50, '#95c524'],
-        [60, '#afb100'],
-        [70, '#c79a00'],
-        [80, '#dd7d00'],
-        [90, '#f05700'],
         [100, '#ff0000'],
       ]
     },
@@ -105,8 +97,8 @@ function SatisfactionmapPage() {
                    closeButton={false}>
                     {(
                     <div>
-                      <b>{t("HeatMapTooltip.Temperature")}</b>
-                      {hoverInfo.hoveredFeature.properties.emotion} <br/>
+                      <b>{t("HeatMapTooltip.Satisfaction")} </b>
+                      {hoverInfo.hoveredFeature.properties.emotion > 0 ? "❤️" : "💢"} <br/>
                       {/* TODO: make tooltip pretty  */}
                       { hoverInfo.hoveredFeature.properties.hitStatistics }<br/>
                       { hoverInfo.hoveredFeature.properties.characteristics }<br/>

@@ -14,7 +14,7 @@ function PredictFilterComponent(
   return (
   <div className="heat-filter-container">
     <Button onClick={() => { reloadHeatZone(""); }}
-            variant="contained">{t("HeatMap.ClearHeatData")}</Button>
+            variant="contained">Predict</Button>
   </div>
   );
 };

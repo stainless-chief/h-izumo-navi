@@ -42,6 +42,7 @@ namespace Infrastructure.Migrations
 
             for (var i = 0; i < 10; i++)
             {
+                //taisha
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.hit_{SourceCode.ToLower()} 
                     (id, date, person, latitude, longitude, emotion)
@@ -50,14 +51,15 @@ namespace Infrastructure.Migrations
                     '{Guid.NewGuid()}',
                     '{DateTime.Now}',
                     '{"Chief"}',
-                    '{35.40087906544714}',
-                    '{132.6856393173969}',
+                    '{35.401305913533726}',
+                    '{132.68553797213295}',
                     '{100}'
                 );");
             }
 
             for (var i = 0; i < 10; i++)
             {
+                //taisha
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.hit_{SourceCode.ToLower()} 
                     (id, date, person, latitude, longitude, emotion)
@@ -66,14 +68,15 @@ namespace Infrastructure.Migrations
                     '{Guid.NewGuid()}',
                     '{DateTime.Now}',
                     '{"Chief"}',
-                    '{35.36076802285758}',
-                    '{132.75616887550515}',
-                    '{0}'
+                    '{35.43374425874777}',
+                    '{132.62933021531813}',
+                    '{-100}'
                 );");
             }
 
             for (var i = 0; i < 10; i++)
             {
+                //taisha
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.hit_{SourceCode.ToLower()} 
                     (id, date, person, latitude, longitude, emotion)
@@ -82,9 +85,9 @@ namespace Infrastructure.Migrations
                     '{Guid.NewGuid()}',
                     '{DateTime.Now}',
                     '{"Chief"}',
-                    '{35.43372141679074}',
-                    '{132.6292551547577}',
-                    '{0}'
+                    '{35.39344834153746}',
+                    '{132.687098702221}',
+                    '{-100}'
                 );");
             }
         }

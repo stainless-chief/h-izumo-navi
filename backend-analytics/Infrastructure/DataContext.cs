@@ -28,7 +28,7 @@ namespace Infrastructure
             }
             if (code.Equals(IzumoNaviLikeHit.Code, StringComparison.InvariantCultureIgnoreCase))
             {
-                return FakeTwitterHits.OfType<BaseHit>();
+                return IzumoNaviLikeHits.OfType<BaseHit>();
             }
 
             throw new InvalidOperationException();
