@@ -112,8 +112,7 @@
             .col.mb-5
               .card.h-100{"data-geolocation-target" => "location", "data-latitude" => "#{location.latitude}", "data-longitude" => "#{location.longitude}"}
                 %img.card-img-top
-                  - if location.image?
-                    = image_tag location.image.url(:thumb), style: "border-radius: 10px 10px 0 0", class: "image-thumbnail"
+                  = image_tag location.image.url(:thumb), style: "border-radius: 10px 10px 0 0", class: "image-thumbnail" if location.image?
                 %i.fa-solid.fa-heart#favorite{"data-controller" => "favorites",
                   "data-user-logged-in" => "#{user_signed_in?}",
                   "data-user-id" => "#{current_user&.id}",
