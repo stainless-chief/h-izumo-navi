@@ -4,16 +4,16 @@ import "mapkick/bundle"
 import "controllers";
 import "channels";
 
-var multipleCardCarousel = document.querySelector(
+const multipleCardCarousel = document.querySelector(
   "#carouselExampleControls"
 );
 if (window.matchMedia("(min-width: 768px)").matches) {
-  var carousel = new bootstrap.Carousel(multipleCardCarousel, {
+  const carousel = new bootstrap.Carousel(multipleCardCarousel, {
     interval: 10000,
   });
-  var carouselWidth = $(".carousel-inner")[0].scrollWidth;
-  var cardWidth = $(".carousel-item").width();
-  var scrollPosition = 0;
+  const carouselWidth = $(".carousel-inner")[0].scrollWidth;
+  const cardWidth = $(".carousel-item").width();
+  const scrollPosition = 0;
   $("#carouselExampleControls .carousel-control-next").on("click", function () {
     if (scrollPosition < carouselWidth - cardWidth * 4) {
       scrollPosition += cardWidth;
