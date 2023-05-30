@@ -65,7 +65,7 @@ services:
     container_name: imagemagick
     image: v4tech/imagemagick
     volumes:
-      - $TMPDIR:$TMPDIR
+      - ./imagemagick-data:/tmp
     tty: true
     command: "/bin/ash"
 
