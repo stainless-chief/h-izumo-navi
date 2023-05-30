@@ -59,7 +59,7 @@ namespace Infrastructure.Migrations
 
             for (var i = 0; i < 10; i++)
             {
-                //taisha
+                //
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.hit_{SourceCode.ToLower()} 
                     (id, date, person, latitude, longitude, emotion)
@@ -76,7 +76,7 @@ namespace Infrastructure.Migrations
 
             for (var i = 0; i < 10; i++)
             {
-                //taisha
+                //
                 Execute.Sql(
                     $@"INSERT INTO {DataContext.SchemaData}.hit_{SourceCode.ToLower()} 
                     (id, date, person, latitude, longitude, emotion)
