@@ -1,4 +1,4 @@
-# Hackaton
+# Hackathon
 This a project for a hackathon organized by [Hello Yaponiya](https://www.linkedin.com/company/helloyaponiya/) and [Sami Japan](https://www.linkedin.com/company/sami-japan/) companies.
 
 # Task
